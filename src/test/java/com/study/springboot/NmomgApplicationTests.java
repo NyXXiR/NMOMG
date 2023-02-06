@@ -8,6 +8,8 @@ class NmomgApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
+	
+	
+	ㅁㅁ}
 
 }
