@@ -1,0 +1,204 @@
+@charset "UTF-8";
+*{
+/* #324A92 파랑*/
+/* #DCDADB 흰 */
+/* #777FAD 퍼플*/
+/* #6B8596 섀도우블루 */
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html{
+background-color: #ffffffb7 ;
+font-family: sans-serif;
+
+}
+body {
+margin: 0;
+padding: 0;
+margin-bottom: 0;
+}
+section{
+  border: solid 1px red;
+  display: block;
+  width: 100%;
+  text-align: center;
+  }
+
+a{
+  text-decoration: none;
+  color: none;
+  text-decoration: none;
+  background-color: none;
+}
+
+header{
+z-index: 32122130;
+padding: 0;
+top:0;
+position: sticky;
+width: 100%;
+height: 170px;
+
+vertical-align: bottom;
+
+}
+
+header #logo{
+margin-top: 15px;
+padding-bottom:50px;
+width: 100px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.menu{
+  
+padding-top:5px;
+bottom : 0;
+border:1px solid red;
+position : absolute;
+left: 50%;
+transform: translate(-50%,-0%);
+width: 500px;
+text-align: center;
+}
+
+.menu a {
+padding: 0px;
+
+font-size: 30px;
+}
+.menu :nth-child(1){
+float: left;
+
+}
+.menu :nth-child(3){
+float: right;
+}
+
+
+.menu a:hover {
+background-color: none;
+color: black;
+}
+/* 여기까지 헤더 */
+
+
+
+
+
+
+
+
+.sec0{
+  height: 100vh;
+}
+
+
+
+
+
+
+
+
+/* 여기까지 섹션 프로덕츠 */
+
+
+
+
+/*로그인,조인페이지 */
+
+.sec1{
+ 
+background-color:#ffffffb7 ;
+height: 100vh;
+padding-top: 180px;
+}
+
+.login{
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  float: left;
+
+}
+.login img{
+  margin:0;
+  width: 100%;
+  height: 50%;
+}
+.join{
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  float: left;
+  
+ 
+}
+.join img{
+  width: 100%;
+  height: 50%;
+}
+
+
+
+
+
+
+/* 여기까지 섹션1 로그인,조인페이지 */
+.cards{
+  margin-top: 30px;
+}
+.sec2{ 
+  border: solid 1px blue;
+  padding-top: 180px;
+  height: 70vh;
+}
+.mem{
+  
+  height:60vh;
+}
+.me{
+ 
+  width: 50%;
+  height: 80%;
+  text-align: center;
+  float: left;
+  border: solid red 1px;
+}
+.u{
+  width: 50%;
+  height: 80%;
+  text-align: center;
+  float: left;
+  border: solid red 1px;
+ 
+}
+
+
+
+/* 여기까지 섹션 2 내 카드, 찾는 능력 카드 매칭 푸터*/
+
+.sec3{  
+  height: 35vh;
+}
+.matching{
+  height: 25vh;
+}
+h1{
+margin-top:50px; 
+}
+.footer{
+background: #444444;
+border: solid 1px green;
+text-align: center;
+height:40%;
+bottom: 0;
+}
+footer .table{
+border: solid 1px green;
+height: 300px;
+}
