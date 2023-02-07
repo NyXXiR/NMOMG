@@ -6,10 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class NmomgApplicationTests {
 
-	@Test
-	void contextLoads() {
-	
-	
-	ㅁㅁ}
+  @Test
+  void contextLoads() {
+
+  }
 
 }
