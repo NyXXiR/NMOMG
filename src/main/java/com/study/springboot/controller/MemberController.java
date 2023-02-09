@@ -24,12 +24,6 @@ public class MemberController {
 		super();
 		this.memberDao = memberDao;
 	}
-
-
-	@GetMapping("/index")
-	public void index() {
-		
-	}
 	
 
 	@GetMapping("/loginIdCheck")
