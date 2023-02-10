@@ -32,10 +32,50 @@ public class MemberController {
 	}
 	
 	
-	@GetMapping("/join")
-	public void join(Member member) {
-		int res = memberDao.memberInsert(member);
+	@PostMapping("/join")
+	public String postJoin(Member member, Model model, String loginIdCheck) {
+		int checkId = memberDao.memberIdCheck(member.getLoginId());
+		
+		if(loginIdCheck.equals("사용가능한 아이디 입니다.") && member.getNickname()!="" && member.getPassword()!="") { 
+			if(checkId == 1) {			
+				model.addAttribute("idCheck", "이미 존재하는 아이디 입니다.");
+				return "/member/joinForm";
+			} else if(checkId==0 )  {
+				model.addAttribute("idCheck", "사용가능한 아이디 입니다.");
+				return "/member/joinForm";
+			}
+			 int res = memberDao.memberInsert(member); 
+			 return "/member/login"; 
+			 } else {
+		
+			if(checkId == 1 && !loginIdCheck.equals("이미 존재하는 아이디 입니다.")) {			
+				model.addAttribute("idCheck", "이미 존재하는 아이디 입니다.");
+				return "/member/joinForm";
+			} else if(checkId==0 && !loginIdCheck.equals("사용가능한 아이디 입니다.") ) {
+				model.addAttribute("idCheck", "사용가능한 아이디 입니다.");
+				return "/member/joinForm";
+			}
+	
+			model.addAttribute("idCheck", loginIdCheck);
+			return "/member/joinForm";
+			 }
 	}
+	
+	//아이디 중복체크는 겟 방식이 때문에 
+	@GetMapping("/join")
+	public String getJoin(Member member, Model model) {
+		int checkId = memberDao.memberIdCheck(member.getLoginId());
+		if(checkId == 1) {			
+			model.addAttribute("idCheck", "이미 존재하는 아이디 입니다.");
+			return "/member/joinForm";
+		} else if(checkId==0) {
+			model.addAttribute("idCheck", "사용가능한 아이디 입니다.");
+			return "/member/joinForm";
+		}
+		return "index.html";
+	}
+	
+	
 
 	@GetMapping("/joinForm")
 	public void joinForm() {

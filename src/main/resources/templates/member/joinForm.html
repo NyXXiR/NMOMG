@@ -10,15 +10,21 @@
 	</h1>
 	<!-- 중복체크와 로그인 할 아이디를 타입 이메일 형식으로 뱌. 막바지에 ㅅㄱ  -->
 	<!-- todolist -중복체크 연결. 메서드는 만들어둠 메서드 이름memberIdCheck  -->
-	<form action="/join" method = "get">
-		<input type="text" placeholder="이메일" name="loginId"/>
-		<label><a th:href="@{/loginIdCheck}">중복체크</a></label>
+	<form action="/member/join" method = "post">
+		<input type="text" placeholder="이메일" name="loginId" />
+		<label><button>중복체크</button></label>
+		
+		<input type="text" placeholder="회원님의 아이디" name="loginIdCheck" th:value="${idCheck}" readonly/>
+		
 		<input type="password" placeholder="비밀번호"/ name="password">
 		<!-- <input type="password" placeholder="비밀번호 확인"/ name="passwordCheck"> -->
 		<input type="text" placeholder="별명"/ name="nickname">
 		<input type="submit">
 	</form>
 	
+<script type="text/javascript">
+	
 
+</script>
 </body>
 </html>
