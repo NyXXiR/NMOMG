@@ -12,7 +12,7 @@ public interface BoardDao {
 	
 	public Board boardDetail(int boardNum);
 	
-	public List<Board> boardList(Board board);
+	public List<Board> boardList();
 	
 	public int boardEdit(Board board);
 	

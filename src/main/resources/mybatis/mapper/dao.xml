@@ -22,34 +22,4 @@
 	<select id="memberLogin" resultType="Integer">
 		select count(*) from member where loginId = #{loginId} and password = #{password}
 	</select>
-	
-<!--Board  -->
-	<!--글쓰기 -->
-	<insert id="boardWrite">
-	insert into board (boardNum, title, content, memberNum, date, category, startDate) 
-	VALUES (#{boardNum},#{title},#{content},#{memberNum},#{date},#{category},#{startDate})
-	</insert>
-	
-	<!--상세보기 -->
-	<select id="boardDetail">
-	SELECT b.boardNum,b.startDate,b.title,b.content,b.date, b.category, m.loginId, m.memberNum 
-	FROM board b INNER JOIN member m
-   	ON b.memberNum = m.memberNum WHERE b.boardNum=#{boardNum};
-   	</select>
-   	
-   	<!-- list -->
-   	<select id="boardList">
-   	select * from board where boardNum order by boardNum desc;
-   	</select>
-   	
-   	<update id="boardEdit">
-	update board set title =#{title},content =#{content}, dateTime = NOW(), category=#{category}, startDate={startDate}
-	where boardNum=#{boardNum}
-	</update>
-	
-	<delete id ="boarDel">
-	delete from board WHERE boardNum =#{boardNum};
-	</delete>
-  
-
 </mapper>

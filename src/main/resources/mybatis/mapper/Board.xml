@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springboot.dao.BoardDao">
+
+<!--Board  -->
+	<!--글쓰기 -->
+	<insert id="boardWrite">
+	insert into board (boardNum, title, content, memberNum, date, category, startDate) 
+	VALUES (#{boardNum},#{title},#{content},#{memberNum},#{date},#{category},#{startDate})
+	</insert>
+	
+	<!--상세보기 -->
+	<select id="boardDetail">
+	SELECT b.boardNum,b.startDate,b.title,b.content,b.date, b.category, m.loginId, m.memberNum 
+	FROM board b INNER JOIN member m
+   	ON b.memberNum = m.memberNum WHERE b.boardNum=#{boardNum}
+   	</select>
+   	
+   	<!-- list -->
+   	<select id="boardList" resultType="List">
+   	select * from board where boardNum
+   	</select>
+   	
+   	<update id="boardEdit">
+	update board set title =#{title},content =#{content}, dateTime = NOW(), category=#{category}, startDate={startDate}
+	where boardNum=#{boardNum}
+	</update>
+	
+	<delete id ="boarDel">
+	delete from board WHERE boardNum =#{boardNum}
+	</delete>
+</mapper>
