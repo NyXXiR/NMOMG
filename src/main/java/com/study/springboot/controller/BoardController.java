@@ -36,6 +36,15 @@ public class BoardController {
 		model.addAttribute("detail", board);
 	}
 	
+	//게시글쓰기 write 페이지
+	@PostMapping("/write")	//데이터를 서버로 제출해서 insert, update
+	public String insert(Board board, Model model) {
+		int res = boardDao.boardWrite(board);
+		model.addAttribute("list", res);
+		return "board/list";
+	}
+	
+	
 	//board update 
 	@GetMapping("/update")
 	public void update(int boardNum, Model model) {
@@ -50,12 +59,5 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 */
-	//게시글쓰기 페이지
-	@PostMapping("/write")	//데이터를 서버로 제출해서 insert, update
-	public String insert(Board board, Model model) {
-		int res = boardDao.boardWrite(board);
-		model.addAttribute("list", res);
-		return "redirect:board/list";
-	}
-	
+
 }
