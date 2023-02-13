@@ -2,40 +2,31 @@ package com.study.springboot.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Board;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.RequiredArgsConstructor;
+
 
 @Controller
-@Log4j2
 @RequestMapping("/board/*")
+@RequiredArgsConstructor
 public class BoardController {
-	BoardDao boardDao;
+	private final BoardDao boardDao;
 
-	public BoardController(BoardDao BoardDao) {
-		super();
-		this.boardDao = BoardDao;
-	}
-	
-	//board list
-	@Autowired(required=false)
-	Board board;
-	@GetMapping(value = "list")
-	public void list(Model model) {
+	@GetMapping("/list")
+	public String list(Model model) {
 		System.out.println("=================>> 여기1");
 		List<Board> list = boardDao.boardList();
 		System.out.println("=================>> 여기2");
 		System.out.println("================>> list :: " + list);
 		model.addAttribute("list",list);
+		return "board/list";
 	}
 
 	//board 상세페이지 
@@ -59,4 +50,11 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 */
+	//게시글쓰기 페이지
+	@PostMapping("/write")	//데이터를 서버로 제출해서 insert, update
+	public String insert(Board board, Model model) {
+		int res = boardDao.boardWrite(board);
+		return "redirect:board/list";
+	}
+	
 }

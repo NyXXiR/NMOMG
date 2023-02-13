@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
 <mapper namespace="com.study.springboot.dao.BoardDao">
 
 <!--Board  -->
@@ -12,15 +13,15 @@
 	</insert>
 	
 	<!--상세보기 -->
-	<select id="boardDetail">
+	<select id="boardDetail" resultType="com.study.springboot.vo.Board">
 	SELECT b.boardNum,b.startDate,b.title,b.content,b.date, b.category, m.loginId, m.memberNum 
 	FROM board b INNER JOIN member m
    	ON b.memberNum = m.memberNum WHERE b.boardNum=#{boardNum}
    	</select>
    	
    	<!-- list -->
-   	<select id="boardList" resultType="List">
-   	select * from board where boardNum
+   	<select id="boardList" resultType="com.study.springboot.vo.Board">
+   	select * from board order by boardNum desc;
    	</select>
    	
    	<update id="boardEdit">
