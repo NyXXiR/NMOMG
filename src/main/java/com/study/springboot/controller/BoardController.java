@@ -31,9 +31,9 @@ public class BoardController {
 
 	//board 상세페이지 
 	@GetMapping("/detail")
-	public void detailList(int boardNum,Model model) {
-		List<Board>detail = (List<Board>) boardDao.boardDetail(boardNum);
-		model.addAttribute("detail", detail);
+	public void detailList(int boardNum, Model model) {
+		Board board = boardDao.boardDetail(boardNum);
+		model.addAttribute("detail", board);
 	}
 	
 	//board update 
@@ -54,6 +54,7 @@ public class BoardController {
 	@PostMapping("/write")	//데이터를 서버로 제출해서 insert, update
 	public String insert(Board board, Model model) {
 		int res = boardDao.boardWrite(board);
+		model.addAttribute("list", res);
 		return "redirect:board/list";
 	}
 	

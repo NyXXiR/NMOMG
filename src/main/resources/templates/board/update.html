@@ -5,45 +5,28 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="slide.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
 <script language="javascript" src="jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script language="javascript" src="jquery/jquery-ui.min.js" type="text/javascript"></script>
 <script language="javascript" src="jquery/jq.rolling.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="jq.rolling.css"/>
-<title>Document</title>
-
+<title>상세페이지</title>
 </head>
-<script language="javascript">
-	function getPost(mode)
-	{
-	    var theForm = document.detail;
-	      if(mode == "01")		// 수정하기
-	    {
-	    	alert("수정하기");
-	    	theForm.method = "post";
-			theForm.action = "/board/update";
-	    }
-	    else if(mode == "02")	// 삭제하기
-	    {
-			alert("삭제하기");
-	        theForm.method = "post";
-	        theForm.action = "/board/delete";
-	    }
-	    theForm.submit();
-	}
-</script>
 <body>
 <header>
 </header>
-<form name="detail">
-<!-- SECTION 1 LOGIN,JOIN START -->
+
+
 <div class="b">
+
 <section class="sec1">
-  <div class="mem">
+
+<div class="mem">
 <h1>앱 개발 프로젝트 개발자분을 모집해요!</h1>
+
 </div>
 </section>
 </div>
+
 <div>
 <table width="1000" height="800">
 	<tr>
@@ -64,5 +47,24 @@
 </table>
 </div>
 </form>
+<script language="javascript">
+	function getPost(mode)
+	{
+	    var theForm = document.detail;
+	      if(mode == "01")		// 수정하기
+	    {
+	    	alert("수정하기");
+	    	theForm.method = "post";
+			theForm.action = "/board/update";
+	    }
+	    else if(mode == "02")	// 삭제하기
+	    {
+			alert("삭제하기");
+	        theForm.method = "post";
+	        theForm.action = "/board/delete";
+	    }
+	    theForm.submit();
+	}
+</script>
 </body>
 </html>
