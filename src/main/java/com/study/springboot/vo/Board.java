@@ -16,4 +16,5 @@ public class Board {
   public String date;
   public String category;
   public String startDate;
+  public String loginId;
 }
