@@ -5,21 +5,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/board/write" method="post">
+
+<!--  목표?
+write에 팀원구하기 / 팀 구하기 토글기능 추가
+
+value="recruit"일 경우 > 시작일자, 
+value="apply"일 경우 > 
+
+ -->
+<form action="/board/write" method="post" enctype="multipart/form-data">
 	<div>카테고리
 	<select name="category" style="width:200px;height:30px;">
-	<option value="팀원구하기">팀원구하기</option>
-	<option value="프로젝트팀구하기">프로젝트팀구하기</option>
+	<option value="recruit">팀원구하기</option>
+	<option value="apply">프로젝트팀구하기</option>
 	</select>
 	</div>
-	<div>작성자<input type="text" name="memberNum" th:value=3 readonly></div>
+	<div>작성자<input type="text" name="memberNum" value=3 readonly></div>
     <div>프로젝트 시작일자<input type="date" name="startDate" ></div>
-    <div>프로젝트주제<input type="text" name="title"></div>
+    <div>제목<input type="text" name="title"></div>
     <div>내용
     <textarea rows="40" cols="100" name="content"></textarea>
     </div>
+    <div>
+        <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+   </div>
     <button type="submit">저장</button>
     <button type="button" onclick="location.href='/board/list'">목록</button>
+    
 </form>
 </body>
 </html>

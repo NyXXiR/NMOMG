@@ -20,10 +20,25 @@
    	ON b.memberNum = m.memberNum WHERE b.memberNum=m.memberNum and b.boardNum=#{boardNum}
    	</select>
    	
+   	<select id="selectByNum" resultType="com.study.springboot.vo.Board">
+   	select * from board where boardNum=#{boardNum}
+   	</select>
+   	
    	<!-- list -->
    	<select id="boardList" resultType="com.study.springboot.vo.Board">
    	SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId, m.memberNum 
-	FROM board b, member m where b.memberNum=m.memberNum order by boardNum desc;
+	FROM board b, member m where b.memberNum=m.memberNum 
+	<choose>
+	<when test= "category=='recruit'">
+	and b.category ='recruit' order by boardNum desc
+	</when>
+	<when test="category=='apply'">
+	and b.category='apply' order by boardNum desc
+	</when>
+	<otherwise>
+	order by boardNum desc
+	</otherwise>
+	</choose>
    	</select>
    	
    	<update id="boardEdit">
