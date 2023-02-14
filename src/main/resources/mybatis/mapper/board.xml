@@ -8,8 +8,9 @@
 <!--Board  -->
 	<!--글쓰기 -->
 	<insert id="boardWrite">
-	insert into board (boardNum, title, content, memberNum, date, category, startDate) 
-	VALUES (#{boardNum},#{title},#{content},#{memberNum},#{date},#{category},#{startDate})
+	insert into board ( title, content, memberNum, date, category, startDate) 
+	VALUES (#{title},#{content},#{memberNum},now(),#{category},#{startDate})
+	
 	</insert>
 	
 	<!--상세보기 -->
@@ -26,7 +27,7 @@
    	</select>
    	
    	<update id="boardEdit">
-	update board set title =#{title},content =#{content}, dateTime = NOW(), category=#{category}, startDate={startDate}
+	update board set title =#{title},content =#{content}, date = NOW(), category=#{category}, startDate={startDate}
 	where boardNum=#{boardNum}
 	</update>
 	
