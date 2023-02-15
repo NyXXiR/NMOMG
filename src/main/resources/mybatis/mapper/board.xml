@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.study.springboot.dao.BoardDao">
+
+<!--Board  -->
+	<!--글쓰기 -->
+	<insert id="boardWrite">
+	insert into board ( title, content, memberNum, date, category, startDate) 
+	VALUES (#{title},#{content},#{memberNum},now(),#{category},#{startDate})
+	
+	</insert>
+	
+	<!--상세보기 -->
+	<select id="boardDetail" resultType="com.study.springboot.vo.Board">
+	SELECT b.boardNum,b.startDate,b.title,b.content,b.date, b.category, m.loginId, m.memberNum 
+	FROM board b INNER JOIN member m
+   	ON b.memberNum = m.memberNum WHERE b.memberNum=m.memberNum and b.boardNum=#{boardNum}
+   	</select>
+   	
+   	<select id="selectByNum" resultType="com.study.springboot.vo.Board">
+   	select * from board where boardNum=#{boardNum}
+   	</select>
+   	
+   	<!-- list -->
+   	<select id="boardList" resultType="com.study.springboot.vo.Board">
+   	SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId, m.memberNum 
+	FROM board b, member m where b.memberNum=m.memberNum 
+	<choose>
+	<when test= "category=='recruit'">
+	and b.category ='recruit' order by boardNum desc
+	</when>
+	<when test="category=='apply'">
+	and b.category='apply' order by boardNum desc
+	</when>
+	<otherwise>
+	order by boardNum desc
+	</otherwise>
+	</choose>
+   	</select>
+   	
+   	<update id="boardEdit">
+	update board set title =#{title},content =#{content}, date = NOW(), category=#{category}, startDate={startDate}
+	where boardNum=#{boardNum}
+	</update>
+	
+	<delete id ="boarDel">
+	delete from board WHERE boardNum =#{boardNum}
+	</delete>
+</mapper>

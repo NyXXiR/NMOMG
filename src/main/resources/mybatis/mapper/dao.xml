@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springboot.dao.MemberDao">
+
+	<insert id="memberInsert">
+	insert into member(loginId, password, nickname)
+	values (#{loginId}, #{password}, #{nickname})
+	</insert>
+	
+	<select id="memberInfo" resultType="com.study.springboot.vo.Member">
+		select * from member where memberNum = #{memberNum}
+	</select>
+	
+	<!-- 회원가입시 이메일 중복체크 메서드  -->
+	<select id ="memberIdCheck" resultType="Integer">
+		select count(*) from member where loginId = #{loginId}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="memberLogin" resultType="Integer">
+		select count(*) from member where loginId = #{loginId} and password = #{password}
+	</select>
+</mapper>
