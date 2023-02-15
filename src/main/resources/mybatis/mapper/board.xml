@@ -24,6 +24,12 @@
    	select * from board where boardNum=#{boardNum}
    	</select>
    	
+   	<select id="max" resultType="int">
+   	select max(boardNum) from board
+   	</select>
+   	
+ 
+   	
    	<!-- list -->
    	<select id="boardList" resultType="com.study.springboot.vo.Board">
    	SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId, m.memberNum 
