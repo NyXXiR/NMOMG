@@ -5,6 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="slide.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -27,6 +30,9 @@
 <a href="#sec2" onclick="goToScroll('a')">PRODUCTS</a>
 <a href="#sec3" onclick="goToScroll('b')">MYPAGE</a>
 <a href="#profile" onclick="goToScroll('c')">MATCHING</a>
+
+
+
 </div>
 </nav>
 </header>
@@ -50,7 +56,7 @@
 	$("#rolling").rolling(1200,600,{autoscroll:1, delay:1500});
 </script> 
 <h1>PRODUCTS</h1>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil rerum cumque animi minima explicabo fugit atque vitae quidem labore voluptates nulla aut, debitis sapiente quibusdam suscipit odit nobis doloribus maxime.</p>
+<p></p>
 </section>
 
 </div>
@@ -91,12 +97,15 @@
 <div class="me">
   <h1>나의 능력</h1>
 <div>
+	<table>
+		<tr>
 <input type="text">
 <input type="text">
 <input type="text">
 <input type="text">
 <input type="text">
 <input type="text">
+	</table>
 </div>
 <input type="submit">
 </div>
@@ -127,10 +136,10 @@
 <section class="sec3">
   <div class="matching">
     
-<span id="sec3_span"><h1>팀원을 꾸려봐요!</h1></span>
-<br><br><br><br><br><br>
-<button type="button" id="maching">매칭하기</button>
+
+<button type="button" class="matching" id="matching">매칭하기</button>
 </div>
+</section>
 <!-- SECTION3 MATCHING END -->
 
 
@@ -156,21 +165,30 @@
 </table>
 </div>
 </div>
-</section>
+
 <!-- FOOTER END -->
 
 <script>
-
-
-
 
 function goToScroll(name) {
     var location = document.querySelector("." + name).offsetTop;
     window.scrollTo({top: location, behavior: 'smooth'});
 }
+var mydiv = document.getElementById("mydiv");
+if (mydiv.addEventListener) {
+	// IE9, Chrome, Safari, Opera
+	mydiv.addEventListener("mousewheel", MouseWheelHandler, false);
+	// Firefox
+	mydiv.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+}
+// IE 6/7/8
+else
+	mydiv.attachEvent("onmousewheel", MouseWheelHandler);
 
 
 
-  </script>
+
+
+</script>
 </body>
 </html>
