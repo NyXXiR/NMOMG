@@ -71,5 +71,11 @@ public class BoardController {
   // apply part(write, update, list, detail) + (delete(관리자용))
 
 
+  // 테스트
+
+  @GetMapping("/multiSelect")
+  public String MultiSelect() {
+    return "board/multiSelect";
+  }
 
 }

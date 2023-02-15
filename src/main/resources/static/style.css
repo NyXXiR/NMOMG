@@ -202,3 +202,19 @@ footer .table{
 border: solid 1px green;
 height: 300px;
 }
+
+/*글쓰기용 멀티 input*/
+multi-input {
+  display: inline-block;
+  margin: 0 20px 20px 0;
+}
+.multiSelect{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+label {
+  display: block;
+  margin: 0 20px 20px 0;
+}
+

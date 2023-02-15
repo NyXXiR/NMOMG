@@ -22,15 +22,25 @@ value="apply"일 경우 >
 				<option value="apply">프로젝트팀구하기</option>
 			</select>
 		</div>
-		<div>작성자<input type="text" name="memberNum" value=3 readonly></div>
+		<div>작성자<input type="text" name="memberNum" value="(미완성)세션에서 받아와야함" readonly></div>
+		
+		<div class="recruitOnly"> 
 		<div>프로젝트 시작일자<input type="date" name="startDate"></div>
-		<div>제목<input type="text" name="title"></div>
-		<div>내용
-			<textarea rows="40" cols="100" name="content"></textarea>
+		
 		</div>
+		
+		<div class="applyOnly">
+		</div>
+		
+		<div>제목<input type="text" name="title"></div>
 		<div>
 			<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
 		</div>
+		
+		<div>내용
+			<textarea rows="40" cols="100" name="content"></textarea>
+		</div>
+		
 		<button type="submit">저장</button>
 		<button type="button" onclick="location.href='/board/list'">목록</button>
 
