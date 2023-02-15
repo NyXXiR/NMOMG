@@ -1,89 +1,114 @@
 @charset "UTF-8";
-*{
-/* #324A92 파랑*/
-/* #DCDADB 흰 */
-/* #777FAD 퍼플*/
-/* #6B8596 섀도우블루 */
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
+
+* {
+	font-family: Roboto;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-html{
-background-color: #ffffffb7 ;
-font-family: sans-serif;
+
+html {
+	background-color: #ffffffb7;
+	font-family: sans-serif;
 
 }
+
 body {
-margin: 0;
-padding: 0;
-margin-bottom: 0;
-}
-section{
-  border: solid 1px red;
-  display: block;
-  width: 100%;
-  text-align: center;
-  }
-
-a{
-  text-decoration: none;
-  color: none;
-  text-decoration: none;
-  background-color: none;
-}
-
-header{
-z-index: 32122130;
-padding: 0;
-top:0;
-position: sticky;
-width: 100%;
-height: 170px;
-
-vertical-align: bottom;
+	margin: 0 auto;
+	padding: 0;
 
 }
 
-header #logo{
-margin-top: 15px;
-padding-bottom:50px;
-width: 100px;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+section {
+
+	display: block;
+	width: 100%;
+	text-align: center;
 }
 
-.menu{
-  
-padding-top:5px;
-bottom : 0;
-border:1px solid red;
-position : absolute;
-left: 50%;
-transform: translate(-50%,-0%);
-width: 500px;
-text-align: center;
+a {
+	text-decoration: none;
+
+
+
+}
+
+header {
+	font-weight: 700;
+	display: flex;
+	z-index: 32122130;
+	padding: 0;
+	top: 0;
+	position: sticky;
+	width: 100%;
+	height: 170px;
+	vertical-align: bottom;
+}
+
+header #logo {
+	margin-top: 15px;
+	padding-bottom: 50px;
+	width: 100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.menu {
+
+	padding-top: 5px;
+	bottom: 0;
+
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -0%);
+	width: 500px;
+	text-align: center;
 }
 
 .menu a {
-padding: 0px;
+	padding: 0px;
 
-font-size: 30px;
-}
-.menu :nth-child(1){
-float: left;
-
-}
-.menu :nth-child(3){
-float: right;
+	font-size: 30px;
 }
 
+.menu :nth-child(1) {
+	float: left;
 
-.menu a:hover {
-background-color: none;
-color: black;
 }
+
+.menu :nth-child(3) {
+	float: right;
+}
+
+
+.menu a {
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:focus {
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	text-decoration: none;
+}
+
+
+
+
 /* 여기까지 헤더 */
 
 
@@ -93,8 +118,8 @@ color: black;
 
 
 
-.sec0{
-  height: 100vh;
+.sec0 {
+	height: 100vh;
 }
 
 
@@ -111,110 +136,109 @@ color: black;
 
 /*로그인,조인페이지 */
 
-.sec1{
- 
-background-color:#ffffffb7 ;
-height: 100vh;
-padding-top: 180px;
+.sec1 {
+
+	background-color: #ffffffb7;
+	height: 100vh;
+	padding-top: 180px;
 }
 
-.login{
-  width: 50%;
-  height: 100%;
-  text-align: center;
-  float: left;
+.login {
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	float: left;
 
 }
-.login img{
-  margin:0;
-  width: 100%;
-  height: 50%;
-}
-.join{
-  width: 50%;
-  height: 100%;
-  text-align: center;
-  float: left;
-  
- 
-}
-.join img{
-  width: 100%;
-  height: 50%;
+
+.login img {
+	margin: 0;
+	width: 100%;
+	height: 50%;
 }
 
+.join {
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	float: left;
 
 
+}
 
-
+.join img {
+	width: 100%;
+	height: 50%;
+}
 
 /* 여기까지 섹션1 로그인,조인페이지 */
-.cards{
-  margin-top: 30px;
+.cards {
+	margin-top: 30px;
 }
-.sec2{ 
-  border: solid 1px blue;
-  padding-top: 180px;
-  height: 70vh;
+
+.sec2 {
+
+	padding-top: 180px;
+	height: 70vh;
 }
-.mem{
-  
-  height:60vh;
+
+.mem {
+
+	height: 60vh;
 }
-.me{
- 
-  width: 50%;
-  height: 80%;
-  text-align: center;
-  float: left;
-  border: solid red 1px;
+
+.me {
+
+	width: 50%;
+	height: 80%;
+	text-align: center;
+	float: left;
+
 }
-.u{
-  width: 50%;
-  height: 80%;
-  text-align: center;
-  float: left;
-  border: solid red 1px;
- 
+
+.u {
+	width: 50%;
+	height: 80%;
+	text-align: center;
+	float: left;
+
+
 }
 
 
 
 /* 여기까지 섹션 2 내 카드, 찾는 능력 카드 매칭 푸터*/
 
-.sec3{  
-  height: 35vh;
+.sec3 {
+	height: 100vh;
 }
-.matching{
-  height: 25vh;
+
+.matching {
+	height: 7vh;
+
 }
-h1{
-margin-top:50px; 
-}
-.footer{
-background: #444444;
-border: solid 1px green;
-text-align: center;
-height:40%;
-bottom: 0;
-}
-footer .table{
-border: solid 1px green;
-height: 300px;
+
+
+
+
+
+.footer-right {
+	margin-top: 100px;
 }
 
 /*글쓰기용 멀티 input*/
 multi-input {
-  display: inline-block;
-  margin: 0 20px 20px 0;
-}
-.multiSelect{
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-label {
-  display: block;
-  margin: 0 20px 20px 0;
+	display: inline-block;
+	margin: 0 20px 20px 0;
 }
 
+.multiSelect {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+label {
+	display: block;
+	margin: 0 20px 20px 0;
+}
