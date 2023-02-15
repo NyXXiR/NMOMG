@@ -19,4 +19,6 @@ public interface BoardDao {
   public int boardDel(int boardNum);
 
   public Board selectByNum(int boardNum);
+
+  public int max();
 }

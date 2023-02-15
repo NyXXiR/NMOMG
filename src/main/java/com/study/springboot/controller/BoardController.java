@@ -1,5 +1,6 @@
 package com.study.springboot.controller;
 
+import java.io.File;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,14 +8,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Board;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 
 @Controller
 @RequestMapping("/board/*")
 @RequiredArgsConstructor
+@Log4j2
 public class BoardController {
   final BoardDao boardDao;
 
@@ -42,9 +46,24 @@ public class BoardController {
 
 
   @PostMapping("/write") // 데이터를 서버로 제출해서 insert, update
-  public String insert(Board board) {
-    int res = boardDao.boardWrite(board);
+  public String insert(Board board, MultipartFile uploadFile) {
 
+    String uploadFolder = "C:\\test";
+
+    log.info("upload file name: " + uploadFile.getOriginalFilename());
+    log.info("upload file size: " + uploadFile.getSize());
+
+    File saveFile = new File(uploadFolder, uploadFile.getOriginalFilename());
+    int max = boardDao.max() + 1;
+
+    File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
+    saveFile.renameTo(renamedFile);
+    try {
+      uploadFile.transferTo(saveFile);
+    } catch (Exception e) {
+      log.error(e.getMessage());
+    }
+    int res = boardDao.boardWrite(board);
     // stackDB 트랜잭션 추가 필요
     return "redirect:list";
   }
