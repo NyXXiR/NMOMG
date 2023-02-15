@@ -1,6 +1,8 @@
 package com.study.springboot.controller;
 
 import java.util.List;
+
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -69,7 +71,6 @@ public class BoardController {
   }
 
   // apply part(write, update, list, detail) + (delete(관리자용))
-
 
 
 }

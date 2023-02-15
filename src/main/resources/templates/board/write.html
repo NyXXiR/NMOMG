@@ -23,13 +23,13 @@ value="apply"일 경우 >
 			</select>
 		</div>
 		<div>작성자<input type="text" name="memberNum" value=3 readonly></div>
-		<div>프로젝트 시작일자<input type="date" name="startDate"></div>
-		<div>제목<input type="text" name="title"></div>
+		<div>프로젝트 시작일자<input type="date" name="startDate" autofocus="autofocus"></div>
+		<div>제목<input type="text" name="title" autofocus="autofocus"></div>
 		<div>내용
-			<textarea rows="40" cols="100" name="content"></textarea>
+			<textarea rows="40" cols="100" name="content" autofocus="autofocus"></textarea>
 		</div>
 		<div>
-			<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+			<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)" autofocus="autofocus">
 		</div>
 		<button type="submit">저장</button>
 		<button type="button" onclick="location.href='/board/list'">목록</button>
