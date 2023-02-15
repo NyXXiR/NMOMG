@@ -21,7 +21,7 @@
 
 <body>
 
-	<div class="multiSelect">
+	<div class="multiSelect" th:fragment="fragment-multiSelect">
 		<label>사용 스택:</label>
 		<multi-input>
 			<input list="speakers">
@@ -39,7 +39,7 @@
 				<option value="Nestjs"></option>
 			</datalist>
 		</multi-input>
-		<button id="get">Get</button>
+		<button type="button" id="get">Get</button>
 	</div>
 
 	<p id="values"></p>

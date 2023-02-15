@@ -18,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
   final BoardDao boardDao;
 
+
+  // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
   @GetMapping("/list")
   public String list(Model model, String category) {
     List<Board> list = boardDao.boardList(category);
@@ -43,6 +45,7 @@ public class BoardController {
   public String insert(Board board) {
     int res = boardDao.boardWrite(board);
 
+    // stackDB 트랜잭션 추가 필요
     return "redirect:list";
   }
 
