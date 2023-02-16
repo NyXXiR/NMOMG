@@ -3,6 +3,7 @@ package com.study.springboot.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.study.springboot.vo.Board;
+import com.study.springboot.vo.Stack;
 
 @Mapper
 public interface BoardDao {
@@ -21,4 +22,6 @@ public interface BoardDao {
   public Board selectByNum(int boardNum);
 
   public int max();
+
+  public int stackWrite(Stack stack);
 }

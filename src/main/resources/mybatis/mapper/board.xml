@@ -28,6 +28,9 @@
    	select max(boardNum) from board
    	</select>
    	
+   	<insert id="stackWrite">
+   	insert into stack values(#{boardNum}, #{stack})
+   	</insert>
  
    	
    	<!-- list -->
