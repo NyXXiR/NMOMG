@@ -1,11 +1,11 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
 
 * {
-	font-family: Roboto;
+	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	list-style: none;
+
 }
 
 html {
@@ -15,17 +15,13 @@ html {
 }
 
 body {
-	margin: 0 auto;
+	background:#ECF0F3;
+	margin: 0;
 	padding: 0;
 
 }
 
-section {
 
-	display: block;
-	width: 100%;
-	text-align: center;
-}
 
 a {
 	text-decoration: none;
@@ -35,7 +31,9 @@ a {
 }
 
 header {
-	font-weight: 700;
+	box-shadow: 2px 5px 2px 1px rgba(255, 255, 255, 0.47);
+	background: rgba(255, 255, 255, 0.6);
+	font-weight: 400;
 	display: flex;
 	z-index: 32122130;
 	padding: 0;
@@ -47,6 +45,7 @@ header {
 }
 
 header #logo {
+	cursor: pointer;
 	margin-top: 15px;
 	padding-bottom: 50px;
 	width: 100px;
@@ -60,16 +59,14 @@ header #logo {
 
 	padding-top: 5px;
 	bottom: 0;
-
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, -0%);
-	width: 500px;
+	width: 800px;
 	text-align: center;
 }
 
 .menu a {
-	padding: 0px;
 
 	font-size: 30px;
 }
@@ -78,7 +75,11 @@ header #logo {
 	float: left;
 
 }
+.menu:nth-child(2){
+	text-align: center;
+	transform: translate(-43%, 10%);
 
+}
 .menu :nth-child(3) {
 	float: right;
 }
@@ -120,6 +121,7 @@ a:active {
 
 .sec0 {
 	height: 100vh;
+	text-align: center;
 }
 
 
@@ -137,40 +139,108 @@ a:active {
 /*로그인,조인페이지 */
 
 .sec1 {
-
-	background-color: #ffffffb7;
+	width: 100%;
 	height: 100vh;
 	padding-top: 180px;
+
+}
+.mem{
+	margin-top:100px;
+	display: flex;
 }
 
-.login {
+.mem .login {
+	align-items: center;
 	width: 50%;
+	margin-top: 60px;
 	height: 100%;
-	text-align: center;
+}
+.login-wrapper{
+	 margin: auto;
+	 width: 400px;
+	 height: 350px;
+	 padding: 40px;
+	 box-sizing: border-box;
+
+ }
+.login-wrapper ul{
+	margin-left:65px;
+	color: #5b5959;
+}
+.login-wrapper ul li{
 	float: left;
+}
+.login-wrapper span{
+	color: rgba(0, 0, 0, 0.55);
+	padding-left:5px;
+	padding-right:5px;
+}
+.login-wrapper > h2{
+	text-align:center;
+	font-size: 24px;
+	margin-bottom: 20px;
 
 }
-
-.login img {
-	margin: 0;
+#login-form > input{
 	width: 100%;
-	height: 50%;
+	height: 48px;
+	padding: 0 10px;
+	box-sizing: border-box;
+	border: 1px solid rgba(11, 11, 11, 0.3);
+	margin-bottom: 8px;
+	border-radius: 6px;
+	background-color: #F8F8F8;
+
+}
+#login-form > input::placeholder{
+	color: #8e8e8e;
+}
+#login-form > input[type="submit"]{
+	color: #fff;
+	font-size: 16px;
+	background-color: rgba(36, 123, 254, 0.76);
+	margin-top: 1px;
+	border: 1px solid rgba(11, 11, 11, 0.3);
 }
 
-.join {
+
+
+#login-form > label{
+	text-align:center;
+	color: #999999;
+}
+#login-form input[type="checkbox"] + label{
+	cursor: pointer;
+	padding-left: 26px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#login-form input[type="checkbox"]:checked + label{
+
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.api{
+	width: 300px;
+	margin-top:40px;
+	height: 150px;
+}
+
+/*----------------------------Login end*/
+
+
+
+/*----------------------------join start*/
+.mem .join {
+	text-align: center;
+	border: 1px solid red;
 	width: 50%;
+	margin-top: 60px;
 	height: 100%;
-	text-align: center;
-	float: left;
-
-
 }
 
-.join img {
-	width: 100%;
-	height: 50%;
-}
 
+/*----------------------------join end*/
 /* 여기까지 섹션1 로그인,조인페이지 */
 .cards {
 	margin-top: 30px;
@@ -214,6 +284,7 @@ a:active {
 }
 
 .matching {
+	text-align: center;
 	height: 7vh;
 
 }
@@ -227,7 +298,7 @@ a:active {
 }
 
 /*글쓰기용 멀티 input*/
-multi-input {
+.multi-input {
 	display: inline-block;
 	margin: 0 20px 20px 0;
 

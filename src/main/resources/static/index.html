@@ -7,7 +7,7 @@
 <title>Document</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="slide.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -29,9 +29,7 @@
 <div class="menu">    
 <a href="#sec2" onclick="goToScroll('a')">PRODUCTS</a>
 <a href="#sec3" onclick="goToScroll('b')">MYPAGE</a>
-<a href="#profile" onclick="goToScroll('c')">MATCHING</a>
-
-
+<a href="#profile" onclick="goToScroll('c')">MATCHING&BOARD</a>
 
 </div>
 </nav>
@@ -39,7 +37,7 @@
 
 
 <!-- SECTION 0 PRODUCTS SLIDE START-->
-<div class="a">
+	<div class="a">
 <section class="sec0">
 <div class="slideShow">
 	<div id="rolling">
@@ -54,14 +52,9 @@
 
 <script>
 	$("#rolling").rolling(1200,600,{autoscroll:1, delay:1500});
-</script> 
-<h1>PRODUCTS</h1>
-<p></p>
+</script>
 </section>
-
 </div>
-
-<hr>
 
 <!-- SECTION 0 PRODUCTS SLIDE END-->
 
@@ -75,15 +68,53 @@
   <div class="mem">
 
 <div class="login">
-<h1>로그인</h1>
-</div>  
+	<div class="login-wrapper">
+
+		<form method="post" action="login" id="login-form">
+			<input type="text" name="userName" placeholder="Email">
+			<input type="password" name="userPassword" placeholder="Password">
+			<label for="remember-check">
+				<input type="checkbox" id="remember-check">아이디 저장하기
+			</label>
+			<input type="submit" value="Login">
+		</form>
+		<ul>
+			<li> 이메일 찾기 </li>
+			<li><span>|</span>비밀번호 찾기</li>
+
+		</ul>
+		<div class="api"> <img src="images/api.jpg" alt=""> </div>
+	</div>
+
+</div>
+
 <div class="join">
-<h1>회원가입</h1>
+	<h1>
+		joinForm
+	</h1>
+	<!-- 중복체크와 로그인 할 아이디를 타입 이메일 형식으로 뱌. 막바지에 ㅅㄱ  -->
+	<!-- todolist -중복체크 연결. 메서드는 만들어둠 메서드 이름 memberIdCheck  -->
+	<form action="/member/join" method = "post">
+		<input type="text" placeholder="이메일" name="loginId" />
+		<label><button>중복체크</button></label>
+
+		<input type="text" placeholder="회원님의 아이디" name="loginIdCheck" th:value="${idCheck}" readonly/>
+
+		<input type="password" placeholder="비밀번호"/ name="password">
+												 <!-- <input type="password" placeholder="비밀번호 확인"/ name="passwordCheck"> -->
+		<input type="text" placeholder="별명"/ name="nickname">
+		<input type="submit">
+	</form>
+
+	<script type="text/javascript">
+
+
+	</script>
 </div>  
 </div>
+
 </section>
 </div>
-<hr>
 <!-- SECTION1 LOGIN,JOIN END -->
 
 
@@ -95,33 +126,63 @@
   
 <div class="cards">
 <div class="me">
-  <h1>나의 능력</h1>
+
 <div>
 	<table>
 		<tr>
-<input type="text">
-<input type="text">
-<input type="text">
-<input type="text">
-<input type="text">
-<input type="text">
+			<div class="multiSelect" th:fragment="fragment-multiSelect">
+				<label> <h1>본인 스택:</h1></label>
+				<multi-input>
+					<input list="speakers">
+					<datalist id="speakers">
+						<option value="Java"></option>
+						<option value="Spring"></option>
+						<option value="Javascript"></option>
+						<option value="Typescript"></option>
+						<option value="React"></option>
+						<option value="Vue"></option>
+						<option value="Svelte"></option>
+						<option value="Nextjs"></option>
+						<option value="Nodejs"></option>
+						<option value="Go"></option>
+						<option value="Nestjs"></option>
+					</datalist>
+				</multi-input>
+				<button type="button" id="get">Get</button>
+			</div>
 	</table>
 </div>
 <input type="submit">
 </div>
 
 <div class="u">
-  <h1>내 동료의 능력</h1>
-<div>
-<input type="text">
-<input type="text">
-<input type="text">
-<input type="text">
-<input type="text">
-<input type="text">
-</div>
-<input type="submit">
-</div>
+
+	<div>
+		<table>
+			<tr>
+				<div class="multiSelect" th:fragment="fragment-multiSelect">
+					<label> <h1>필요한 기술:</h1></label>
+					<multi-input>
+						<input list="speakers">
+						<datalist id="speakers">
+							<option value="Java"></option>
+							<option value="Spring"></option>
+							<option value="Javascript"></option>
+							<option value="Typescript"></option>
+							<option value="React"></option>
+							<option value="Vue"></option>
+							<option value="Svelte"></option>
+							<option value="Nextjs"></option>
+							<option value="Nodejs"></option>
+							<option value="Go"></option>
+							<option value="Nestjs"></option>
+						</datalist>
+					</multi-input>
+					<button type="button" id="get">Get</button>
+				</div>
+		</table>
+	</div>
+	<input type="submit">
 </div>
 </section>
 </div>
@@ -139,6 +200,7 @@
 
 <button type="button" class="matching" id="matching">매칭하기</button>
 </div>
+
 </section>
 <!-- SECTION3 MATCHING END -->
 

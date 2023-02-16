@@ -46,7 +46,7 @@
 }
 .slideShow{
     margin-left:50% ;
-    transform: translate(-50%,10%);
+    transform: translate(-50%,5%);
   }
   .slideShow #rolling ul li img{
     width: 50%;
@@ -54,7 +54,7 @@
   }
 
   .sec0 h1{
-    padding-top: 70px;
+    padding-top: 50px;
     font-size: 15px;
   }
   
