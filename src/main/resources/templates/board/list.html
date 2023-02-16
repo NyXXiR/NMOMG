@@ -15,16 +15,19 @@
 <th>작성일자</th>
 <th>시작일자</th>
 </tr>
-
+<!-- <form name="searchList" action="/board/list" method="post">
+   <input type='search' name='searchKeyword' /><button type="submit">검색</button>
+</form> -->
 <tr th:each="board : ${list}">
 <td><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.boardNum}"></a></td>
 <td th:text="${board.category}"></td>
 <td th:text="${board.title}"></td>
-<td th:text="${board.loginId}"></td>
+<td th:text="${board.memberNum}"></td>
 <td th:text="${board.date}"></td>
 <td th:text="${board.startDate}"></td>
 </tr>
 </table>
 
+<a href="write">aa</a>
 </body>
 </html>
