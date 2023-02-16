@@ -2,6 +2,8 @@ package com.study.springboot.controller;
 
 import java.io.File;
 import java.util.List;
+
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,14 +16,12 @@ import com.study.springboot.vo.Board;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-
 @Controller
 @RequestMapping("/board/*")
 @RequiredArgsConstructor
 @Log4j2
 public class BoardController {
   final BoardDao boardDao;
-
 
   // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
   @GetMapping("/list")
@@ -42,8 +42,8 @@ public class BoardController {
 
   // 게시글쓰기 write 페이지
   @GetMapping("/write")
-  public void writeform() {}
-
+  public void writeform() {
+  }
 
   @PostMapping("/write") // 데이터를 서버로 제출해서 insert, update
   public String insert(Board board, MultipartFile uploadFile) {
@@ -68,7 +68,6 @@ public class BoardController {
     return "redirect:list";
   }
 
-
   // board 게시물 수정
   @GetMapping("/update")
   public void update(int boardNum, Model model) {
@@ -91,7 +90,6 @@ public class BoardController {
   }
 
   // apply part(write, update, list, detail) + (delete(관리자용))
-
 
   // 테스트
 
