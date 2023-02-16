@@ -2,8 +2,6 @@ package com.study.springboot.controller;
 
 import java.io.File;
 import java.util.List;
-
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Board;
+import com.study.springboot.vo.Stack;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -42,11 +41,11 @@ public class BoardController {
 
   // 게시글쓰기 write 페이지
   @GetMapping("/write")
-  public void writeform() {
-  }
+  public void writeform() {}
+
 
   @PostMapping("/write") // 데이터를 서버로 제출해서 insert, update
-  public String insert(Board board, MultipartFile uploadFile) {
+  public String insert(Board board, MultipartFile uploadFile, String[] stack) {
 
     String uploadFolder = "C:\\test";
 
@@ -61,10 +60,17 @@ public class BoardController {
     try {
       uploadFile.transferTo(saveFile);
     } catch (Exception e) {
-      log.error(e.getMessage());
+      log.error("파일 전송 에러: " + e.getMessage());
     }
     int res = boardDao.boardWrite(board);
     // stackDB 트랜잭션 추가 필요
+
+    // boardNum을 max로, stack 배열을 하나씩 가져온다
+    for (int i = 0; i < stack.length; i++) {
+      Stack stack1 = new Stack(max, stack[i]);
+      boardDao.stackWrite(stack1);
+    }
+
     return "redirect:list";
   }
 
