@@ -31,7 +31,7 @@ public class BoardController {
 
   }
 
-  // board 상세페이지
+  // board 상세페이지. boardNum으로 각 페이지 구분
   @GetMapping("/detail")
   public String detailList(int boardNum, Model model) {
     Board board = boardDao.selectByNum(boardNum);
