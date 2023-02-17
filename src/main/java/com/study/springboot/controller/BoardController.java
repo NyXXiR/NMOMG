@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Board;
+import com.study.springboot.vo.Comment;
 import com.study.springboot.vo.Stack;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,6 +28,8 @@ public class BoardController {
   public String list(Model model, String category) {
     List<Board> list = boardDao.boardList(category);
     model.addAttribute("list", list);
+
+
     return "board/list";
 
   }
@@ -36,7 +39,13 @@ public class BoardController {
   public String detailList(int boardNum, Model model) {
     Board board = boardDao.selectByNum(boardNum);
     model.addAttribute("detail", board);
+    List<Comment> comment = boardDao.commentList(boardNum);
+    model.addAttribute("comment", comment);
+
     return "board/detail";
+
+
+
   }
 
   // 게시글쓰기 write 페이지
@@ -63,7 +72,6 @@ public class BoardController {
       log.error("파일 전송 에러: " + e.getMessage());
     }
     int res = boardDao.boardWrite(board);
-    // stackDB 트랜잭션 추가 필요
 
     // boardNum을 max로, stack 배열을 하나씩 가져온다
     for (int i = 0; i < stack.length; i++) {

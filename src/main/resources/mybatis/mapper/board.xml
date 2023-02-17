@@ -58,4 +58,16 @@
 	<delete id ="boarDel">
 	delete from board WHERE boardNum =#{boardNum}
 	</delete>
+	
+	
+	<!-- comment -->
+	<!--  나중에 detail.html에서 memberNum 입력받는 부분 수정해야 함 -->
+	<insert id="commentWrite">
+	insert into comment(commentContent, memberNum,boardNum) values(#{commentContent},#{memberNum},#{boardNum})
+	</insert>
+	
+	<select id="commentList"  resultType="com.study.springboot.vo.Comment">
+	select * from comment where boardNum=#{boardNum}
+	</select>
+	
 </mapper>
