@@ -37,7 +37,7 @@ public class MemberController {
 		if (checkId == 0 && loginIdCheck.equals("사용가능한 아이디 입니다.") && member.getNickname() != "" && member.getPassword() != "") {
 			int res = memberDao.memberInsert(member);
 			log.info(checkId+"1");
-			return "/member/login";
+			return "/member/login-after";
 		} else {
 
 			if (checkId != 0 && !loginIdCheck.equals("이미 존재하는 아이디 입니다.")) {
@@ -52,7 +52,7 @@ public class MemberController {
 
 			model.addAttribute("idCheck", loginIdCheck);
 			log.info(checkId+"4");
-			return "/member/joinForm";
+			return "/member/login-after";
 		}
 	}
 
@@ -91,5 +91,6 @@ public class MemberController {
 	public void loginForm() {
 
 	}
+
 
 }

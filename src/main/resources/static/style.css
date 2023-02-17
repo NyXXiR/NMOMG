@@ -47,17 +47,18 @@ a {
 }
 
 header {
+	display: flex;
 	margin:0 auto;
 	transform: translate(-0%,0);
 	box-shadow: 2px 5px 2px 1px rgba(255, 255, 255, 0.47);
 	background: #fff;
 	font-weight: 400;
-	display: flex;
+
 	z-index: 32122130;
 	padding: 0;
 	top: 0;
 	position: sticky;
-	width: 70.5%;
+	width: 71%;
 	height: 170px;
 	vertical-align: bottom;
 	opacity: 0.8;
