@@ -3,6 +3,7 @@ package com.study.springboot.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.study.springboot.vo.Board;
+import com.study.springboot.vo.Comment;
 import com.study.springboot.vo.Stack;
 
 @Mapper
@@ -24,4 +25,8 @@ public interface BoardDao {
   public int max();
 
   public int stackWrite(Stack stack);
+
+  public int commentWrite(Comment comment);
+
+  public List<Comment> commentList(int boardNum);
 }

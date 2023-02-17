@@ -6,54 +6,91 @@
 <title>상세보기 페이지</title>
 
 <style>
+*{
+padding: 0;
+margin:0;
+border: 1px solid black;
+}
 
+.detail__largeFont{font-size: 30px;}
+.detail__mediumFont{font-size:20px;}
+.detail__smallFont{font-size:10px;}
+.detail__info--item{display:flex;}
 </style>
 </head>
 
 <body>
 
 
-
-<div th:text="${detail.title}">
+<div class="detail">
+<div th:text="${detail.title}" class="detail__title detail__largeFont">
 제목
 </div>
 
 <!--  멤버 정보 -->
-<div class=board-info>
+<div class="detail__info">
 
-<span th:text="${detail.memberNum}">
-멤버번호
+<div>
+작성자명: 
+<span th:text="${detail.memberNum}" class="detail__info--item">
+</span>
+게시일자: 
+<span th:text="${detail.date}" class="detail__info--item">
+
 </span>
 
-<span th:text="${detail.date}">
-게시일자
-</span>
-</div>
-<div class="project-info">
+시작예정일:
+<span th:text="${detail.startDate}" class="detail__info--item"></span>
 
-<span>모집인원</span>
-
-<span th:text="${detail.startDate}">시작예정일</span>
-
-<span>예상기간(개월수로 표기, 장기 항목 별도)</span>
-
-</div>
 
 <!-- 프로젝트 소개란. content 입력 -->
 <div>
-<a th:text="${detail.content}"></a>
-프로젝트 소개
+
+<textarea name="content" id="content" rows="15" th:text=${detail.content} readonly></textarea>
 </div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<h5 th:text="|${comment.size()}개의 답변이 있습니다.|"></h5>
+
+<tr th:each="comment: ${comment}">
+<td th:text="${comment.memberNum}"></td>
+<td th:text="${comment.commentContent}"></td>
+<br>
+</tr>
+
 
 
 
 <!--  댓글 -->
-<div>
-댓글란
+<form action="/comment/insert" method="post">
+    <textarea name="commentContent" id="commentContent" rows="3"></textarea>
+     <input type="hidden" name="boardNum" th:value="${detail.boardNum}"/>
+    <input type="hidden" name="memberNum" th:value="${detail.memberNum}"/>
+
+    <input type="submit" value="답변등록">
+   
+</form>
+
+
+
+
 </div>
 
-
-
+<div>포함가능성있음:
+<span>모집인원</span>
+<span>예정일수</span>
+</div>
 </body>
 </html>
 
