@@ -56,7 +56,7 @@ public class BoardController {
   @PostMapping("/write") // 데이터를 서버로 제출해서 insert, update
   public String insert(Board board, MultipartFile uploadFile, String[] stack) {
 
-    String uploadFolder = "C:\\test";
+    String uploadFolder = "/home/ubuntu/nmomg/assets/img";
 
     log.info("upload file name: " + uploadFile.getOriginalFilename());
     log.info("upload file size: " + uploadFile.getSize());
