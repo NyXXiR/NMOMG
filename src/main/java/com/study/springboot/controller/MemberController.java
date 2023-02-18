@@ -28,7 +28,7 @@ public class MemberController {
 	@GetMapping("/loginIdCheck")
 	public void loginIdCheck() {
 
-	}
+	} 
 
 	@PostMapping("/join")
 	public String postJoin(Member member, Model model, String loginIdCheck) {

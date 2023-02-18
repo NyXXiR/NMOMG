@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @Log4j2
 public class BoardController {
-  final BoardDao boardDao;
+final BoardDao boardDao;
 
   // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
   @GetMapping("/list")

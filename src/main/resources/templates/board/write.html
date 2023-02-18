@@ -81,7 +81,7 @@ value="apply"일 경우 > 가능스택
 <div>제목:<input type="text" name="title"></div>
 <div>프로젝트 시작일:<input type="date" name="startDate"></div>
 </div>
-<div> <div th:replace=@{/board/multiSelect}></div>
+<div> <div th:replace="~{@{/board/multiSelect}}"></div>
 <div style="display:none"><input type="text" name="stack" id="stack" value="밸류"/></div>
 
 
