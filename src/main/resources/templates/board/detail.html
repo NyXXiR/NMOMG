@@ -43,6 +43,8 @@ border: 1px solid black;
 <span th:text="${detail.startDate}" class="detail__info--item"></span>
 
 
+<img th:src="@{/img/}+${detail.boardNum}+.png">
+
 <!-- 프로젝트 소개란. content 입력 -->
 <div>
 
@@ -82,7 +84,7 @@ border: 1px solid black;
    
 </form>
 
-
+<button type="button" onclick="location.href='/board/list'">목록</button>
 
 
 </div>

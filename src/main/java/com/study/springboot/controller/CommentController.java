@@ -1,6 +1,7 @@
 package com.study.springboot.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Comment;
@@ -24,4 +25,6 @@ public class CommentController {
     return String.format("redirect:/board/detail?boardNum=%s", comment.boardNum);
 
   }
+  
+
 }

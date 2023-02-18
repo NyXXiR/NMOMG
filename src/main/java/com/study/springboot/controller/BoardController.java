@@ -61,13 +61,15 @@ final BoardDao boardDao;
     log.info("upload file name: " + uploadFile.getOriginalFilename());
     log.info("upload file size: " + uploadFile.getSize());
 
-    File saveFile = new File(uploadFolder, uploadFile.getOriginalFilename());
     int max = boardDao.max() + 1;
+    File saveFile = new File(uploadFolder, uploadFile.getOriginalFilename());
 
-    File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
-    saveFile.renameTo(renamedFile);
+  
     try {
       uploadFile.transferTo(saveFile);
+      //MultipartFile은 생성하자마자 파일을 바로 업로드하므로 업로드 후 파일명을 변경한다.
+      File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
+      saveFile.renameTo(renamedFile);
     } catch (Exception e) {
       log.error("파일 전송 에러: " + e.getMessage());
     }
