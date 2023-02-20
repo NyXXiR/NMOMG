@@ -16,6 +16,10 @@ public interface BoardDao {
 
   public List<Board> boardList(String Category);
 
+  public List<Board> boardListReverse();
+
+  public List<Board> boardListReverse(String Category);
+
   public int boardEdit(Board board);
 
   public int boardDel(int boardNum);
@@ -25,6 +29,8 @@ public interface BoardDao {
   public int max();
 
   public int stackWrite(Stack stack);
+
+  public String[] stackList(int boardNum);
 
   public int commentWrite(Comment comment);
 

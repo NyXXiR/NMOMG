@@ -32,8 +32,27 @@
    	insert into stack values(#{boardNum}, #{stack})
    	</insert>
  
+ <select id="stackList" resultType="String">
+ select stack from stack where boardNum=#{boardNum}
+ </select>
    	
    	<!-- list -->
+   	<select id="boardListReverse" resultType="com.study.springboot.vo.Board">
+   	SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId, m.memberNum 
+	FROM board b, member m where b.memberNum=m.memberNum 
+	<choose>
+	<when test= "category=='recruit'">
+	and b.category ='recruit' order by boardNum asc
+	</when>
+	<when test="category=='apply'">
+	and b.category='apply' order by boardNum asc
+	</when>
+	<otherwise>
+	order by boardNum asc
+	</otherwise>
+	</choose>
+   	</select>
+   	
    	<select id="boardList" resultType="com.study.springboot.vo.Board">
    	SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId, m.memberNum 
 	FROM board b, member m where b.memberNum=m.memberNum 
