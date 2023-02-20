@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +8,13 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/static/slide.css">
-        <link rel="stylesheet" href="login-after.css">
+        <link rel="stylesheet" href="/slide.css">
+        <link th:href="@{/login-after.css}" rel="stylesheet">
         <script src="/https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script language="javascript" src="/static/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
-        <script language="javascript" src="/static/jquery/jquery-ui.min.js" type="text/javascript"></script>
-        <script language="javascript" src="/static/jquery/jq.rolling.js" type="text/javascript"></script>
-        <link rel="stylesheet" type="text/css" href="/static/jq.rolling.css"/>
+        <script language="javascript" src="/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script language="javascript" src="/jquery/jquery-ui.min.js" type="text/javascript"></script>
+        <script language="javascript" src="/jquery/jq.rolling.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="/jq.rolling.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     </head>
@@ -23,7 +23,7 @@
         <header>
             <nav>
                 <div class="logo">
-                    <img src="/static/images/llogo.gif" alt="" id="logo" onclick="goToScroll('a')">
+                    <img src="/images/llogo.gif" alt="" id="logo" onclick="goToScroll('a')">
                 </div>
                 <div class="menu">
 
@@ -56,9 +56,9 @@ space_dashboard게시판
                 <div class="slideShow">
                     <div id="rolling">
                         <ul>
-                            <li class="sp01"><img src="/static/images/pepe1.gif" alt=""></li>
-                            <li class="sp02"><img src="/static/images/pepe2.gif" alt=""></li>
-                            <li class="sp03"><img src="/static/images/pepe3.gif" alt=""></li>
+                            <li class="sp01"><img src="/images/pepe1.gif" alt=""></li>
+                            <li class="sp02"><img src="/images/pepe2.gif" alt=""></li>
+                            <li class="sp03"><img src="/images/pepe3.gif" alt=""></li>
                         </ul>
                     </div>
                     <ul class="pages"></ul>
@@ -82,7 +82,7 @@ space_dashboard게시판
                 <div class="mem">
                     <div class="card">
                         <span class="level">junior</span>
-                        <img src="/static/images/PP.png" alt="my card" class='picture'>
+                        <img src="/images/PP.png" alt="my card" class='picture'>
                         <h2>구ı얌둥ㅇı천Пг∩_∩♡〃</h2>
                         <p>웹디자이너<br> Front End</p>
 
