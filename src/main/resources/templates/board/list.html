@@ -18,6 +18,10 @@
       table a {
         color: blue;
       }
+      ul{
+      	list-style :none;
+     	 padding-left :0px;
+      }
       .my.page-link {
         color: orange;
       }
@@ -43,8 +47,9 @@
         <th>작성일자</th>
         <th>시작일자</th>
       </tr>
-      <!-- <form name="searchList" action="/board/list" method="post">
-   <input type='search' name='searchKeyword' /><button type="submit">검색</button>
+      
+<!-- <form name="searchList" action="/board/list" method="post">
+<input type='search' name='searchKeyword' /><button type="submit">검색</button>
 </form> -->
       <tr th:each="board : ${boardList}">
         <td>
@@ -55,16 +60,11 @@
         </td>
         <td th:text="${board.category}"></td>
         <td>
-          <ul th:each="aa : ${board.stack}">
+          <ul th:each="aa : ${board.stack}" >
             <li>[[${aa}]]</li>
           </ul>
         </td>
         <td th:text="${board.title}"></td>
-        <td>
-          <ul th:each="stack : ${stList}">
-            <li th:text="${stack.stack}"></li>
-          </ul>
-        </td>
         <td th:text="${board.memberNum}"></td>
         <td th:text="${board.date}"></td>
         <td th:text="${board.startDate}"></td>
