@@ -2,6 +2,7 @@ package com.study.springboot.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,9 +33,6 @@ public class BoardController {
     List<Board> list = boardDao.boardList(category);
     model.addAttribute("list", list);
     List<Board> listReverse = boardDao.boardListReverse(category);
-    log.info("---테스트---" + list.get(0).boardNum);
-
-    log.info("테스트2-----" + boardDao.stackList(listReverse.get(1).boardNum)[0]);
 
     for (int i = 0; i < listReverse.size(); i++) {
       String[] stacks = boardDao.stackList(listReverse.get(i).boardNum);
@@ -51,6 +49,7 @@ public class BoardController {
           category1, startDate1, loginId1, stacks);
       boardList.add(boardList1);
     }
+    Collections.reverse(boardList);
     model.addAttribute("boardList", boardList);
 
 
