@@ -91,16 +91,15 @@ space_dashboard게시판
 
 						 <div class="myLog" >
 						<h4>log</h4>
-						<div id="myPageList" class="btn-group" role="group"
-							aria-label="Basic radio toggle button group">
+						<div id="myPageList">
 							<div>
 								<button id="exePost">작성 한 글</button>
 							</div>
 							<div>
-								<button id="exeComment">댓글 단 글</button>
+								<button id="exeLike">좋아요 한 글</button>
 							</div>
 							<div>
-								<button id="exeLike">좋아요 한 글</button>
+								<button id="exeComment">댓글 단 글</button>
 							</div>
 						</div>
 						<div id="showList">
@@ -289,29 +288,28 @@ space_dashboard게시판
 
 
         </script>
-        <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
         <script>
         $(function() {
 			$("#exePost").click(function() {
 				$.ajax({
-					url : '/MyLog/myWrite?memberNum=1',
+					url : '/myLog/myWrite',
 					success : function(x) {
 						 $('#showList').html(x); 
 					/* 	$('#showList').load("aa.html .aa") */
 					}
 				})
 			});
-			$("#exeComment").click(function() {
+			$("#exeLike").click(function() {
 				$.ajax({
-					url : 'MyLog/myWrite',
+					url : '/myLog/myLike',
 					success : function(x) {
 						$('#showList').html(x);
 					}
 				})
 			});
-			$("#exeLike").click(function() {
+			$("#exeComment").click(function() {
 				$.ajax({
-					url : 'MyLog/myWrite',
+					url : '/myLog/myComment',
 					success : function(x) {
 						$('#showList').html(x);
 					}
