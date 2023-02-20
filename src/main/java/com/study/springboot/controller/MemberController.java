@@ -78,7 +78,6 @@ public class MemberController {
 			model.addAttribute("loginFail", "잘못된 정보입니다.");
 			return "/member/main";
 		}
-
 	}
 
 	@GetMapping("/loginForm")
