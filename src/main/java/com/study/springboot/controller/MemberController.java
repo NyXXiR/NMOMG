@@ -75,14 +75,18 @@ public class MemberController {
 
 	}
 
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public String login(Member member, Model model) {
+		System.out.println("memberid"+member.loginId);
+		System.out.println("memeber ob"+member);
 		int i = memberDao.memberLogin(member);
+		System.out.println("controller model param "+i);
 		if (i == 1) {
-			return "index";
+			System.out.println(i);
+			return "/member/login-after";
 		} else {
 			model.addAttribute("loginFail", "잘못된 정보입니다.");
-			return "loginForm";
+			return "/member/main";
 		}
 
 	}
