@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.study.springboot.dao.MemberDao;
 import com.study.springboot.vo.Member;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -56,33 +57,22 @@ public class MemberController {
 		}
 	}
 
-//	// 아이디 중복체크는 겟 방식이 때문에
-//	@GetMapping("/join")
-//	public String getJoin(Member member, Model model) {
-//		int checkId = memberDao.memberIdCheck(member.getLoginId());
-//		if (checkId == 1) {
-//			model.addAttribute("idCheck", "이미 존재하는 아이디 입니다.");
-//			return "/member/joinForm";
-//		} else if (checkId == 0) {
-//			model.addAttribute("idCheck", "사용가능한 아이디 입니다.");
-//			return "/member/joinForm";
-//		}
-//		return "index.html";
-//	}
-
 	@GetMapping("/joinForm")
 	public void joinForm() {
 
 	}
 
 	@PostMapping("/login")
-	public String login(Member member, Model model) {
+	public String login(Member member, Model model, HttpSession session) {
 		System.out.println("memberid"+member.loginId);
 		System.out.println("memeber ob"+member);
 		int i = memberDao.memberLogin(member);
 		System.out.println("controller model param "+i);
 		if (i == 1) {
 			System.out.println(i);
+			int memberNum = memberDao.memberNum(member);
+			System.out.println("맴버넘버입니다 : "+memberNum);
+			session.setAttribute("memberNum", memberNum);
 			return "/member/login-after";
 		} else {
 			model.addAttribute("loginFail", "잘못된 정보입니다.");
