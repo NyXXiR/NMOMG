@@ -1,69 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}">
-<title>Insert title here</title>
-<style>
-
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-    	text-align: center;
-}
-table {
-	width: 100%;
-}
-table a {
- color:blue;
-}
-.my.page-link {
-	color:orange;
-}
-.my.pagination > .active > a, 
-.my.pagination > .active > span, 
-.my.pagination > .active > a:hover, 
-.my.pagination > .active > span:hover, 
-.my.pagination > .active > a:focus, 
-.my.pagination > .active > span:focus {
-  background: skyblue;
-  border-color: skyblue;
-}
-
-</style>
-</head>
-<body>
-<table border="1">
-<tr>
-
-<th>글번호</th>
-<th>카테고리</th>
-<th>스택</th>
-<th>제목</th>
-<th>작성자</th>
-<th>작성일자</th>
-<th>시작일자</th>
-</tr>
-<!-- <form name="searchList" action="/board/list" method="post">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}" />
+    <title>Insert title here</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      table {
+        width: 100%;
+      }
+      table a {
+        color: blue;
+      }
+      .my.page-link {
+        color: orange;
+      }
+      .my.pagination > .active > a,
+      .my.pagination > .active > span,
+      .my.pagination > .active > a:hover,
+      .my.pagination > .active > span:hover,
+      .my.pagination > .active > a:focus,
+      .my.pagination > .active > span:focus {
+        background: skyblue;
+        border-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>글번호</th>
+        <th>카테고리</th>
+        <th>스택</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일자</th>
+        <th>시작일자</th>
+      </tr>
+      <!-- <form name="searchList" action="/board/list" method="post">
    <input type='search' name='searchKeyword' /><button type="submit">검색</button>
 </form> -->
-<tr th:each="board : ${list} ">
+      <tr th:each="board : ${boardList}">
+        <td>
+          <a
+            th:href="@{/board/detail(boardNum=${board.boardNum})}"
+            th:text="${board.boardNum}"
+          ></a>
+        </td>
+        <td th:text="${board.category}"></td>
+        <td>
+          <ul th:each="aa : ${board.stack}">
+            <li>[[${aa}]]</li>
+          </ul>
+        </td>
+        <td th:text="${board.title}"></td>
+        <td>
+          <ul th:each="stack : ${stList}">
+            <li th:text="${stack.stack}"></li>
+          </ul>
+        </td>
+        <td th:text="${board.memberNum}"></td>
+        <td th:text="${board.date}"></td>
+        <td th:text="${board.startDate}"></td>
+      </tr>
+    </table>
 
-<td><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.boardNum}"></a></td>
-<td th:text="${board.category}"></td>
-<td th:text="${board.title}"></td>
-<td>
-<ul th:each="stack : ${stList}">
-<li th:text="${stack.stack}"></li>
-</ul>
-</td>
-<td th:text="${board.memberNum}"></td>
-<td th:text="${board.date}"></td>
-<td th:text="${board.startDate}"></td>
-</tr>
-</table>
-
-
-<a href="write">글쓰기</a>
-</body>
+    <a href="write">글쓰기</a>
+  </body>
 </html>

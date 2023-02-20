@@ -12,8 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Board {
-
+public class BoardList {
   public int boardNum;
   public String title;
   public String content;
@@ -22,4 +21,5 @@ public class Board {
   public String category;
   public String startDate;
   public String loginId;
+  private String[] stack;
 }
