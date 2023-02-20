@@ -22,12 +22,25 @@ public class MyLogController {
 	@GetMapping("/member/login-after")
 	public String list(Model model,int memberNum) {
 		List<Board> list = myLogDao.myLogList(memberNum);
-		
+		model.addAttribute("list",list);
 		
 		
 		log.info("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"+list.get(0).getTitle());
 		
 		return "/member/login-after";
+//		return "/member/login-after";
+	}
+	
+	@GetMapping("/MyLog/myWrite")
+	public String myWrite(Model model,int memberNum) {
+		List<Board> list = myLogDao.myLogList(memberNum);
+		model.addAttribute("list",list);
+		
+		
+		log.info("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"+list.get(0).getTitle());
+		
+		return "/MyLog/myWrite";
+//		return "/member/login-after";
 	}
 
 }
