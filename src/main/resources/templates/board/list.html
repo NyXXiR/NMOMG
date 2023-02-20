@@ -60,11 +60,6 @@
           </ul>
         </td>
         <td th:text="${board.title}"></td>
-        <td>
-          <ul th:each="stack : ${stList}">
-            <li th:text="${stack.stack}"></li>
-          </ul>
-        </td>
         <td th:text="${board.memberNum}"></td>
         <td th:text="${board.date}"></td>
         <td th:text="${board.startDate}"></td>
