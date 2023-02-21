@@ -69,10 +69,10 @@
 		FROM board b, member m where b.memberNum=m.memberNum
 		<choose>
 			<when test="category=='recruit'">
-				and b.category ='recruit' order by boardNum desc
+				and b.category ='recruit' order by boardNum desc 
 			</when>
 			<when test="category=='apply'">
-				and b.category='apply' order by boardNum desc
+				and b.category='apply' order by boardNum desc 
 			</when>
 			<otherwise>
 				order by boardNum desc
@@ -82,24 +82,32 @@
 
 
 <!-- 검색 리스트  -->
-
+	
 	<select id="boardSearch"
 		resultType="com.study.springboot.vo.Board">
-		SELECT distinct b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
-		m.memberNum, s.stack
+		SELECT b.boardNum, b.startDate,b.title,b.date, b.category, m.loginId,
+		m.memberNum ,s.stack
 		FROM board b, member m, stack s where b.memberNum=m.memberNum and b.boardNum = s.boardNum
         
-		
 	<choose>
 		<when test="type == 'S'.toString()">
 			 and s.stack like CONCAT('%${search}%')
 		</when>
+		
+		</choose>
+	</select>
+	
+	<select id="titleSearch"
+		resultType="com.study.springboot.vo.Board">
+		SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
+		m.memberNum
+		FROM board b, member m where b.memberNum=m.memberNum 
+		<choose>
 		<when test="type == 'N'.toString()">
 			and	b.title like CONCAT('%${search}%')
 		</when>
-	</choose>
+		</choose>
 	</select>
-
 
 	<update id="boardEdit">
 		update board set title =#{title},content =#{content}, date = NOW(),

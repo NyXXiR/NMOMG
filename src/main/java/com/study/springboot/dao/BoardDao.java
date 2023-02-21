@@ -26,6 +26,10 @@ public interface BoardDao {
 	( @Param("search") String search, 
 			@Param("type") String type);
 
+  public List<Board>titleSearch
+  ( @Param("search") String search, 
+			@Param("type") String type);
+  
   public int boardEdit(Board board);
 
   public int boardDel(int boardNum);
