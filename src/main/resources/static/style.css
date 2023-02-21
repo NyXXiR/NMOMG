@@ -434,3 +434,8 @@ label {
 	display: block;
 	margin: 0 20px 20px 0;
 }
+.board-button{
+	display:flex;
+	justify-content:center;
+	
+}

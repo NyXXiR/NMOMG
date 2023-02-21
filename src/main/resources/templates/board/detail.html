@@ -55,26 +55,44 @@ border: 1px solid black;
 
 
 
-</div>
+		</div>
 
 
 
 
+<!--  수정/삭제 버튼은 로그인한 유저가 글쓴 유저와 일치할 경우에만 가능하게 해야 함 
+컨트롤러에서 session.getAttribute("memberNum") 받아서 비교
+-->
 
-
-
+<button type="button" th:onclick="detailUpdateAction(${detail.memberNum)">수정</button>
+<button type="button" th:onclick= "detailDeleteAction(${detail.memberNum)">삭제</button>
 <h5 th:text="|${comment.size()}개의 답변이 있습니다.|"></h5>
 
+
 <tr th:each="comment: ${comment}">
+<form method="post">
 <td th:text="${comment.memberNum}"></td>
-<td th:text="${comment.commentContent}"></td>
 <br>
+<td name="commentContent" th:text="${comment.commentContent}"></td>
+
+<td><input type="hidden" name="memberNum" th:value="${comment.memberNum}"></td>
+<td><input type="hidden" name="commentNum" th:value="${comment.commentNum}"></td>
+<td><input type="hidden" name="boardNum" th:value="${detail.boardNum}"></td>
+<td><input type="submit" value="수정" formaction="/comment/update">
+</td>
+<td><input type="submit" value="삭제" formaction="/comment/delete">
+</td>
+<br>
+<br>
+</form>
 </tr>
 
 
 
 
+
 <!--  댓글 -->
+<!-- 멤버넘 부분 수정해야 함 -->
 <form action="/comment/insert" method="post">
     <textarea name="commentContent" id="commentContent" rows="3"></textarea>
      <input type="hidden" name="boardNum" th:value="${detail.boardNum}"/>
@@ -83,6 +101,8 @@ border: 1px solid black;
     <input type="submit" value="답변등록">
    
 </form>
+
+
 
 <button type="button" onclick="location.href='/board/list'">목록</button>
 
@@ -94,6 +114,37 @@ border: 1px solid black;
 <span>예정일수</span>
 </div>
 </body>
+
+<script>
+
+function detailUpdateAction(){
+	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+	//일치하면 update 프로세스로 이동
+	location.href='/board/update';
+}	
+
+function detailDeleteAction(){
+	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+	//일치하면 delete 프로세스로 이동
+
+	location.href='/board/delete';
+}
+
+
+function commentUpdateAction(){
+	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+	//일치하면 update 프로세스로 이동
+	location.href='/comment/update';
+
+}
+
+function commentdeleteAction(){
+	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+	//일치하면 delete 프로세스로 이동
+	location.href='/comment/delete';
+
+}
+</script>
 </html>
 
 
