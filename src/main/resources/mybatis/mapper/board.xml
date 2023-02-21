@@ -2,91 +2,126 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.study.springboot.dao.BoardDao">
 
-<!--Board  -->
+	<!--Board -->
 	<!--글쓰기 -->
 	<insert id="boardWrite">
-	insert into board ( title, content, memberNum, date, category, startDate) 
-	VALUES (#{title},#{content},#{memberNum},now(),#{category},#{startDate})
-	
+		insert into board ( title, content, memberNum, date, category, startDate)
+		VALUES
+		(#{title},#{content},#{memberNum},now(),#{category},#{startDate})
+
 	</insert>
-	
+
 	<!--상세보기 -->
-	<select id="boardDetail" resultType="com.study.springboot.vo.Board">
-	SELECT b.boardNum,b.startDate,b.title,b.content,b.date, b.category, m.loginId, m.memberNum 
-	FROM board b INNER JOIN member m
-   	ON b.memberNum = m.memberNum WHERE b.memberNum=m.memberNum and b.boardNum=#{boardNum}
-   	</select>
-   	
-   	<select id="selectByNum" resultType="com.study.springboot.vo.Board">
-   	select * from board where boardNum=#{boardNum}
-   	</select>
-   	
-   	<select id="max" resultType="int">
-   	select max(boardNum) from board
-   	</select>
-   	
-   	<insert id="stackWrite">
-   	insert into stack values(#{boardNum}, #{stack})
-   	</insert>
- 
- <select id="stackList" resultType="String">
- select stack from stack where boardNum=#{boardNum}
- </select>
-   	
-   	<!-- list -->
-   	<select id="boardListReverse" resultType="com.study.springboot.vo.Board">
-   	SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId, m.memberNum 
-	FROM board b, member m where b.memberNum=m.memberNum 
-	<choose>
-	<when test= "category=='recruit'">
-	and b.category ='recruit' order by boardNum asc
-	</when>
-	<when test="category=='apply'">
-	and b.category='apply' order by boardNum asc
-	</when>
-	<otherwise>
-	order by boardNum asc
-	</otherwise>
-	</choose>
-   	</select>
-   	
-   	<select id="boardList" resultType="com.study.springboot.vo.Board">
-   	SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId, m.memberNum 
-	FROM board b, member m where b.memberNum=m.memberNum 
-	<choose>
-	<when test= "category=='recruit'">
-	and b.category ='recruit' order by boardNum desc
-	</when>
-	<when test="category=='apply'">
-	and b.category='apply' order by boardNum desc
-	</when>
-	<otherwise>
-	order by boardNum desc
-	</otherwise>
-	</choose>
-   	</select>
-   	
-   	<update id="boardEdit">
-	update board set title =#{title},content =#{content}, date = NOW(), category=#{category}, startDate={startDate}
-	where boardNum=#{boardNum}
-	</update>
+	<select id="boardDetail"
+		resultType="com.study.springboot.vo.BoardList">
+		SELECT b.boardNum,b.startDate,b.title,b.content,b.date, b.category,
+		m.loginId, m.memberNum
+		FROM board b INNER JOIN member m
+		ON b.memberNum = m.memberNum WHERE b.memberNum=m.memberNum and
+		b.boardNum=#{boardNum}
 	
-	<delete id ="boarDel">
-	delete from board WHERE boardNum =#{boardNum}
-	</delete>
-	
-	
-	<!-- comment -->
-	<!--  나중에 detail.html에서 memberNum 입력받는 부분 수정해야 함 -->
-	<insert id="commentWrite">
-	insert into comment(commentContent, memberNum,boardNum) values(#{commentContent},#{memberNum},#{boardNum})
-	</insert>
-	
-	<select id="commentList"  resultType="com.study.springboot.vo.Comment">
-	select * from comment where boardNum=#{boardNum}
 	</select>
-	
+
+	<select id="selectByNum"
+		resultType="com.study.springboot.vo.Board">
+		select * from board where boardNum=#{boardNum}
+	</select>
+
+	<select id="max" resultType="int">
+		select max(boardNum) from board
+	</select>
+
+	<insert id="stackWrite">
+		insert into stack values(#{boardNum}, #{stack})
+	</insert>
+
+	<select id="stackList" resultType="String">
+		select stack from stack where boardNum=#{boardNum}
+	</select>
+
+	<!-- 게시판 역순정렬 list -->
+	<select id="boardListReverse"
+		resultType="com.study.springboot.vo.Board">
+		SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
+		m.memberNum
+		FROM board b, member m where b.memberNum=m.memberNum
+		<choose>
+			<when test="category=='recruit'">
+				and b.category ='recruit' order by boardNum asc
+			</when>
+			<when test="category=='apply'">
+				and b.category='apply' order by boardNum asc
+			</when>
+			<otherwise>
+				order by boardNum asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="boardList"
+		resultType="com.study.springboot.vo.Board">
+		SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
+		m.memberNum
+		FROM board b, member m where b.memberNum=m.memberNum
+		<choose>
+			<when test="category=='recruit'">
+				and b.category ='recruit' order by boardNum desc
+			</when>
+			<when test="category=='apply'">
+				and b.category='apply' order by boardNum desc
+			</when>
+			<otherwise>
+				order by boardNum desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+<!-- 검색 리스트  -->
+
+	<select id="boardSearch"
+		resultType="com.study.springboot.vo.Board">
+		SELECT distinct b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
+		m.memberNum, s.stack
+		FROM board b, member m, stack s where b.memberNum=m.memberNum and b.boardNum = s.boardNum
+        
+		
+	<choose>
+		<when test="type == 'S'.toString()">
+			 and s.stack like CONCAT('%${search}%')
+		</when>
+		<when test="type == 'N'.toString()">
+			and	b.title like CONCAT('%${search}%')
+		</when>
+	</choose>
+	</select>
+
+
+	<update id="boardEdit">
+		update board set title =#{title},content =#{content}, date = NOW(),
+		category=#{category}, startDate={startDate}
+		where boardNum=#{boardNum}
+	</update>
+
+	<delete id="boarDel">
+		delete from board WHERE boardNum =#{boardNum}
+	</delete>
+
+
+	<!-- comment -->
+	<!-- 나중에 detail.html에서 memberNum 입력받는 부분 수정해야 함 -->
+	<insert id="commentWrite">
+		insert into comment(commentContent, memberNum,boardNum)
+		values(#{commentContent},#{memberNum},#{boardNum})
+	</insert>
+
+	<select id="commentList"
+		resultType="com.study.springboot.vo.Comment">
+		select * from comment where boardNum=#{boardNum}
+	</select>
+
 </mapper>

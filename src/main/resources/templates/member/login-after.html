@@ -89,9 +89,45 @@ space_dashboard게시판
 
                         <button id="edit">정보 수정</button>
 
-						 <div class="myLog">
-                            <h4>log</h4>
-                            <ul>
+						 <div class="myLog" >
+						<h4>log</h4>
+						<div id="myPageList">
+							<div>
+								<button id="exePost">작성 한 글</button>
+							</div>
+							<div>
+								<button id="exeLike">좋아요 한 글</button>
+							</div>
+							<div>
+								<button id="exeComment">댓글 단 글</button>
+							</div>
+						</div>
+						<div id="showList">
+							<h4>아녕</h4>
+	<!-- 						<table border="1">
+								<tr>
+									<th>카테고리</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일자</th>
+									<th>시작일자</th>
+								</tr>
+
+								<form name="searchList" action="/board/list" method="post">
+<input type='search' name='searchKeyword' /><button type="submit">검색</button>
+</form>
+								<tr th:each="list : ${list}">
+									<td th:text="${list.category}"></td>
+									<td th:text="${list.title}"></td>
+									<td th:text="${list.loginId}"></td>
+									<td th:text="${list.date}"></td>
+									<td th:text="${list.startDate}"></td>
+								</tr>
+							</table> -->
+						</div>
+
+
+						<!-- <ul>
                                 <li>UI / UX</li>
                                 <li>HTML1</li>
                                 <li>CSS2</li>
@@ -99,10 +135,10 @@ space_dashboard게시판
                                 <li>jQuery</li>
                                 <li>React</li>
                                 <li>Node JS</li>
-                            </ul>
+                            </ul> -->
                         </div>
 
-                        <div class="skills">
+                        <!-- <div class="skills">
                             <h4>Skills</h4>
                             <ul>
                                 <li>UI / UX</li>
@@ -115,7 +151,7 @@ space_dashboard게시판
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </section>
         </div>
         <!-- SECTION1 LOGIN,JOIN END -->
@@ -248,9 +284,38 @@ space_dashboard게시판
             else
                 mydiv.attachEvent("onmousewheel", MouseWheelHandler);
 
+            
 
 
-
+        </script>
+        <script>
+        $(function() {
+			$("#exePost").click(function() {
+				$.ajax({
+					url : '/myLog/myWrite',
+					success : function(x) {
+						 $('#showList').html(x); 
+					/* 	$('#showList').load("aa.html .aa") */
+					}
+				})
+			});
+			$("#exeLike").click(function() {
+				$.ajax({
+					url : '/myLog/myLike',
+					success : function(x) {
+						$('#showList').html(x);
+					}
+				})
+			});
+			$("#exeComment").click(function() {
+				$.ajax({
+					url : '/myLog/myComment',
+					success : function(x) {
+						$('#showList').html(x);
+					}
+				})
+			});
+		});
 
         </script>
     </body>

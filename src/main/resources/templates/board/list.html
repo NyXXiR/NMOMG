@@ -22,22 +22,12 @@
       	list-style :none;
      	 padding-left :0px;
       }
-      .my.page-link {
-        color: orange;
-      }
-      .my.pagination > .active > a,
-      .my.pagination > .active > span,
-      .my.pagination > .active > a:hover,
-      .my.pagination > .active > span:hover,
-      .my.pagination > .active > a:focus,
-      .my.pagination > .active > span:focus {
-        background: skyblue;
-        border-color: skyblue;
-      }
-    </style>
+      </style>
   </head>
   <body>
-    <table border="1">
+  <div class="container">
+    <table class="table table-striped" border="1">
+    <thead>
       <tr>
         <th>글번호</th>
         <th>카테고리</th>
@@ -47,10 +37,20 @@
         <th>작성일자</th>
         <th>시작일자</th>
       </tr>
-      
-<!-- <form name="searchList" action="/board/list" method="post">
-<input type='search' name='searchKeyword' /><button type="submit">검색</button>
-</form> -->
+      </thead>
+	
+	<form action="/board/list"  method="get">
+		<select name="type">
+			
+			<option value="S">stack</option>
+			<option value="N">title</option>
+		</select> 
+		<input type="text" name="search" /> 
+		<input type="submit" value="검색" />
+	</form>
+	
+
+	<tbody>
       <tr th:each="board : ${boardList}">
         <td>
           <a
@@ -69,8 +69,21 @@
         <td th:text="${board.date}"></td>
         <td th:text="${board.startDate}"></td>
       </tr>
+      </tbody>
+      </form>
     </table>
 
     <a href="write">글쓰기</a>
+    
+   <div class="text-center">
+   	<ul class="pagination">
+   	<li><a href="#">1</a></li>
+   	<li><a href="#">2</a></li>
+   	<li><a href="#">3</a></li>
+   	<li><a href="#">4</a></li>
+   	<li><a href="#">5</a></li>
+   	</ul>
+   </div>
+   </div>
   </body>
 </html>
