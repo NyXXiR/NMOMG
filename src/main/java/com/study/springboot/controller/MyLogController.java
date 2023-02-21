@@ -25,12 +25,10 @@ public class MyLogController {
 	public String list(Model model,int memberNum) {
 		List<Board> list = myLogDao.myLogList(memberNum);
 		model.addAttribute("list",list);
-		
-		
+
 		log.info("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"+list.get(0).getTitle());
 		
 		return "/member/login-after";
-//		return "/member/login-after";
 	}
 	
 	@GetMapping("/myLog/myWrite")
@@ -40,11 +38,9 @@ public class MyLogController {
 		List<Board> list = myLogDao.myLogList(memberNum);
 		model.addAttribute("list",list);
 		
-		
 		log.info("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"+list.get(0).getTitle());
-		
-		return "/myLog/myWrite";
-//		return "/member/login-after";
+		model.addAttribute("myLog", "작성한 게시글");
+		return "/myLog/myLog";
 	}
 	
 	@GetMapping("/myLog/myLike")
@@ -55,14 +51,9 @@ public class MyLogController {
 		model.addAttribute("list",list);
 		
 		log.info("++++++++++++++++++++++++"+list.get(0).loginId);
-//		String myLikeId = myLogDao.myLikeId(memberNum);
-//		model.addAttribute("myLikeId",myLikeId);
 		
-		
-		//log.info("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"+list.get(0).getTitle());
-		
-		return "/myLog/myLike";
-//		return "/member/login-after";
+		model.addAttribute("myLog", "찜한 게시글");
+		return "/myLog/myLog";
 	}
 
 	
@@ -74,7 +65,7 @@ public class MyLogController {
 			List<Board> list = myLogDao.myLogComment(memberNum);
 			model.addAttribute("list",list);
 			log.info("++++++++++++++++++++++++"+list.get(0).loginId);
-			
-			return "/myLog/myComment";
+			model.addAttribute("myLog", "댓글 단 게시글");
+			return "/myLog/myLog";
 		}
 }
