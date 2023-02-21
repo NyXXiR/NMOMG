@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.study.springboot.dao.MemberDao;
 import com.study.springboot.vo.Member;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -29,17 +30,21 @@ public class MemberController {
 	public void loginIdCheck() {
 
 	} 
-
+	
+	//회원가입 맵핑
 	@PostMapping("/join")
 	public String postJoin(Member member, Model model, String loginIdCheck) {
+		
+		//중복된 아이디 검열
 		int checkId = memberDao.memberIdCheck(member.getLoginId());
 		log.info(checkId);
+		//아이디 중복체크도 같은 맵핑이기 때문에 조건문을 이용하여 아이디 중복체크 및 회원가입 실행 => 중복체크가 사용가능한 아이디이며 이름과 패스워드가 공백이 아니면 가입
 		if (checkId == 0 && loginIdCheck.equals("사용가능한 아이디 입니다.") && member.getNickname() != "" && member.getPassword() != "") {
-			int res = memberDao.memberInsert(member);
+			int res = memberDao.memberInsert(member); //회원가입 정보를 db에 저장
 			log.info(checkId+"1");
 			return "/member/login-after";
 		} else {
-
+			//사용가능한 아이디, 존재하는 아이디 찾기.
 			if (checkId != 0 && !loginIdCheck.equals("이미 존재하는 아이디 입니다.")) {
 				model.addAttribute("idCheck", "이미 존재하는 아이디 입니다.");
 				log.info(checkId+"2");
@@ -56,44 +61,23 @@ public class MemberController {
 		}
 	}
 
-//	// 아이디 중복체크는 겟 방식이 때문에
-//	@GetMapping("/join")
-//	public String getJoin(Member member, Model model) {
-//		int checkId = memberDao.memberIdCheck(member.getLoginId());
-//		if (checkId == 1) {
-//			model.addAttribute("idCheck", "이미 존재하는 아이디 입니다.");
-//			return "/member/joinForm";
-//		} else if (checkId == 0) {
-//			model.addAttribute("idCheck", "사용가능한 아이디 입니다.");
-//			return "/member/joinForm";
-//		}
-//		return "index.html";
-//	}
-
-	@GetMapping("/joinForm")
-	public void joinForm() {
-
-	}
-
+	//로그인 포스트 맵핑
 	@PostMapping("/login")
-	public String login(Member member, Model model) {
-		System.out.println("memberid"+member.loginId);
-		System.out.println("memeber ob"+member);
+	public String login(Member member, Model model, HttpSession session) {
+		//로그인시 검열기능 i=1이면 정상 로그인
 		int i = memberDao.memberLogin(member);
-		System.out.println("controller model param "+i);
+	
+		//정상 로그인 정보
 		if (i == 1) {
-			System.out.println(i);
+			//세션에 저장할 memberNum
+			int memberNum = memberDao.memberNum(member);
+			session.setAttribute("memberNum", memberNum);
 			return "/member/login-after";
+			
 		} else {
 			model.addAttribute("loginFail", "잘못된 정보입니다.");
 			return "/member/main";
 		}
-
-	}
-
-	@GetMapping("/loginForm")
-	public void loginForm() {
-
 	}
 
 

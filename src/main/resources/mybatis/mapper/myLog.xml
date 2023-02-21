@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springboot.dao.MyLogDao">
+	<!-- my list -->
+   	<select id="myLogList" resultType="com.study.springboot.vo.Board">
+   	select b.boardNum, b.startDate, b.title, b.date, b.category, m.loginId
+	from board b, member m
+	where b.memberNum = m.memberNum and m.memberNum = #{memberNum}
+   	</select>
+   	<!-- my like -->
+   	<select id="myLogLike" resultType="com.study.springboot.vo.Board">
+	select b.boardNum, b.startDate, b.title, b.date, b.category, b.memberNum, m.loginId
+	from board b, love l, member m
+	where b.boardNum = l.boardNum and b.memberNum = m.memberNum  and l.memberNum = #{memberNum}
+   	</select>
+   	<!-- my comment -->
+   	<select id="myLogComment" resultType="com.study.springboot.vo.Board">
+   	select distinct b.boardNum, b.startDate, b.title, b.date, b.category, b.memberNum, m.loginId
+	from board b, comment c, member m
+	where b.boardNum = c.boardNum and b.memberNum = m.memberNum  and c.memberNum = #{memberNum}
+   	</select>
+
+
+
+
+
+
+</mapper>

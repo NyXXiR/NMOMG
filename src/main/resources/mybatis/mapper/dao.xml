@@ -22,4 +22,10 @@
 	<select id="memberLogin" resultType="Integer">
 		select count(*) from member where loginId = #{loginId} and password = #{password}
 	</select>
+	
+	<!--로그인시 저장할 memberNum 찾기-->
+	<select id="memberNum" resultType="Integer">
+		select memberNum from member where loginId = #{loginId}
+	</select>
+		
 </mapper>
