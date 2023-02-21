@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.standard.expression.EqualsExpression;
+
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Board;
 import com.study.springboot.vo.BoardList;
@@ -34,11 +36,18 @@ public class BoardController {
 		List<BoardList> boardList = new ArrayList<>();
 		List<Board> listReverse = new ArrayList<>();
 		
+		if(type==null) {
+			type="";
+		}
+		
 		if (category != null) {
 			listReverse = boardDao.boardListReverse(category);
-		} else if (search != null) {
+		} else if (type.equals("S")) {
 			listReverse = boardDao.boardSearch(search, type);
+		}else if(type.equals("N")) {
+			listReverse = boardDao.titleSearch(search, type);
 		}else {
+			
 			listReverse=boardDao.boardListReverse();
 		}
 		
