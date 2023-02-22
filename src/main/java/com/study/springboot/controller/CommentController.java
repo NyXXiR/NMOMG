@@ -23,8 +23,8 @@ public class CommentController {
   @PostMapping("/comment/insert")
   public String commentInsert(Comment comment) {
     int res = boardDao.commentWrite(comment);
-
-    return String.format("redirect:/board/detail?boardNum=%s", comment.boardNum);
+    boardDao.commentCountPlus(comment.getBoardNum());
+    return String.format("redirect:/board/detail?boardNum=%s", comment.getBoardNum());
 
   }
 

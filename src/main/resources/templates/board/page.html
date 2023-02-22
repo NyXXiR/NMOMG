@@ -37,11 +37,12 @@
         </td>
         <td th:text="${board.category}"></td>
         <td>
-          <ul th:each="aa : ${board.stack}" >
-            <li>[[${aa}]]</li>
+          <ul th:each="stacks : ${board.stack}" >
+            <li>[[${stacks}]]</li>
           </ul>
         </td>
-        <td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a></td>
+        <td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a>
+        <a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a></td>
         <td th:text="${board.memberNum}"></td>
         <td th:text="${board.date}"></td>
         <td th:text="${board.startDate}"></td>

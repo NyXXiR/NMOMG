@@ -9,10 +9,10 @@ import lombok.ToString;
 @ToString
 public class Comment {
 
-  public int commentNum;
-  public String commentContent;
-  public String date;
-  public int depth;
-  public int memberNum;
-  public int boardNum;
+  private int commentNum;
+  private String commentContent;
+  private String date;
+  private int depth;
+  private int memberNum;
+  private int boardNum;
 }

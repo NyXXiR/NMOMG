@@ -34,7 +34,7 @@ class NmomgApplicationTests {
    */
 
     //테스트 stack 데이터 생성 코드
-    
+    /*
     for(int i=0; i<100; i++) {
       String stack= "java";
    int boardNum=i+21;
@@ -42,7 +42,21 @@ class NmomgApplicationTests {
  Stack stacks = new Stack(boardNum, stack);
        this.boardDao.stackWrite(stacks);
      }
+      */
+    
+    
+    //commentCount를 comment 갯수와 연동하게 update하는 코드
+   
+    /*for(int i=1;i<125;i++) {
+      int boardNum=i;
+      boardDao.commentCountUpdate(boardNum);
+    }
+    */
+    
   }
+ 
+    
+    
   
   
 

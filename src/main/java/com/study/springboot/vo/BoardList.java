@@ -13,13 +13,14 @@ import lombok.ToString;
 @NoArgsConstructor
 
 public class BoardList {
-  public int boardNum;
-  public String title;
-  public String content;
-  public int memberNum;
-  public String date;
-  public String category;
-  public String startDate;
-  public String loginId;
+  private int boardNum;
+  private String title;
+  private String content;
+  private int memberNum;
+  private String date;
+  private String category;
+  private String startDate;
+  private String loginId;
+  private int commentCount;
   private String[] stack;
 }

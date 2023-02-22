@@ -59,18 +59,20 @@ public class BoardController {
     }
 
     for (int i = 0; i < listReverse.size(); i++) {
-      String[] stacks = boardDao.stackList(listReverse.get(i).boardNum);
-      int boardNum1 = listReverse.get(i).boardNum;
-      String title1 = listReverse.get(i).title;
-      String content1 = listReverse.get(i).content;
-      int memberNum1 = listReverse.get(i).memberNum;
-      String date1 = listReverse.get(i).date;
-      String category1 = listReverse.get(i).category;
-      String startDate1 = listReverse.get(i).startDate;
-      String loginId1 = listReverse.get(i).loginId;
+      String[] stacks = boardDao.stackList(listReverse.get(i).getBoardNum());
+      int boardNum1 = listReverse.get(i).getBoardNum();
+      String title1 = listReverse.get(i).getTitle();
+      String content1 = listReverse.get(i).getContent();
+      int memberNum1 = listReverse.get(i).getMemberNum();
+      String date1 = listReverse.get(i).getDate();
+      String category1 = listReverse.get(i).getCategory();
+      String startDate1 = listReverse.get(i).getStartDate();
+      String loginId1 = listReverse.get(i).getLoginId();
+      int commentCount1= listReverse.get(i).getCommentCount();
+
 
       BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
-          category1, startDate1, loginId1, stacks);
+          category1, startDate1, loginId1, commentCount1,stacks);
       boardList.add(boardList1);
     }
 
@@ -95,18 +97,19 @@ public class BoardController {
     List<Board> list = this.boardDao.getListPage(paginationVo);
     Collections.reverse(list);
     for (int i = 0; i < list.size(); i++) {
-      String[] stacks = boardDao.stackList(list.get(i).boardNum);
-      int boardNum1 = list.get(i).boardNum;
-      String title1 = list.get(i).title;
-      String content1 = list.get(i).content;
-      int memberNum1 = list.get(i).memberNum;
-      String date1 = list.get(i).date;
-      String category1 = list.get(i).category;
-      String startDate1 = list.get(i).startDate;
-      String loginId1 = list.get(i).loginId;
+      String[] stacks = boardDao.stackList(list.get(i).getBoardNum());
+      int boardNum1 = list.get(i).getBoardNum();
+      String title1 = list.get(i).getTitle();
+      String content1 = list.get(i).getContent();
+      int memberNum1 = list.get(i).getMemberNum();
+      String date1 = list.get(i).getDate();
+      String category1 = list.get(i).getCategory();
+      String startDate1 = list.get(i).getStartDate();
+      String loginId1 = list.get(i).getLoginId();
+      int commentCount1= list.get(i).getCommentCount();
 
       BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
-          category1, startDate1, loginId1, stacks);
+          category1, startDate1, loginId1, commentCount1, stacks);
       boardList.add(boardList1);
     }
     Collections.reverse(boardList);
@@ -142,18 +145,19 @@ public class BoardController {
     }
 
     for (int i = 0; i < listReverse.size(); i++) {
-      String[] stacks = boardDao.stackList(listReverse.get(i).boardNum);
-      int boardNum1 = listReverse.get(i).boardNum;
-      String title1 = listReverse.get(i).title;
-      String content1 = listReverse.get(i).content;
-      int memberNum1 = listReverse.get(i).memberNum;
-      String date1 = listReverse.get(i).date;
-      String category1 = listReverse.get(i).category;
-      String startDate1 = listReverse.get(i).startDate;
-      String loginId1 = listReverse.get(i).loginId;
+      String[] stacks = boardDao.stackList(listReverse.get(i).getBoardNum());
+      int boardNum1 = listReverse.get(i).getBoardNum();
+      String title1 = listReverse.get(i).getTitle();
+      String content1 = listReverse.get(i).getContent();
+      int memberNum1 = listReverse.get(i).getMemberNum();
+      String date1 = listReverse.get(i).getDate();
+      String category1 = listReverse.get(i).getCategory();
+      String startDate1 = listReverse.get(i).getStartDate();
+      String loginId1 = listReverse.get(i).getLoginId();
+      int commentCount1= listReverse.get(i).getCommentCount();
 
       BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
-          category1, startDate1, loginId1, stacks);
+          category1, startDate1, loginId1, commentCount1, stacks);
       boardList.add(boardList1);
     }
     Collections.reverse(boardList);

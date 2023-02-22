@@ -49,5 +49,11 @@ public interface BoardDao {
   public int getCount();
 
   public List<Board> getListPage(PaginationVo paginationVo);
+  
+  public int commentCountUpdate(int boardNum);
+  
+  public List<Board> commentCountSelectByNum(int boardNum);
+  
+  public int commentCountPlus(int boardNum);
 
 }

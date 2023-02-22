@@ -9,8 +9,8 @@ import lombok.ToString;
 @ToString
 public class TeamMember {
 
-  public int hostNum;
-  public int teamNum;
-  public int memberNum;
+  private int hostNum;
+  private int teamNum;
+  private int memberNum;
 
 }

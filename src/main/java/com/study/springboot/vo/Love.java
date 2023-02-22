@@ -9,6 +9,6 @@ import lombok.ToString;
 @ToString
 public class Love {
 
-  public int memberNum;
-  public int boardNum;
+  private int memberNum;
+  private int boardNum;
 }

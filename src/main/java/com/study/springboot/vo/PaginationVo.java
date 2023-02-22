@@ -10,20 +10,20 @@ public class PaginationVo {
      * 인덱스: 특정 페이지에서 특정 게시물을 지시하는 숫자
      */
 
-    int     rowCount  = 15;     // 한 페이지 당 보여줄 게시물 개수
-    int     pageCount = 5;     // 한 블럭에 몇 개의 페이지 개수
-    int     totalCount;        // 총 게시물 개수
-    int     page;              // 현재 페이지
+  private int     rowCount  = 15;     // 한 페이지 당 보여줄 게시물 개수
+  private int     pageCount = 5;     // 한 블럭에 몇 개의 페이지 개수
+  private  int     totalCount;        // 총 게시물 개수
+  private int     page;              // 현재 페이지
 
-    int     startPage = 1;     // 한 블럭의 시작 페이지: 기본 값 1 // ex) 1 2 3 4 5 일 때 1을 의미.
-    int     endPage;           // 한 블럭의 끝 페이지
+  private int     startPage = 1;     // 한 블럭의 시작 페이지: 기본 값 1 // ex) 1 2 3 4 5 일 때 1을 의미.
+  private int     endPage;           // 한 블럭의 끝 페이지
 
-    int     totalPageCount;    // 총 페이지 개수
+  private int     totalPageCount;    // 총 페이지 개수
 
-    boolean isPrev    = false; // 다음 페이지로 이동하는 버튼 유무
-    boolean isNext    = false; // 이전 페이지로 이동하는 버튼 유무
+  private  boolean isPrev    = false; // 다음 페이지로 이동하는 버튼 유무
+  private  boolean isNext    = false; // 이전 페이지로 이동하는 버튼 유무
 
-    int     offset;            // 얼만큼 끊어서 가져올 것인가.
+  private  int     offset;            // 얼만큼 끊어서 가져올 것인가.
 
     public PaginationVo(final int totalCount, final int page) {
     
