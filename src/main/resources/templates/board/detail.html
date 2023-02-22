@@ -6,52 +6,56 @@
 <title>상세보기 페이지</title>
 
 <style>
-*{
-padding: 0;
-margin:0;
-border: 1px solid black;
+* {
+	padding: 0;
+	margin: 0;
+	border: 1px solid black;
 }
 
-.detail__largeFont{font-size: 30px;}
-.detail__mediumFont{font-size:20px;}
-.detail__smallFont{font-size:10px;}
-.detail__info--item{display:flex;}
+.detail__largeFont {
+	font-size: 30px;
+}
+
+.detail__mediumFont {
+	font-size: 20px;
+}
+
+.detail__smallFont {
+	font-size: 10px;
+}
+
+.detail__info--item {
+	display: flex;
+}
 </style>
 </head>
 
 <body>
 
 
-<div class="detail">
-<div th:text="${detail.title}" class="detail__title detail__largeFont">
-제목
-</div>
+	<div class="detail">
+		<div th:text="${detail.title}" class="detail__title detail__largeFont">
+			제목</div>
 
-<!--  멤버 정보 -->
-<div class="detail__info">
+		<!--  멤버 정보 -->
+		<div class="detail__info">
 
-<div>
-작성자명: 
-<span th:text="${detail.memberNum}" class="detail__info--item">
-</span>
-게시일자: 
-<span th:text="${detail.date}" class="detail__info--item">
+			<div>
+				작성자명: <span th:text="${detail.memberNum}" class="detail__info--item">
+				</span> 게시일자: <span th:text="${detail.date}" class="detail__info--item">
 
-</span>
+				</span> 시작예정일: <span th:text="${detail.startDate}"
+					class="detail__info--item"></span> <img
+					th:src="@{/img/}+${detail.boardNum}+.png" onerror="this.src='/images/alt.jpg'">
 
-시작예정일:
-<span th:text="${detail.startDate}" class="detail__info--item"></span>
+				<!-- 프로젝트 소개란. content 입력 -->
+				<div>
 
+					<textarea name="content" id="content" rows="15"
+						th:text=${detail.content} readonly></textarea>
+				</div>
 
-<img th:src="@{/img/}+${detail.boardNum}+.png">
-
-<!-- 프로젝트 소개란. content 입력 -->
-<div>
-
-<textarea name="content" id="content" rows="15" th:text=${detail.content} readonly></textarea>
-</div>
-
-</div>
+			</div>
 
 
 
@@ -60,108 +64,132 @@ border: 1px solid black;
 
 
 
-<!--  수정/삭제 버튼은 로그인한 유저가 글쓴 유저와 일치할 경우에만 가능하게 해야 함 
+		<!--  수정(구현예정)/삭제 버튼은 로그인한 유저가 글쓴 유저와 일치할 경우에만 가능하게 해야 함 
 컨트롤러에서 session.getAttribute("memberNum") 받아서 비교
 -->
 
-<button type="button" th:onclick="detailUpdateAction(${detail.memberNum)">수정</button>
-<button type="button" th:onclick= "detailDeleteAction(${detail.memberNum)">삭제</button>
-<h5 th:text="|${comment.size()}개의 답변이 있습니다.|"></h5>
+		<button type="button"
+			th:onclick="detailUpdateAction(${detail.memberNum})">수정(구현예정)</button>
+		<button type="button"
+			th:onclick="detailDeleteAction(${detail.memberNum})">삭제(구현예정)</button>
+		<h5 th:text="|${comment.size()}개의 답변이 있습니다.|"></h5>
 
 
-<tr th:each="comment: ${comment}">
-<form method="post">
-<td th:text="${comment.memberNum}"></td>
-<br>
-<td name="commentContent" th:text="${comment.commentContent}"></td>
-
-<td><input type="hidden" name="memberNum" th:value="${comment.memberNum}"></td>
-<td><input type="hidden" name="commentNum" th:value="${comment.commentNum}"></td>
-<td><input type="hidden" name="boardNum" th:value="${detail.boardNum}"></td>
-<td><input type="submit" value="수정" id="commentUpdate" formaction="/comment/update">
-</td>
-<td><input type="button" value="삭제" id="commentDelete">
-</td>
-<br>
-<br>
-</form>
-</tr>
+		<tr th:each="comment: ${comment}">
+			<form method="get" onsubmit="return confirm('정말 삭제하시겠습니까?')">
+				<td th:text="${comment.memberNum}"></td> <br>
+				<td name="commentContent" th:text="${comment.commentContent}"></td>
 
 
+				<td><input type="hidden" name="commentNum"
+					th:value="${comment.commentNum}"></td>
+				<td><input type="hidden" name="boardNum"
+					th:value="${detail.boardNum}"></td>
+
+				<td><input type="submit" value="수정(구현예정)" id="commentUpdate"
+					formaction="/comment/update"></td>
+
+				<!-- 삭제 여부를 판단하는 변수를 hidden으로 삽입함 -->
+			
+				<td>
+				<input type="hidden" name="memberNum"
+					th:value="${comment.memberNum}">
+					<input type="hidden"
+					name="loginNum" th:value="${loginNum}">
+					<input type="submit"
+					value="삭제" id="commentDelete"  formaction="/comment/delete">
+				</td> <br> <br>
+			</form>
+		</tr>
+	
+
+
+		<!--  댓글 -->
+		<!-- 멤버넘 부분 수정(구현예정)해야 함 -->
+		<form action="/comment/insert" method="post">
+			<textarea name="commentContent" id="commentContent" rows="3"></textarea>
+			<input type="hidden" name="boardNum" th:value="${detail.boardNum}" />
+			<input type="hidden" name="memberNum" th:value="${detail.memberNum}" />
+
+			<input type="submit" value="답변등록">
+
+		</form>
 
 
 
-<!--  댓글 -->
-<!-- 멤버넘 부분 수정해야 함 -->
-<form action="/comment/insert" method="post">
-    <textarea name="commentContent" id="commentContent" rows="3"></textarea>
-     <input type="hidden" name="boardNum" th:value="${detail.boardNum}"/>
-    <input type="hidden" name="memberNum" th:value="${detail.memberNum}"/>
-
-    <input type="submit" value="답변등록">
-   
-</form>
+		<button type="button" onclick="location.href='/board/list'">목록</button>
 
 
+	</div>
 
-<button type="button" onclick="location.href='/board/list'">목록</button>
-
-
-</div>
-
-<div>포함가능성있음:
-<span>모집인원</span>
-<span>예정일수</span>
-</div>
+	<div>
+		포함가능성있음: <span>모집인원</span> <span>예정일수</span>
+	</div>
 </body>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-
-에이젝스 구현부터 
-/*
-$('#commentDelete').click(function()){
-	$.ajax({
-		url: './notCertificated.html',
-		type:'GET',
-		data:{},
-		success:function(data){
-			$('#commentPopup').html(data);
-		}
-		
-		})
-	});	
-*/
+	/*
+	 $('#commentDelete').click(function(){
+	 $.ajax({
+	 url: './notCertificated.html',
+	 type:'GET',
+	 data:{},
+	 success:function(data){
+	 $('#commentPopup').html(data);
+	 }
 	
+	 })
+	 });	
+	 */
+
+	function detailUpdateAction(prop) {
+		//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+		//일치하면 update 프로세스로 이동
+		location.href = '/board/update';
+	}
+
+	function detailDeleteAction(prop) {
+		//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+		//일치하면 delete 프로세스로 이동
+
+		location.href = '/board/delete';
+	}
+
+	function commentUpdateAction() {
+		//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+		//일치하면 update 프로세스로 이동
+		location.href = '/comment/update';
+
+	}
+
+	/*
+	function commentDeleteAction(e) {
+		//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
+		//일치하면 delete 프로세스로 이동
+
+var loginNum= $(e).prev().val();
+var memberNum= $(e).prev().prev().val();
+
+
+if(loginNum=memberNum){
+
+if(!confirm("정말 삭제하시겠습니까?")){
+	alert('삭제안한다');
 	
-
-function detailUpdateAction(){
-	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
-	//일치하면 update 프로세스로 이동
-	location.href='/board/update';
-}	
-
-function detailDeleteAction(){
-	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
-	//일치하면 delete 프로세스로 이동
-
-	location.href='/board/delete';
-}
-
-
-function commentUpdateAction(){
-	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
-	//일치하면 update 프로세스로 이동
-	location.href='/comment/update';
+}else{
+	alert('삭제한다');
 
 }
-
-function commentdeleteAction(){
-	//작성자명 class와 로그인유저 class 를 선택해서 일치여부 확인
-	//일치하면 delete 프로세스로 이동
-	location.href='/comment/delete';
-
+	
 }
+else{
+alert("아이디가 다릅니다.");	
+}
+	}
+
+	*/
+	//location.href='/comment/delete';
 </script>
 </html>
 

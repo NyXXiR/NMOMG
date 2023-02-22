@@ -34,26 +34,32 @@ public class CommentController {
     return "";
   }
 
-  @PostMapping("/comment/delete")
+  @GetMapping("/comment/delete")
   public String commentDelete(HttpServletRequest request, int commentNum, int boardNum,
       int memberNum) {
     HttpSession session = request.getSession();
 
     Integer loginNum = (Integer) session.getAttribute("memberNum");
 
+    log.info("---" + memberNum + "***" + loginNum);
+
     if (loginNum != null) {
       if (loginNum == memberNum) {
         int res = boardDao.commentDelete(commentNum);
       } else {
-        //
+        return "/comment/notCertificated";
       }
-    }
 
+    }
 
 
     return String.format("redirect:/board/detail?boardNum=%s", boardNum);
   }
 
+  @GetMapping("/comment/notCertificated")
+  public String notCertificated() {
+    return "comment/notCertificated";
+  }
 
 
 }
