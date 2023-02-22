@@ -46,56 +46,90 @@ public class MyLogController {
 //		return "/myLog/myLog";
 //	}
 	
-	@GetMapping("/myLog/myLike")
-	public String myLike(Model model, HttpSession session) {
-		int memberNum = (int)session.getAttribute("memberNum");
-		log.info("세션 memberNum"+memberNum);
-		List<Board> list = myLogDao.myLogLike(memberNum);
-		model.addAttribute("list",list);
-		
-		log.info("++++++++++++++++++++++++"+list.get(0).loginId);
-		
-		model.addAttribute("myLog", "찜한 게시글");
-		return "/myLog/myLog";
-	}
+//	@GetMapping("/myLog/myLike")
+//	public String myLike(Model model, HttpSession session) {
+//		int memberNum = (int)session.getAttribute("memberNum");
+//		log.info("세션 memberNum"+memberNum);
+//		List<Board> list = myLogDao.myLogLike(memberNum);
+//		model.addAttribute("list",list);
+//		
+//		log.info("++++++++++++++++++++++++"+list.get(0).loginId);
+//		
+//		model.addAttribute("myLog", "찜한 게시글");
+//		return "/myLog/myLog";
+//	}
 
 	
 	// 내가 댓글 단 글
-		@GetMapping("/myLog/myComment")
-		public String myComment(Model model, HttpSession session) {
-			int memberNum = (int)session.getAttribute("memberNum");
-			log.info("세션 memberNum"+memberNum);
-			List<Board> list = myLogDao.myLogComment(memberNum);
-			model.addAttribute("list",list);
-			log.info("++++++++++++++++++++++++"+list.get(0).loginId);
-			model.addAttribute("myLog", "댓글 단 게시글");
-			return "/myLog/myLog";
-		}
+//		@GetMapping("/myLog/myComment")
+//		public String myComment(Model model, HttpSession session) {
+//			int memberNum = (int)session.getAttribute("memberNum");
+//			log.info("세션 memberNum"+memberNum);
+//			List<Board> list = myLogDao.myLogComment(memberNum);
+//			model.addAttribute("list",list);
+//			log.info("++++++++++++++++++++++++"+list.get(0).loginId);
+//			model.addAttribute("myLog", "댓글 단 게시글");
+//			return "/myLog/myLog";
+//		}
 		
 		
 		
 		
 		@GetMapping("/myLog/myWrite")
-		public String selectListAndPage(HttpSession session, final Model model, @RequestParam(value = "page", defaultValue = "1") final int page) {
+		public String selectListWrite(HttpSession session, final Model model, @RequestParam(value = "page", defaultValue = "1") final int page) {
 			
 			int memberNum = (int)session.getAttribute("memberNum");
 			log.info("세션 memberNum"+memberNum);
-		    PaginationVo paginationVo = new PaginationVo(myLogDao.total(memberNum), page); // 모든 게시글 개수 구하기.
+			log.info("세션 memberNum 적용 개수"+myLogDao.totalWrite(memberNum));
+		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalWrite(memberNum), page); // 모든 게시글 개수 구하기.
 
-		    List<Board> list = myLogDao.myLogList(paginationVo, memberNum);
+		    List<Board> list = myLogDao.myLogList(paginationVo,memberNum);
 
 		    model.addAttribute("boardList", list);
 		    model.addAttribute("page", page);
 		    model.addAttribute("pageVo", paginationVo);
-
+		    
+		    model.addAttribute("myLog", "작성한 게시글");
 		    return "/myLog/myLog";
 		}
 		
 		
+		@GetMapping("/myLog/myLike")
+		public String selectListLike(HttpSession session, final Model model, @RequestParam(value = "page", defaultValue = "1") final int page) {
+			
+			int memberNum = (int)session.getAttribute("memberNum");
+			log.info("세션 memberNum"+memberNum);
+			log.info("세션 memberNum 적용 개수"+myLogDao.totalLike(memberNum));
+		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalWrite(memberNum), page); // 모든 게시글 개수 구하기.
+
+		    List<Board> list = myLogDao.myLogLike(paginationVo,memberNum);
+
+		    model.addAttribute("boardList", list);
+		    model.addAttribute("page", page);
+		    model.addAttribute("pageVo", paginationVo);
+		    
+		    model.addAttribute("myLog", "찜한 게시글");
+		    return "/myLog/myLog";
+		}
 		
 		
-		
-		
+		@GetMapping("/myLog/myComment")
+		public String selectListComment(HttpSession session, final Model model, @RequestParam(value = "page", defaultValue = "1") final int page) {
+			
+			int memberNum = (int)session.getAttribute("memberNum");
+			log.info("세션 memberNum"+memberNum);
+			log.info("세션 memberNum 적용 개수"+myLogDao.totalComment(memberNum));
+		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalWrite(memberNum), page); // 모든 게시글 개수 구하기.
+
+		    List<Board> list = myLogDao.myLogComment(paginationVo,memberNum);
+
+		    model.addAttribute("boardList", list);
+		    model.addAttribute("page", page);
+		    model.addAttribute("pageVo", paginationVo);
+		    
+		    model.addAttribute("myLog", "댓글 단 게시글");
+		    return "/myLog/myLog";
+		}
 		
 		
 		

@@ -19,6 +19,7 @@ import com.study.springboot.vo.BoardList;
 import com.study.springboot.vo.Comment;
 import com.study.springboot.vo.PaginationVo;
 import com.study.springboot.vo.Stack;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -28,10 +29,10 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 
 public class BoardController {
-	final BoardDao boardDao;
+  final BoardDao boardDao;
 
 	// 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
-	@GetMapping("/list")
+	@GetMapping("/list2")
 	public String list(Model model, String category, String search, String type, @RequestParam(value= "page",defaultValue = "1") final int page){
 		log.info("----->"+category+"=====search:"+search+":::type::"+type);
 		
@@ -74,93 +75,136 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("page", page);
 		model.addAttribute("pageVO", paginationVo);
-		return "board/list";
-
+		return "board/list2";
 	}
+  // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
+  @GetMapping("/list")
+  public String list(Model model, String category, String search, String type) {
+    log.info("----->" + category + "=====search:" + search + ":::type::" + type);
+    List<BoardList> boardList = new ArrayList<>();
+    List<Board> listReverse = new ArrayList<>();
 
-	// 보드 검색
-	@PostMapping("/list")
-	public String search(Model model, String search, String type) {
-		List<Board> list = boardDao.boardSearch(search, type);
-		model.addAttribute("boardlist", list);
-		return " board/list";
-	}
+    if (type == null) {
+      type = "";
+    }
 
-	// board 상세페이지. boardNum으로 각 페이지 구분
-	@GetMapping("/detail")
-	public String detailList(int boardNum, Model model) {
-		Board board = boardDao.selectByNum(boardNum);
-		model.addAttribute("detail", board);
-		List<Comment> comment = boardDao.commentList(boardNum);
-		model.addAttribute("comment", comment);
+    if (category != null) {
+      listReverse = boardDao.boardListReverse(category);
+    } else if (type.equals("S")) {
+      listReverse = boardDao.boardSearch(search, type);
+    } else if (type.equals("N")) {
+      listReverse = boardDao.titleSearch(search, type);
+    } else {
 
-		return "board/detail";
+      listReverse = boardDao.boardListReverse();
+    }
 
-	}
+    for (int i = 0; i < listReverse.size(); i++) {
+      String[] stacks = boardDao.stackList(listReverse.get(i).boardNum);
+      int boardNum1 = listReverse.get(i).boardNum;
+      String title1 = listReverse.get(i).title;
+      String content1 = listReverse.get(i).content;
+      int memberNum1 = listReverse.get(i).memberNum;
+      String date1 = listReverse.get(i).date;
+      String category1 = listReverse.get(i).category;
+      String startDate1 = listReverse.get(i).startDate;
+      String loginId1 = listReverse.get(i).loginId;
 
-	// 게시글쓰기 write 페이지
-	@GetMapping("/write")
-	public void writeform() {
-	}
+      BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
+          category1, startDate1, loginId1, stacks);
+      boardList.add(boardList1);
+    }
+    Collections.reverse(boardList);
+    model.addAttribute("boardList", boardList);
 
-	@PostMapping("/write") // 데이터를 서버로 제출해서 insert, update
-	public String insert(Board board, MultipartFile uploadFile, String[] stack) {
+    return "board/list";
 
-		String uploadFolder = "/home/ubuntu/nmomg/assets/img";
+  }
 
-		log.info("upload file name: " + uploadFile.getOriginalFilename());
-		log.info("upload file size: " + uploadFile.getSize());
+  // 보드 검색
+  @PostMapping("/list")
+  public String search(Model model, String search, String type) {
+    List<Board> list = boardDao.boardSearch(search, type);
+    model.addAttribute("boardlist", list);
+    return " board/list";
+  }
 
-		int max = boardDao.max() + 1;
-		File saveFile = new File(uploadFolder, uploadFile.getOriginalFilename());
+  // board 상세페이지. boardNum으로 각 페이지 구분
+  @GetMapping("/detail")
+  public String detailList(int boardNum, Model model, HttpSession session) {
+    Board board = boardDao.selectByNum(boardNum);
+    model.addAttribute("detail", board);
+    List<Comment> comment = boardDao.commentList(boardNum);
+    model.addAttribute("comment", comment);
+    int loginNum = (int) session.getAttribute("memberNum");
+    log.info(loginNum);
+    model.addAttribute("loginNum", loginNum);
+    return "board/detail";
 
-		try {
-			uploadFile.transferTo(saveFile);
-			// MultipartFile은 생성하자마자 파일을 바로 업로드하므로 업로드 후 파일명을 변경한다.
-			File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
-			saveFile.renameTo(renamedFile);
-		} catch (Exception e) {
-			log.error("파일 전송 에러: " + e.getMessage());
-		}
-		int res = boardDao.boardWrite(board);
+  }
 
-		// boardNum을 max로, stack 배열을 하나씩 가져온다
-		for (int i = 0; i < stack.length; i++) {
-			Stack stack1 = new Stack(max, stack[i]);
-			boardDao.stackWrite(stack1);
-		}
+  // 게시글쓰기 write 페이지
+  @GetMapping("/write")
+  public void writeform() {}
 
-		return "redirect:list";
-	}
+  @PostMapping("/write") // 데이터를 서버로 제출해서 insert, update
+  public String insert(Board board, MultipartFile uploadFile, String[] stack) {
 
-	// board 게시물 수정
-	@GetMapping("/update")
-	public void update(int boardNum, Model model) {
-		Board board = boardDao.boardDetail(boardNum);
-		model.addAttribute("board", board);
+    String uploadFolder = "/home/ubuntu/nmomg/assets/img";
 
-	}
+    log.info("upload file name: " + uploadFile.getOriginalFilename());
+    log.info("upload file size: " + uploadFile.getSize());
 
-	@PostMapping("/update")
-	public String upload(Board board) {
-		boardDao.boardEdit(board);
-		return "redirect:list";
-	}
+    int max = boardDao.max() + 1;
+    File saveFile = new File(uploadFolder, uploadFile.getOriginalFilename());
 
-	@DeleteMapping("/delete")
-	public String DeleteData() {
+    try {
+      uploadFile.transferTo(saveFile);
+      // MultipartFile은 생성하자마자 파일을 바로 업로드하므로 업로드 후 파일명을 변경한다.
+      File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
+      saveFile.renameTo(renamedFile);
+    } catch (Exception e) {
+      log.error("파일 전송 에러: " + e.getMessage());
+    }
+    int res = boardDao.boardWrite(board);
 
-		return "redirect:list";
+    // boardNum을 max로, stack 배열을 하나씩 가져온다
+    for (int i = 0; i < stack.length; i++) {
+      Stack stack1 = new Stack(max, stack[i]);
+      boardDao.stackWrite(stack1);
+    }
 
-	}
+    return "redirect:list";
+  }
 
-	// apply part(write, update, list, detail) + (delete(관리자용))
+  // board 게시물 수정
+  @GetMapping("/update")
+  public void update(int boardNum, Model model) {
+    Board board = boardDao.boardDetail(boardNum);
+    model.addAttribute("board", board);
 
-	// 테스트
+  }
 
-	@GetMapping("/multiSelect")
-	public String MultiSelect() {
-		return "board/multiSelect";
-	}
+  @PostMapping("/update")
+  public String upload(Board board) {
+    boardDao.boardEdit(board);
+    return "redirect:list";
+  }
+
+  @DeleteMapping("/delete")
+  public String DeleteData() {
+
+    return "redirect:list";
+
+  }
+
+  // apply part(write, update, list, detail) + (delete(관리자용))
+
+  // 테스트
+
+  @GetMapping("/multiSelect")
+  public String MultiSelect() {
+    return "board/multiSelect";
+  }
 
 }
