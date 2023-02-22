@@ -46,7 +46,7 @@
 
 				</span> 시작예정일: <span th:text="${detail.startDate}"
 					class="detail__info--item"></span> <img
-					th:src="@{/img/}+${detail.boardNum}+.png">
+					th:src="@{/img/}+${detail.boardNum}+.png" onerror="this.src='/images/alt.jpg'">
 
 				<!-- 프로젝트 소개란. content 입력 -->
 				<div>
@@ -64,14 +64,14 @@
 
 
 
-		<!--  수정/삭제 버튼은 로그인한 유저가 글쓴 유저와 일치할 경우에만 가능하게 해야 함 
+		<!--  수정(구현예정)/삭제 버튼은 로그인한 유저가 글쓴 유저와 일치할 경우에만 가능하게 해야 함 
 컨트롤러에서 session.getAttribute("memberNum") 받아서 비교
 -->
 
 		<button type="button"
-			th:onclick="detailUpdateAction(${detail.memberNum})">수정</button>
+			th:onclick="detailUpdateAction(${detail.memberNum})">수정(구현예정)</button>
 		<button type="button"
-			th:onclick="detailDeleteAction(${detail.memberNum})">삭제</button>
+			th:onclick="detailDeleteAction(${detail.memberNum})">삭제(구현예정)</button>
 		<h5 th:text="|${comment.size()}개의 답변이 있습니다.|"></h5>
 
 
@@ -86,7 +86,7 @@
 				<td><input type="hidden" name="boardNum"
 					th:value="${detail.boardNum}"></td>
 
-				<td><input type="submit" value="수정" id="commentUpdate"
+				<td><input type="submit" value="수정(구현예정)" id="commentUpdate"
 					formaction="/comment/update"></td>
 
 				<!-- 삭제 여부를 판단하는 변수를 hidden으로 삽입함 -->
@@ -105,7 +105,7 @@
 
 
 		<!--  댓글 -->
-		<!-- 멤버넘 부분 수정해야 함 -->
+		<!-- 멤버넘 부분 수정(구현예정)해야 함 -->
 		<form action="/comment/insert" method="post">
 			<textarea name="commentContent" id="commentContent" rows="3"></textarea>
 			<input type="hidden" name="boardNum" th:value="${detail.boardNum}" />
