@@ -25,6 +25,8 @@
       </style>
   </head>
  <body>
+ 
+   <a href="write">글쓰기</a>
   <table class="table table-striped" border="1">
     <tr th:each="board : ${boardList}">
         <td>
@@ -45,6 +47,7 @@
         <td th:text="${board.startDate}"></td>
       </tr>
 	</table>
+	
 
 <div id="pagination">
 	<!-- 맨 처음 페이지로 이동하는 버튼 -->

@@ -41,12 +41,7 @@
 	<select id="stackList" resultType="String">
 		select stack from stack where boardNum=#{boardNum}
 	</select>
-	
-	<!-- 게시판 총 개수 -->
-	<select id="getCount" resultType="int">
-    SELECT count(*) as listCnt
-    FROM board
-	</select>
+
 	
 	<!-- 게시판 역순정렬 list -->
 	<select id="boardListReverse" 

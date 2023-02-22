@@ -93,7 +93,7 @@ public class BoardController {
     // 구하기.
 
     List<Board> list = this.boardDao.getListPage(paginationVo);
-
+    Collections.reverse(list);
     for (int i = 0; i < list.size(); i++) {
       String[] stacks = boardDao.stackList(list.get(i).boardNum);
       int boardNum1 = list.get(i).boardNum;
@@ -117,7 +117,7 @@ public class BoardController {
     model.addAttribute("page", page);
     model.addAttribute("pageVo", paginationVo);
 
-    return "/board/page";
+    return "board/page";
   }
 
   @GetMapping("/list")

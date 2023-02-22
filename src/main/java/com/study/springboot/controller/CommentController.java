@@ -47,11 +47,11 @@ public class CommentController {
       if (loginNum == memberNum) {
         int res = boardDao.commentDelete(commentNum);
       } else {
-        return "/comment/notCertificated";
+        return "comment/notCertificated";
       }
 
     } else {
-      return "/comment/notCertificated";
+      return "comment/notCertificated";
 
     }
 
