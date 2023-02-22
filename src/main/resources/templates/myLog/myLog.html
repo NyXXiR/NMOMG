@@ -1,6 +1,9 @@
+<html>
 
 <div>
 <h4 th:text="${myLog}"></h4>
+
+<div id="page">
  <table border="1">
       <tr>
         <th>카테고리</th>
@@ -12,39 +15,104 @@
       
       <tr th:each="list : ${boardList}">
         <td th:text="${list.category}"></td>
+
         <td th:text="${list.title}"></td>
         <td th:text="${list.loginId}"></td>
         <td th:text="${list.date}"></td>
         <td th:text="${list.startDate}"></td>
       </tr>
     </table> 
+
     
     
     <div id="pagination">
 	<!-- 맨 처음 페이지로 이동하는 버튼 -->
     <span th:if="${pageVo.startPage > 1}">
-        <a th:href="@{'/myLog/myWrite?page=1'}" th:text="'처음&emsp;'"></a>
+    <button id="fst" th:text="'처음&emsp;'"></button>
+      <!--   <a th:href="@{'/myLog/myWrite?page=1'}" th:text="'처음&emsp;'"></a> -->
     </span>
 
 	<!-- 이전 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isPrev == true}">
-    	<a th:href="@{'/myLog/myWrite?page='+${pageVo.startPage - 1}}" th:text="'이전'"></a>
+    <button id="pre" th:text="'이전'"></button>
+    	<!-- <a th:href="@{'/myLog/myWrite?page='+${pageVo.startPage - 1}}" th:text="'이전'"></a> -->
     </span>
 
     <!-- 시퀀스 보여주는 값을 변경. -->
     <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-        <a class="div2" th:href="@{'/myLog/myWrite?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
+    <button id="seq" th:text="|&emsp;${pageNum}&emsp;|" th:value="|&emsp;${pageNum}&emsp;|"></button>
+         <a class="div2" th:href="@{'/myLog/myWrite?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a> 
     </span>
 	
     <!-- 다음 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isNext == true}">
-	<a th:href="@{'/myLog/myWrite?page='+|${pageVo.endPage + 1}|}" th:text="'다음'"></a>
+    <button id="next" th:text="'다음'"></button>
+	<!-- <a th:href="@{'/myLog/myWrite?page='+|${pageVo.endPage + 1}|}" th:text="'다음'"></a> -->
     </span>
 	
     <!-- 맨 뒷 페이지로 이동하는 버튼 -->
     <span th:if="${pageVo.endPage < pageVo.totalPageCount}">
-	<a th:href="@{'/myLog/myWrite?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a>
+    <button id="final" th:text="|&emsp;끝|"></button>
+	<!-- <a th:href="@{'/myLog/myWrite?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a> -->
     </span>
 </div>
-</div>
 
+</div>
+</div>
+        <script src="/https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+
+        $(function(e) {
+       
+			$("#fst").click(function() {
+				$.ajax({
+					url : '@{/myLog/myWrite?page=1}',
+					success : function(x) {
+						 $('#page').html(x); 
+					/* 	$('#showList').load("aa.html .aa") */
+					}
+				})
+			});
+			$("#pre").click(function() {
+				$.ajax({
+					url : "@{'/myLog/myWrite?page='${pageVo.startPage - 1}}",
+					success : function(x) {
+						$('#page').html(x);
+					}
+				})
+			});
+			
+		
+			
+			$("#next").click(function() {
+				$.ajax({
+					url : "@{'/myLog/myWrite?page='+|${pageVo.endPage + 1}|}",
+					success : function(x) {
+						$('#page').html(x);
+					}
+				})
+			});
+			$("#final").click(function() {
+				$.ajax({
+					url : "@{'/myLog/myWrite?page='+${pageVo.totalPageCount}}",
+					success : function(x) {
+						$('#page').html(x);
+					}
+				})
+			});
+		});
+
+        </script>
+        <script>
+        $("seq").click(function() {
+			console.log("clicked");
+			$.ajax({
+				url : '/myLog/myWrite?page='+$(this).val(),
+				success : function(x) {
+					$('#page').html(x);
+				}
+			})
+		});
+        </script>
+</html>

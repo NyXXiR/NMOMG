@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Board;
 import com.study.springboot.vo.BoardList;
@@ -30,7 +31,52 @@ import lombok.extern.log4j.Log4j2;
 public class BoardController {
   final BoardDao boardDao;
 
+	// 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
+	@GetMapping("/list2")
+	public String list(Model model, String category, String search, String type, @RequestParam(value= "page",defaultValue = "1") final int page){
+		log.info("----->"+category+"=====search:"+search+":::type::"+type);
+		
+		log.info("total건수  ---------"+boardDao.getCount());
 
+		PaginationVo paginationVo = new PaginationVo(boardDao.getCount(), page);
+		
+		List<BoardList> boardList = new ArrayList<>();
+		List<Board> listReverse = new ArrayList<>();
+		
+		if(type==null) {
+			type="";
+		}
+		if (category != null) {
+			listReverse = boardDao.boardListReverse(category);
+		} else if (type.equals("S")) {
+			listReverse = boardDao.boardSearch(search, type);
+		}else if(type.equals("N")) {
+			listReverse = boardDao.titleSearch(search, type);
+		}else {
+			
+		//	listReverse=boardDao.boardListReverse();
+			listReverse = boardDao.boardList(paginationVo);
+		}
+		
+		  for (int i = 0; i < listReverse.size(); i++) { String[] stacks =
+		  boardDao.stackList(listReverse.get(i).boardNum); int boardNum1 =
+		  listReverse.get(i).boardNum; String title1 = listReverse.get(i).title; String
+		  content1 = listReverse.get(i).content; int memberNum1 =
+		  listReverse.get(i).memberNum; String date1 = listReverse.get(i).date; String
+		  category1 = listReverse.get(i).category; String startDate1 =
+		  listReverse.get(i).startDate; String loginId1 = listReverse.get(i).loginId;
+		  
+		  BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1,
+		  date1, category1, startDate1, loginId1, stacks); boardList.add(boardList1); }
+		 
+		
+		Collections.reverse(boardList);
+		
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("page", page);
+		model.addAttribute("pageVO", paginationVo);
+		return "board/list2";
+	}
   // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
   @GetMapping("/page")
   public String selectListAndPage(final Model model,

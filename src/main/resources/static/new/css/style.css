@@ -1,0 +1,386 @@
+html {
+
+    box-sizing: border-box;
+    --bgColorMenu : #1d1d27;
+    --duration: .7s;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+html li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+a:visited {
+    color:black;
+    text-decoration: none;
+}
+
+a:hover {
+    color:white;
+    text-decoration: none;
+}
+
+a:focus {
+
+    text-decoration: none;
+}
+
+
+a:active {
+
+    text-decoration: none;
+}
+
+
+input:focus {outline:none;}
+
+html *,
+html *::before,
+html *::after {
+
+    box-sizing: inherit;
+
+}
+header{
+    display: flex;
+    width: 100%;
+    position: fixed;
+    justify-content: center;
+    margin:3%  auto;
+    z-index: 999;
+
+}
+header .menu{
+    border-radius: 40px;
+    margin: 0;
+    display: flex;
+    /* Works well with 100% width  */
+    width: 32.05em;
+    font-size: 1.5em;
+    padding: 0 2.85em;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bgColorMenu);
+
+}
+
+body{
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: 600vh;
+    overflow: hidden;
+    background-color: #ffb457;
+    transition: background-color var(--duration);
+
+}
+section{
+
+height: 100vh;
+}
+
+
+.menu__item{
+
+
+    all: unset;
+    flex-grow: 1;
+    z-index: 100;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    border-radius: 50%;
+    align-items: center;
+    will-change: transform;
+    justify-content: center;
+    padding: 0.55em 0 0.85em;
+    transition: transform var( var(--duration));
+
+}
+
+.menu__item::before{
+
+    content: "";
+    z-index: -1;
+    width: 4.2em;
+    height: 4.2em;
+    border-radius: 50%;
+    position: absolute;
+    transform: scale(0);
+    transition: background-color var(--duration), transform var(--duration);
+
+}
+
+
+.menu__item.active {
+
+    transform: translate3d(0, -.8em , 0);
+
+}
+
+.menu__item.active::before{
+
+    transform: scale(1);
+    background-color: var(--bgColorItem);
+
+}
+
+.icon{
+
+    width: 2.6em;
+    height: 2.6em;
+    stroke: white;
+    fill: transparent;
+    stroke-width: 1pt;
+    stroke-miterlimit: 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 400;
+
+}
+
+.menu__item.active .icon {
+
+    animation: strok 1.5s reverse;
+
+}
+
+@keyframes strok {
+
+    100% {
+
+        stroke-dashoffset: 400;
+
+    }
+
+}
+
+
+
+@media screen and (max-width: 50em) {
+    .menu{
+        font-size: .8em;
+    }
+}
+
+.a {
+    height: 100vh;
+    text-align: center;
+}
+.a .sec0{
+
+}
+.b {
+    height: 100vh;
+    text-align: center;
+}
+.c .sec2 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 60vh;
+
+}
+.a-top{position: absolute; margin:200px auto; width:100%; height: 50vh;  }
+
+.a-bottom{position: absolute; margin:600px auto; width:100%; height: 50vh;}
+
+.b-l{ float:left;  width: 50%; height: 100vh; left:0; bottom:0;}
+#login-form{  width: 50%; display: inline-block; margin: 40% auto; transform:translate(50%,0%);}
+.b-l table{ margin: auto;}
+
+.b-r{ float:right;  width: 50%; height: 100vh; right:0; bottom:0;  }
+#join-form{ text-align: center;  width: 50%;  margin: 40% auto; transform:translate(-50%,0%);}
+.b-r table{ margin: auto;}
+
+.c-l{ width:50%; height:50%; }
+#m-form{display:inline-block;  margin-top:50%; margin-left: 600px; }
+
+
+.c-r{  width:50%; height: 50%;   }
+#u-form{float:right; display: inline-block;  margin-top:50%; margin-right: 600px;}
+
+.b table tr td {
+    padding:10px;
+}
+.b h4 {
+    color: #fdfdfd;
+}
+.b input[type="text"], .b input[type="password"]{
+    cursor: pointer;
+    border: 0;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    width: 20em;
+    text-align: center;
+    color: inherit;
+    height: 3em;
+    border-radius:.5em;
+    font-weight: bold;
+}
+
+
+.b button[type="submit"]{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    height: 30px;
+    border-radius: 10px;
+    background-color:#000000;
+    cursor: pointer;
+    border: 0;
+    width: 70px;
+    margin: 0 auto;
+    color: #fd95bc;
+}
+.b button[type="submit"]:hover{
+    color: #fff;
+}
+.b input[type="checkbox"]{
+    background-color: red;
+}
+.b input[type="checkbox"]:focus{
+    border: 1px solid red;
+}
+.c section{
+    max-height: 80%;
+}
+
+.c .container{
+    position: relative;
+    width: 900px;
+    margin: 200px auto;
+    max-height: 800px;
+
+
+}
+
+.c table {
+    width: 100%;
+
+}
+
+
+.c .searchWrite{
+    margin-top:60%;
+    position:absolute;
+    width: 100%;
+
+}
+.c .search {
+
+    text-align: center;
+    width: 50%;
+}
+.c .write-label{
+    transform: translate(-50%,-100%);
+    float:right;
+    background: white;
+    border-radius: 2px;
+}
+.text-center{
+    float:left;
+}
+
+.c table{
+    text-align: center;
+    border-collapse: collapse;
+    border:none;
+}
+.c table tr{
+    text-align: center;
+}
+
+.c table td:first-child{
+    border-left: 1px solid #fff;
+}
+.c table td:last-child{
+    border-right: 1px solid #fff;
+}
+.c table td{
+    text-align: center;
+    border-collapse: collapse;
+    border-left: 0;
+    border-right: 0;
+}
+
+
+.c table a {
+    color:#000000;
+    font-size:1px;
+}
+.c ul {
+    display: flex;
+    list-style: none;
+}
+
+.c li{
+    padding-left: 5px;}
+.search{
+    margin:0 auto;
+}
+.c input[type="text"]{
+    height: 23px;
+    border: 1px solid #fff;
+}
+.c input[type="submit"]{
+    height: 22px;
+    transform: translate(-20%,5%);
+    border-left:1px solid #000000;
+    border-right: 1px;
+    border-top:1px ;
+    border-bottom:1px ;
+    cursor: pointer;
+    width:50px ;
+}
+.c select{
+    height: 22px;
+
+}
+
+.write-label a{
+    border: none;
+    color:#000000;
+    font-weight:bold;
+    font-size: 15px;
+}
+
+.write-label a:hover{
+
+    background: #f1daa5;
+    font-weight:bold;
+    font-size: 15px;
+}
+.container .table-striped thead th:nth-child(1){
+    width: 40px;
+
+}
+.container .table-striped thead th:nth-child(2){
+    width: 80px;
+}
+.container .table-striped thead th:nth-child(3){
+    width: 150px;
+}
+.container .table-striped thead th:nth-child(4){
+    width: 400px;
+}
+.container .table-striped thead th:nth-child(5){
+    width: 60px;
+}
+.container .table-striped thead th:nth-child(6){
+    width: 60px;
+}
+.container .table-striped thead th:nth-child(7){
+    width: 60px;
+}

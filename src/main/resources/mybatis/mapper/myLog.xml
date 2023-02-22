@@ -3,17 +3,48 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.springboot.dao.MyLogDao">
-	
-	<select id="total" resultType="int">
+
+	<!-- my write total -->
+	<select id="totalWrite" resultType="int">
 	select count(b.boardNum)
 	from board b, member m
 	where b.memberNum = m.memberNum and m.memberNum = #{memberNum}
 	</select>
-	
+	<!-- my write-->
 	<select id="myLogList"  parameterType="com.study.springboot.vo.PaginationVo" resultType="com.study.springboot.vo.Board">
    	select b.boardNum, b.startDate, b.title, b.date, b.category, m.loginId
 	from board b, member m
 	where b.memberNum = m.memberNum and m.memberNum = #{memberNum}
+	LIMIT #{paginationVo.rowCount}
+    OFFSET #{paginationVo.offset}
+   	</select>
+	
+	<!-- my like total -->
+   	<select id="totalLike" resultType="int">
+	select count(b.boardNum)
+	from board b, love l, member m
+	where b.boardNum = l.boardNum and b.memberNum = m.memberNum  and l.memberNum = #{memberNum}
+   	</select>
+	<!-- my like -->
+   	<select id="myLogLike" parameterType="com.study.springboot.vo.PaginationVo" resultType="com.study.springboot.vo.Board">
+	select b.boardNum, b.startDate, b.title, b.date, b.category, b.memberNum, m.loginId
+	from board b, love l, member m
+	where b.boardNum = l.boardNum and b.memberNum = m.memberNum  and l.memberNum = #{memberNum}
+   	LIMIT #{paginationVo.rowCount}
+    OFFSET #{paginationVo.offset}
+   	</select>
+	
+	<!-- my comment total -->
+	<select id="totalComment" resultType="int">
+   	select distinct count(b.boardNum)
+	from board b, comment c, member m
+	where b.boardNum = c.boardNum and b.memberNum = m.memberNum  and c.memberNum = #{memberNum}
+   	</select>
+   	<!-- my comment -->
+   	<select id="myLogComment" parameterType="com.study.springboot.vo.PaginationVo" resultType="com.study.springboot.vo.Board">
+   	select distinct b.boardNum, b.startDate, b.title, b.date, b.category, b.memberNum, m.loginId
+	from board b, comment c, member m
+	where b.boardNum = c.boardNum and b.memberNum = m.memberNum  and c.memberNum = #{memberNum}
 	LIMIT #{paginationVo.rowCount}
     OFFSET #{paginationVo.offset}
    	</select>
@@ -29,17 +60,18 @@
    	</select> -->
    	
    	<!-- my like -->
-   	<select id="myLogLike" resultType="com.study.springboot.vo.Board">
+   	<!-- <select id="myLogLike" resultType="com.study.springboot.vo.Board">
 	select b.boardNum, b.startDate, b.title, b.date, b.category, b.memberNum, m.loginId
 	from board b, love l, member m
 	where b.boardNum = l.boardNum and b.memberNum = m.memberNum  and l.memberNum = #{memberNum}
-   	</select>
+   	</select> -->
+   	
    	<!-- my comment -->
-   	<select id="myLogComment" resultType="com.study.springboot.vo.Board">
+   	<!-- <select id="myLogComment" resultType="com.study.springboot.vo.Board">
    	select distinct b.boardNum, b.startDate, b.title, b.date, b.category, b.memberNum, m.loginId
 	from board b, comment c, member m
 	where b.boardNum = c.boardNum and b.memberNum = m.memberNum  and c.memberNum = #{memberNum}
-   	</select>
+   	</select> -->
 
 
 

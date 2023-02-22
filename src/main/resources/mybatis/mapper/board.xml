@@ -41,13 +41,20 @@
 	<select id="stackList" resultType="String">
 		select stack from stack where boardNum=#{boardNum}
 	</select>
-
+	
+	<!-- 게시판 총 개수 -->
+	<select id="getCount" resultType="int">
+    SELECT count(*) as listCnt
+    FROM board
+	</select>
+	
 	<!-- 게시판 역순정렬 list -->
-	<select id="boardListReverse"
+	<select id="boardListReverse" 
 		resultType="com.study.springboot.vo.Board">
 		SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
 		m.memberNum
 		FROM board b, member m where b.memberNum=m.memberNum
+
 		<choose>
 			<when test="category=='recruit'">
 				and b.category ='recruit' order by boardNum asc
@@ -62,22 +69,13 @@
 	</select>
 
 
-	<select id="boardList"
+	<select id="boardList" parameterType="com.study.springboot.vo.PaginationVo"
 		resultType="com.study.springboot.vo.Board">
 		SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
 		m.memberNum
 		FROM board b, member m where b.memberNum=m.memberNum
-		<choose>
-			<when test="category=='recruit'">
-				and b.category ='recruit' order by boardNum desc 
-			</when>
-			<when test="category=='apply'">
-				and b.category='apply' order by boardNum desc 
-			</when>
-			<otherwise>
-				order by boardNum desc
-			</otherwise>
-		</choose>
+		LIMIT #{rowCount} OFFSET #{offset}
+
 	</select>
 
 
