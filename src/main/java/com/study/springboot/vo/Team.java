@@ -9,6 +9,6 @@ import lombok.ToString;
 @ToString
 public class Team {
 
-  public int teamNum;
-  public String teamName;
+  private int teamNum;
+  private String teamName;
 }

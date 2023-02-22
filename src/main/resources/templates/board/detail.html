@@ -27,6 +27,12 @@
 .detail__info--item {
 	display: flex;
 }
+.detail__image{
+width:600x;
+height:300px;
+object-fit:scale-down;
+}
+
 </style>
 </head>
 
@@ -45,7 +51,7 @@
 				</span> 게시일자: <span th:text="${detail.date}" class="detail__info--item">
 
 				</span> 시작예정일: <span th:text="${detail.startDate}"
-					class="detail__info--item"></span> <img
+					class="detail__info--item"></span> <img class="detail__image"
 					th:src="@{/img/}+${detail.boardNum}+.png" onerror="this.src='/images/alt.jpg'">
 
 				<!-- 프로젝트 소개란. content 입력 -->
