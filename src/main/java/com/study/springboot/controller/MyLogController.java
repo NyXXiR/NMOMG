@@ -80,13 +80,15 @@ public class MyLogController {
 			
 			int memberNum = (int)session.getAttribute("memberNum");
 			log.info("세션 memberNum"+memberNum);
+			log.info("세션 memberNum 적용 개수"+myLogDao.total(memberNum));
 		    PaginationVo paginationVo = new PaginationVo(myLogDao.total(memberNum), page); // 모든 게시글 개수 구하기.
 
-		    List<Board> list = myLogDao.myLogList(paginationVo, memberNum);
+		    List<Board> list = myLogDao.myLogList(paginationVo,memberNum);
 
 		    model.addAttribute("boardList", list);
 		    model.addAttribute("page", page);
 		    model.addAttribute("pageVo", paginationVo);
+		    
 
 		    return "/myLog/myLog";
 		}

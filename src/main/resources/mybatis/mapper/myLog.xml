@@ -7,15 +7,15 @@
 	<select id="total" resultType="int">
 	select count(b.boardNum)
 	from board b, member m
-	where b.memberNum = m.memberNum and m.memberNum = 3
+	where b.memberNum = m.memberNum and m.memberNum = #{memberNum}
 	</select>
 	
-	<select id="myLogList" resultType="com.study.springboot.vo.Board">
+	<select id="myLogList"  parameterType="com.study.springboot.vo.PaginationVo" resultType="com.study.springboot.vo.Board">
    	select b.boardNum, b.startDate, b.title, b.date, b.category, m.loginId
 	from board b, member m
-	where b.memberNum = m.memberNum and m.memberNum = 3
-	limit 3
-    offset 2;
+	where b.memberNum = m.memberNum and m.memberNum = #{memberNum}
+	LIMIT #{paginationVo.rowCount}
+    OFFSET #{paginationVo.offset}
    	</select>
 	
 	
