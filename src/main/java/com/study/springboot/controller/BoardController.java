@@ -78,6 +78,42 @@ public class BoardController {
 		return "board/list2";
 	}
   // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
+  @GetMapping("/page")
+  public String selectListAndPage(final Model model,
+      @RequestParam(value = "page", defaultValue = "1") final int page) {
+    List<BoardList> boardList = new ArrayList<>();
+
+    PaginationVo paginationVo = new PaginationVo(this.boardDao.getCount(), page); // 모든 게시글 개수
+    // 구하기.
+
+    List<Board> list = this.boardDao.getListPage(paginationVo);
+
+    for (int i = 0; i < list.size(); i++) {
+      String[] stacks = boardDao.stackList(list.get(i).boardNum);
+      int boardNum1 = list.get(i).boardNum;
+      String title1 = list.get(i).title;
+      String content1 = list.get(i).content;
+      int memberNum1 = list.get(i).memberNum;
+      String date1 = list.get(i).date;
+      String category1 = list.get(i).category;
+      String startDate1 = list.get(i).startDate;
+      String loginId1 = list.get(i).loginId;
+
+      BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
+          category1, startDate1, loginId1, stacks);
+      boardList.add(boardList1);
+    }
+    Collections.reverse(boardList);
+
+
+    log.info(page);
+    model.addAttribute("boardList", boardList);
+    model.addAttribute("page", page);
+    model.addAttribute("pageVo", paginationVo);
+
+    return "/board/page";
+  }
+
   @GetMapping("/list")
   public String list(Model model, String category, String search, String type) {
     log.info("----->" + category + "=====search:" + search + ":::type::" + type);

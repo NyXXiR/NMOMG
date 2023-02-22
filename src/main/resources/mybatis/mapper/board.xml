@@ -134,5 +134,20 @@
 	delete from comment where commentNum=#{commentNum}
 	</delete>
 
+<!--  페이징 sql문 -->
+<!-- 게시물 총 개수 구하기 -->
+<select id="getCount" resultType="int">
+    SELECT count(*) as listCnt
+    FROM board
+</select>
+
+<select id="getListPage" parameterType="com.study.springboot.vo.PaginationVo" resultType="com.study.springboot.vo.Board">
+    SELECT * 
+    FROM board 
+    ORDER BY boardNum DESC 
+    LIMIT #{rowCount}
+    OFFSET #{offset}
+</select>
+
 
 </mapper>

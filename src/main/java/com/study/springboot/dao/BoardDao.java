@@ -24,8 +24,6 @@ public interface BoardDao {
 
   public List<Board> boardSearch(@Param("search") String search, @Param("type") String type);
   
-  public int getCount();
-  
   public List<Board>titleSearch
   ( @Param("search") String search, 
 			@Param("type") String type);
@@ -48,5 +46,8 @@ public interface BoardDao {
 
   public int commentDelete(int commentNum);
 
-  
+  public int getCount();
+
+  public List<Board> getListPage(PaginationVo paginationVo);
+
 }
