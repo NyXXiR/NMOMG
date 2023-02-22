@@ -12,10 +12,12 @@ import com.study.springboot.vo.PaginationVo;
 public interface MyLogDao {
 
 	public List<Board> myLogList(@Param("paginationVo")PaginationVo paginationVo, @Param("memberNum") int memberNum);
-	public List<Board> myLogLike(int memberNum);
-	public List<Board> myLogComment(int memberNum);
+	public List<Board> myLogLike(@Param("paginationVo")PaginationVo paginationVo, @Param("memberNum") int memberNum);
+	public List<Board> myLogComment(@Param("paginationVo")PaginationVo paginationVo, @Param("memberNum") int memberNum);
 //	public String myLikeId(int memberNum);
 	
-	public int total(int memberNum);
+	public int totalWrite(int memberNum);
+	public int totalLike(int memberNum);
+	public int totalComment(int memberNum);
 	
 }
