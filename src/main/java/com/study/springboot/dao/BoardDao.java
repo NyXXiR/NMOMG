@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.study.springboot.vo.Board;
 import com.study.springboot.vo.Comment;
+import com.study.springboot.vo.PaginationVo;
 import com.study.springboot.vo.Stack;
 
 @Mapper
@@ -23,10 +24,8 @@ public interface BoardDao {
 
   public List<Board> boardSearch(@Param("search") String search, @Param("type") String type);
 
-  public List<Board>titleSearch
-  ( @Param("search") String search, 
-			@Param("type") String type);
-  
+  public List<Board> titleSearch(@Param("search") String search, @Param("type") String type);
+
   public int boardEdit(Board board);
 
   public int boardDel(int boardNum);
@@ -45,5 +44,8 @@ public interface BoardDao {
 
   public int commentDelete(int commentNum);
 
+  public int getCount();
+
+  public List<Board> getListPage(PaginationVo paginationVo);
 
 }

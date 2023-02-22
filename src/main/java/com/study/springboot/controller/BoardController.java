@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.study.springboot.dao.BoardDao;
 import com.study.springboot.vo.Board;
 import com.study.springboot.vo.BoardList;
 import com.study.springboot.vo.Comment;
+import com.study.springboot.vo.PaginationVo;
 import com.study.springboot.vo.Stack;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +30,44 @@ import lombok.extern.log4j.Log4j2;
 public class BoardController {
   final BoardDao boardDao;
 
+
   // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
+  @GetMapping("/page")
+  public String selectListAndPage(final Model model,
+      @RequestParam(value = "page", defaultValue = "1") final int page) {
+    List<BoardList> boardList = new ArrayList<>();
+
+    PaginationVo paginationVo = new PaginationVo(this.boardDao.getCount(), page); // 모든 게시글 개수
+    // 구하기.
+
+    List<Board> list = this.boardDao.getListPage(paginationVo);
+
+    for (int i = 0; i < list.size(); i++) {
+      String[] stacks = boardDao.stackList(list.get(i).boardNum);
+      int boardNum1 = list.get(i).boardNum;
+      String title1 = list.get(i).title;
+      String content1 = list.get(i).content;
+      int memberNum1 = list.get(i).memberNum;
+      String date1 = list.get(i).date;
+      String category1 = list.get(i).category;
+      String startDate1 = list.get(i).startDate;
+      String loginId1 = list.get(i).loginId;
+
+      BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
+          category1, startDate1, loginId1, stacks);
+      boardList.add(boardList1);
+    }
+    Collections.reverse(boardList);
+
+
+    log.info(page);
+    model.addAttribute("boardList", boardList);
+    model.addAttribute("page", page);
+    model.addAttribute("pageVo", paginationVo);
+
+    return "/board/page";
+  }
+
   @GetMapping("/list")
   public String list(Model model, String category, String search, String type) {
     log.info("----->" + category + "=====search:" + search + ":::type::" + type);
