@@ -50,6 +50,9 @@ public class CommentController {
         return "/comment/notCertificated";
       }
 
+    } else {
+      return "/comment/notCertificated";
+
     }
 
 
