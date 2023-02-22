@@ -40,7 +40,7 @@
 
     <!-- 시퀀스 보여주는 값을 변경. -->
     <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-    <button id="seq" th:text="|&emsp;${pageNum}&emsp;|" th:value="|&emsp;${pageNum}&emsp;|"></button>
+    <button class="seq" th:text="|&emsp;${pageNum}&emsp;|" th:value="|&emsp;${pageNum}&emsp;|"></button>
          <a class="div2" th:href="@{'/myLog/myWrite?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a> 
     </span>
 	
@@ -83,7 +83,15 @@
 				})
 			});
 			
-		
+			$(".seq").click(function() {
+				console.log("clicked");
+				$.ajax({
+					url : '/myLog/myWrite?page='+$(this).val(),
+					success : function(x) {
+						$('#page').html(x);
+					}
+				})
+			});
 			
 			$("#next").click(function() {
 				$.ajax({
@@ -104,15 +112,5 @@
 		});
 
         </script>
-        <script>
-        $("seq").click(function() {
-			console.log("clicked");
-			$.ajax({
-				url : '/myLog/myWrite?page='+$(this).val(),
-				success : function(x) {
-					$('#page').html(x);
-				}
-			})
-		});
-        </script>
+
 </html>
