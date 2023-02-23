@@ -253,20 +253,25 @@ section{
     border: 1px solid red;
 }
 .b-a{position: relative; height: 100vh; text-align: center;}
-.mem-a{position:absolute;
+.mem-a{
+    position:absolute;
     width:100%;
-    margin:250px auto;}
-.card-a{width:40%;}
+    margin:250px auto;
+    border: 1px solid red;
+ }
+.card-a{width:40%;margin:0 auto;}
+.myLog-a{margin: auto;
+    display: flex;}
+.myLog-a
 .level-a{}
 .edit-a{}
 .logOut-a{}
-.myLog-a{}
+
 #myPageList-a{}
 #exePost-a{}
 #exeLike-a{}
 #exeComment-a{}
 #showList-a{}
-.b-a img{}
 .b-a h2{}
 
 
