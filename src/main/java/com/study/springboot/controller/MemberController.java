@@ -47,12 +47,6 @@ public class MemberController {
 		HashMap<String, String> join = memberSer.censorId(member, loginIdCheck);
 		return join;
 	}
-	
-	@GetMapping("/member/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:home";
-	}
 
 
 	//로그인 포스트 맵핑

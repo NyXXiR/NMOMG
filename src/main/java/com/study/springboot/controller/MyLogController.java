@@ -97,17 +97,12 @@ public class MyLogController {
 		
 		
 		// 로그아웃 하기
-		@GetMapping("/member/logOut")
+		@GetMapping("/member/logout")
 		public String logOut(HttpSession session) {
-			session.setAttribute("memberNum", "");
+			session.removeAttribute("memberNum");
 			return "home";
 		}
-		
-		@GetMapping("/index")
-		public String index() {
-			return "home";
-		}
-		
+
 		
 		
 		
