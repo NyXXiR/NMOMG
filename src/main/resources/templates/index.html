@@ -15,8 +15,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
 	<script src="/https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-	<link th:href="@{css/style.css}" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+	<link th:href="@{new/css/style.css}" rel="stylesheet">
+	<link href="new/css/style.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}" />
 <!--new-->
 
@@ -75,73 +75,62 @@
 
 
 // <!-- SECTION 1 LOGIN,JOIN START -->
-	<div class="b">
-		<section class="sec1">
-			<div class="b-l">
-				<form method="post" action="/members/new" id="login-form">
-					<table>
-						<tr>
-							<td>
-								<label>
-									<input type="text" name="userName" placeholder="ID">
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<label>
-									<input type="password" name="userPassword" placeholder="Password">
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<label for="remember-check">
-									<input type="checkbox" id="remember-check">아이디 저장하기
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<button type="submit" value="Login">Login</button>
-								<h4> <a href="">아이디 찾기</a> <span>|</span> <a href="">비밀번호 찾기</a></h4>
-							</td>
-						</tr>
-					</table>
-				</form>
+<div class="b">
+	<section class="sec1">
+		<div class="mem">
+
+			<div class="login">
+				<div class="login-wrapper">
+
+					<form method="post" action="/member/login" id="login-form">
+						<input type="text" name="loginId" placeholder="Email" id="loginId">
+						<input type="password" name="password" placeholder="Password">
+						<label for="remember-check">
+							<input type="checkbox" id="remember-check">아이디 저장하기
+						</label>
+						<input type="submit" value="Login">
+					</form>
+					<ul>
+						<li> 이메일 찾기</li>
+						<li><span>|</span>비밀번호 찾기</li>
+
+					</ul>
+					<div class="api"><img src="/images/api.jpg" alt=""></div>
+				</div>
+
 			</div>
-			<div class="b-r">
-				<form  method = "post" action="/members/new" id="join-form">
-					<table>
-						<tr>
-							<td>
-								<label for=name>
-									<input id="name" name="name" type="text" placeholder="회원가입 아이디">
-								</label>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<label for=pw>
-									<input id="pw" name="pw" type="password" placeholder="비밀번호">
-								</label>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<button id="join" type="submit" value="join">join</button>
-							</td>
-						</tr>
 
 
+			<div class="join">
+				<div class="join-wrapper">
+					<form method="post" id="join-form">
+						<div class="email">
+							<input type="text" placeholder="Email" name="loginId" id="useId" readonly/>
+							<label>
+								<button type="button" onclick="openModal()"><p>중복체크</p></button>
+							</label>
+						</div>
+						<!--th:value="${loginIdCheck}"-->
+						<input type="password" id="pw" placeholder="비밀번호" name="password">
+						<input type="text" id="nickname" placeholder="별명" name="nickname">
+						<input type="submit" value="join">
+					</form>
 
-					</table>
-				</form>
+				</div>
 			</div>
-		</section>
-	</div>
+			<!--   //중복체크를 진행할 모달창-->
+			<div id="modal" class="modalWrap">
+				<div class="modalContent">
+					<form id="idCheck" method="post" onsubmit="return false">
+						<input type="text" name="loginIdCheck"/>
+						<input type="submit"/>
+						<button type="button" onclick="closeModal()">X</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
 <!-- SECTION1 LOGIN,JOIN END -->
 
 
