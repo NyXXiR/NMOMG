@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +55,30 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("impl로 날라오 로그인된 아이디 "+loginId);
 		String myNickname = memberDao.memberNickname(loginId);
 		return myNickname;
+	}
+
+	@Override
+	public String updateMember(Member member, MultipartFile file) {
+		//파일 저장 경로(서버에 저장) 
+		String uploadFolder = "/home/ubuntu/nmomg/assets/profile";
+
+	    log.info("upload file name: " + file.getOriginalFilename());
+	    log.info("upload file size: " + file.getSize());
+
+	    int fileNum = boardDao.max() + 1;
+	    File saveFile = new File(uploadFolder, file.getOriginalFilename());
+
+	    try {
+	      uploadFile.transferTo(saveFile);
+	      // MultipartFile은 생성하자마자 파일을 바로 업로드하므로 업로드 후 파일명을 변경한다.
+	      File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
+	      saveFile.renameTo(renamedFile);
+	    } catch (Exception e) {
+	      log.error("파일 전송 에러: " + e.getMessage());
+	    }
+	    // 파일업로드 끝
+
+		return null;
 	}
 
 }

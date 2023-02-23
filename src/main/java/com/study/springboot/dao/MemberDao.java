@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 public interface MemberDao {
 	public int memberInsert(Member member);
 	
+	//member의 memberNum찾기
 	public Member memberInfo(int memberNum);
 	
 	public int memberIdCheck(String memberId);
@@ -22,4 +23,5 @@ public interface MemberDao {
 	
 	//닉네임찾기 => 마이페이지에서 사용
 	public String memberNickname(String loginId);
+	
 }

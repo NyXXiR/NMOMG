@@ -1,5 +1,6 @@
 package com.study.springboot.controller;
 
+import java.io.File;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.study.springboot.dao.MemberDao;
 import com.study.springboot.service.MemberService;
@@ -49,7 +51,7 @@ public class MemberController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "home";
+		return "redirect:home";
 	}
 
 
@@ -79,6 +81,29 @@ public class MemberController {
 		}
 	}
 	
+	@PostMapping("/updateInfo")
+	public String updateInfo(Member member, MultipartFile file) {
+		String uploadFolder = "/home/ubuntu/nmomg/assets/profile";
+
+	    log.info("upload file name: " + file.getOriginalFilename());
+	    log.info("upload file size: " + file.getSize());
+
+	    int max = boardDao.max() + 1;
+	    File saveFile = new File(uploadFolder, file.getOriginalFilename());
+
+	    try {
+	      uploadFile.transferTo(saveFile);
+	      // MultipartFile은 생성하자마자 파일을 바로 업로드하므로 업로드 후 파일명을 변경한다.
+	      File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
+	      saveFile.renameTo(renamedFile);
+	    } catch (Exception e) {
+	      log.error("파일 전송 에러: " + e.getMessage());
+	    }
+	    // 파일업로드 끝
+
+		return null;
+	
+	}
 
 
 }
