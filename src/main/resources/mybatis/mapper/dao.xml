@@ -30,10 +30,18 @@
 	</select>
 	
 	<!-- 마이페이지에서 사용될 nickname 찾기 -->
-	<select id ="memberNickname" resultType="String">
+	<select id ="findByNicknameByLoginId" resultType="String">
 		select nickname from member where loginId = #{loginId}
 	</select>
 	
-	<!--  -->
+	<!--loginId로 모든 정보 찾기-->
+	<select id="selectAllByMemberNum" resultType="com.study.springboot.vo.Member">
+		select * from member where memberNum = #{memberNum}
+	</select>
+	
+	<!--개인정보 수정 update문-->
+	<update id="updateByMemberNum" >
+		update member set password = #{password}, nickname=#{nickname} where memberNum = #{memberNum}
+	</update>
 		
 </mapper>

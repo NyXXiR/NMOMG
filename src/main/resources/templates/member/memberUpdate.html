@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>	
   <div class="container">
     <div>
-      <form enctype="multipart/form-data">
+      <form action="/member/memberUpdate" method="post" enctype="multipart/form-data">
       	<input type="file" name ="file"/>
-        <input type="text" value="${loginId}" readonly/>
-        <label for="nickname" >º¯°æÇÏ½Ç º°¸í</label><input id ="nickname" type="password" value="${nickName}"/>
-        <label for="pw">º¯°æÇÏ½Ç ºñ¹Ð¹øÈ£</label> <input id="pw" type="text"/>
-        <input type="submit" value="¼öÁ¤ÇÏ±â"/>
+        <input type="text" th:value="${loginId}" readonly/>
+        
+        <input type="hidden" name="memberNum" th:value="${member.memberNum}">
+        <label for="nickname" >ë³€ê²½í•˜ì‹¤ ë³„ëª…</label><input name="nickname" id ="nickname" type="text" th:value="${member.nickname}"/>
+        <label for="pw">ë³€ê²½í•˜ì‹¤ ë¹„ë°€ë²ˆí˜¸</label> <input name ="password" id="pw" type="password"/>
+        <input type="submit" value="ìˆ˜ì •í•˜ê¸°"/>
       </form>
     </div>
   </div>
 </body>
 </html>
+

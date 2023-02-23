@@ -77,14 +77,17 @@
 <div class="mem-a">
 
 <div class="card-a">
+
+<img class="profile__image"
+					th:src="@{/profile/}+${memberNum}+.png" onerror="this.src='/images/alt.jpg'">
 <!-- 
 <img class="profile__image"
 					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/alt.jpg'">
 
  -->
 <h2>[[${nickname}]]님</h2>
-<button id="edit-a">정보 수정</button>
-<button><a href="/logout">로그아웃</a></button>
+<button id="edit-a"><a href = "/member/memberUpdate" >정보 수정</a></button>
+<button><a href="/member/logout">로그아웃</a></button>
 </div>
 
 <div class="myLog-a">
@@ -101,177 +104,17 @@
 </div>
 
         <!-- SECTION1 LOGIN,JOIN END -->
+        <!-- SECTION 2 CARDS STARTS -->
+        <!----------------------------------------- SECTION 3 bobobo-----------------------------------------------------  -->
 
-
-
-<!----------------------------------------- SECTION 3 list-----------------------------------------------------  -->
-<div class="c">
-<section class="sec2">
-<table class="table table-striped" border="1">
-    <tbody id="list1">
-        <tr th:each="board : ${boardList}">
-            <td>
-                <a
-                        th:href="@{/board/detail(boardNum=${board.boardNum})}"
-                        th:text="${board.boardNum}"
-                ></a>
-            </td>
-            <td th:text="${board.category}"></td>
-            <td>
-                <ul th:each="aa : ${board.stack}" >
-                    <li>[[${aa}]]</li>
-                </ul>
-            </td>
-            <td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a></td>
-            <td th:text="${board.memberNum}"></td>
-            <td th:text="${board.date}"></td>
-            <td th:text="${board.startDate}"></td>
-        </tr>
-    </tbody>
-</table>
-    <!--<div class="searchWrite">-->
-<!--<div class="search">-->
-<!--<form action="/board/list" method="get" >-->
-<!--<select name="type">-->
-<!--<option value="S">stack</option>-->
-<!--<option value="N">title</option>-->
-<!--</select>-->
-<!--<input type="text" name="search" />-->
-<!--<input type="submit" value="검색" />-->
-<!--</form>-->
-<!--</div>-->
-<!--<label class="write-label"><a href="write">글쓰기</a>-->
-<!--</label>-->
-<!--</div>-->
-
-
-<div class="text-center">
-<ul class="pagination">
-<li><a href="#">1</a></li>
-<li><a href="#">2</a></li>
-<li><a href="#">3</a></li>
-<li><a href="#">4</a></li>
-<li><a href="#">5</a></li>
-</ul>
-</div>
-
-
-
-    <tbody id="list2">
-        <tr th:each="board : ${boardList}">
-            <td>
-                <a
-                        th:href="@{/board/detail(boardNum=${board.boardNum})}"
-                        th:text="${board.boardNum}"
-                ></a>
-            </td>
-            <td th:text="${board.category}"></td>
-            <td>
-                <ul th:each="aa : ${board.stack}" >
-                    <li>[[${aa}]]</li>
-                </ul>
-            </td>
-            <td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a></td>
-            <td th:text="${board.memberNum}"></td>
-            <td th:text="${board.date}"></td>
-            <td th:text="${board.startDate}"></td>
-        </tr>
-    </tbody>
-
-                    <div class="text-center">
-                        <ul class="pagination">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                        </ul>
-                    </div>
-<!--                    <div class="board-button">-->
-<!--                        <button type="button" onclick="location.href='/board/list?category=recruit'">recruit임시</button>-->
-<!--                        <button type="button" onclick="location.href='/board/list?category=apply'">apply임시</button>-->
-<!--                        <button type="button" onclick="location.href='/board/list'">전체임시</button>-->
-<!--                        <button type="button" onclick="location.href='/board/page'">페이지임시</button>-->
-<!--                    </div>-->
-            </section>
-        </div>
-        <!----------------------------------------- SECTION 3 list-----------------------------------------------------  -->
-
-        <!-- board  script-->
+      
+        <!-- SECTION3 MATCHING END -->
         <script defer>
-            $.ajax({
-                url : "/board/list?category=recruit",
-                success : function(x) {
-                    $('#list1').html(x);
-                }
-            })
-            $.ajax({
-                url : "/board/list?category=apply",
-                success : function(x) {
-                    $('#list2').html(x);
-                }
-            })
+
+
         </script>
-        <!-- board  script-->
 
-
-
-
-
-        <script th:inline="javascript" charset='UTF-8' defer>
-
-
-            /*------로그인인 밑 회원가입 부분*/
-            let modal = document.querySelector("#modal");
-            function openModal(){
-                modal.style.display="flex";
-            }
-            function closeModal(){
-                modal.style.display = "none";
-            }
-
-            <!--회원가입 아이디 중복체크 ajax-->
-
-            $('#idCheck').submit(function(event) {
-                event.preventDefault();
-                let queryString = $('#idCheck').serialize();
-                $.ajax({
-                    type: 'post',
-                    url: '/member/main',
-                    data: queryString,
-                    success: function (censorship) {
-                        let availableId = censorship.loginIdCheck;
-                        $('#useId').val(availableId);
-                        alert(censorship.idCheck);
-
-                        /* 사용가능한 아이디 일시 바로 적용*/
-                        if(censorship.idCheck == '사용가능한 아이디 입니다.'){
-                            $('#modal').css('display', 'none');
-                        }
-                    },
-                    error: function (error) {
-                        alert("에러");
-                    }
-
-                })
-            })
-            $('#join-form').submit(function(event) {
-                event.preventDefault();
-                let queryString = $('#join-form').serialize();
-                $.ajax({
-                    type: 'post',
-                    url: '/member/home',
-                    data: queryString,
-                    success: function (join) {
-                        alert('회원가입 되셨습니다.')
-                        $('#useId').val("");
-                        $('#pw').val('');
-                        $('#nickname').val('');
-                    }
-
-                })
-            })
-        </script>
+       
         <script th:inline="javascript" defer>
 
 

@@ -23,12 +23,14 @@ public class MyLogController {
 	
 	
 	@GetMapping("/member/login-after")
-	public String list(Model model,int memberNum) {
+	public String list(Model model, HttpSession session) {
 		//List<Board> list = myLogDao.myLogList(memberNum);
 		//model.addAttribute("list",list);
 
 		//log.info("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"+list.get(0).getTitle());
 		
+		Integer memberNum = (Integer)session.getAttribute("memberNum");
+		model.addAttribute("memberNum",memberNum);
 		return "member/login-after";
 	}
 		
@@ -82,7 +84,7 @@ public class MyLogController {
 			int memberNum = (int)session.getAttribute("memberNum");
 			log.info("세션 memberNum"+memberNum);
 			log.info("세션 memberNum 적용 개수"+myLogDao.totalComment(memberNum));
-		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalWrite(memberNum), page); // 모든 게시글 개수 구하기.
+		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalComment(memberNum), page); // 모든 게시글 개수 구하기.
 
 		    List<Board> list = myLogDao.myLogComment(paginationVo,memberNum);
 
@@ -97,17 +99,12 @@ public class MyLogController {
 		
 		
 		// 로그아웃 하기
-		@GetMapping("/member/logOut")
+		@GetMapping("/member/logout")
 		public String logOut(HttpSession session) {
-			session.setAttribute("memberNum", "");
+			session.removeAttribute("memberNum");
 			return "home";
 		}
-		
-		@GetMapping("/index")
-		public String index() {
-			return "home";
-		}
-		
+
 		
 		
 		
