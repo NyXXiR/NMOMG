@@ -1,100 +1,106 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}" />
-    <title>Insert title here</title>
-    <style>
-      table,
-      th,
-      td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        text-align: center;
-      }
-      table {
-        width: 100%;
-      }
-      table a {
-        color: blue;
-      }
-      ul{
-      	list-style :none;
-     	 padding-left :0px;
-      }
-      
-      .board__image{
-      width:120px;
-      height:80px;
-      object-fit:scale-down;
-      }
-      
-      </style>
-  </head>
- <body>
- 
-   <a href="write">글쓰기</a>
-  <table class="table table-striped" border="1">
-   <thead>
-      <tr>
-        <th>글번호</th>
-        <th>카테고리</th>
-        <th>스택</th>
-        <th>썸네일</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-        <th>시작일자</th>
-      </tr>
-      </thead>
-    <tr th:each="board : ${boardList}">
-        <td>
-          <a
-            th:href="@{/board/detail(boardNum=${board.boardNum})}"
-            th:text="${board.boardNum}"
-          ></a>
-        </td>
-        <td th:text="${board.category}"></td>
-        <td>
-          <ul th:each="stacks : ${board.stack}" >
-            <li>[[${stacks}]]</li>
-          </ul>
-        </td>
-        <td><img class="board__image"
-					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/alt.jpg'"></td>
-        <td><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a>
-        <a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a></td>
-        <td th:text="${board.memberNum}"></td>
-        <td th:text="${board.date}"></td>
-        <td th:text="${board.startDate}"></td>
-      </tr>
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}" />
+	<title>Insert title here</title>
+	<style>
+		table,
+		th,
+		td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			text-align: center;
+		}
+
+		table {
+			width: 100%;
+		}
+
+		table a {
+			color: blue;
+		}
+
+		ul {
+			list-style: none;
+			padding-left: 0px;
+		}
+
+		.board__image {
+			width: 120px;
+			height: 80px;
+			object-fit: scale-down;
+		}
+	</style>
+</head>
+
+<body>
+
+	<a href="write">글쓰기</a>
+	<table class="table table-striped" border="1">
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th>카테고리</th>
+				<th>스택</th>
+				<th>썸네일</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일자</th>
+				<th>시작일자</th>
+			</tr>
+		</thead>
+		<tr th:each="board : ${boardList}">
+			<td>
+				<a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.boardNum}"></a>
+			</td>
+			<td th:text="${board.category}"></td>
+			<td>
+				<ul th:each="stacks : ${board.stack}">
+					<li>[[${stacks}]]</li>
+				</ul>
+			</td>
+			<td><img class="board__image" th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/alt.jpg'">
+			</td>
+			<td><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a>
+				<a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a>
+			</td>
+			<td th:text="${board.memberNum}"></td>
+			<td th:text="${board.date}"></td>
+			<td th:text="${board.startDate}"></td>
+		</tr>
 	</table>
-	
 
-<div id="pagination">
-	<!-- 맨 처음 페이지로 이동하는 버튼 -->
-    <span th:if="${pageVo.startPage > 1}">
-        <a th:href="@{'/board/page?page=1'+|&&category=${category}|}" th:text="'처음&emsp;'"></a>
-    </span>
 
-	<!-- 이전 블록으로 이동하는 버튼 -->
-    <span th:if="${pageVo.isPrev == true}">
-    	<a th:href="@{'/board/page?page='+${pageVo.startPage - 1}+|&&category=${category}|}" th:text="'이전'"></a>
-    </span>
-    <!-- 시퀀스 보여주는 값을 변경. -->
-    <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-        <a class="div2" th:href="@{'/board/page?page='+${pageNum}+|&&category=${category}|}" th:text="|&emsp;${pageNum}&emsp;|"></a>
-    </span>
-   
-    <!-- 다음 블록으로 이동하는 버튼 -->
-    <span th:if="${pageVo.isNext == true}">
-	<a th:href="@{'/board/page?page='+|${pageVo.endPage + 1}|+|&&category=${category}|}" th:text="'다음'"></a>
-    </span>
-	
-    <!-- 맨 뒷 페이지로 이동하는 버튼 -->
-    <span th:if="${pageVo.endPage < pageVo.totalPageCount}">
-	<a th:href="@{'/board/page?page='+${pageVo.totalPageCount}+|&&category=${category}|}" th:text="|&emsp;끝|"></a>
-    </span>
-</div>
+	<div id="pagination">
+		<!-- 맨 처음 페이지로 이동하는 버튼 -->
+		<span th:if="${pageVo.startPage > 1}">
+			<a th:href="@{'/board/page?page=1'+|&&category=${category}|}" th:text="'처음&emsp;'"></a>
+		</span>
+
+		<!-- 이전 블록으로 이동하는 버튼 -->
+		<span th:if="${pageVo.isPrev == true}">
+			<a th:href="@{'/board/page?page='+${pageVo.startPage - 1}+|&&category=${category}|}" th:text="'이전'"></a>
+		</span>
+
+		<!-- 시퀀스 보여주는 값을 변경. -->
+		<span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
+			<a class="div2" th:href="@{'/board/page?page='+${pageNum}+|&&category=${category}|}"
+				th:text="|&emsp;${pageNum}&emsp;|"></a>
+		</span>
+
+		<!-- 다음 블록으로 이동하는 버튼 -->
+		<span th:if="${pageVo.isNext == true}">
+			<a th:href="@{'/board/page?page='+|${pageVo.endPage + 1}|+|&&category=${category}|}" th:text="'다음'"></a>
+		</span>
+
+		<!-- 맨 뒷 페이지로 이동하는 버튼 -->
+		<span th:if="${pageVo.endPage < pageVo.totalPageCount}">
+			<a th:href="@{'/board/page?page='+${pageVo.totalPageCount}+|&&category=${category}|}"
+				th:text="|&emsp;끝|"></a>
+		</span>
+	</div>
 </body>
+
 </html>
