@@ -34,25 +34,25 @@
 
 	<!-- 이전 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isPrev == true}">
-    <button id="pre" th:text="'이전'"></button>
+    <button id="pre" th:text="'이전'" th:value="@{'/myLog/myWrite?page='+${pageVo.startPage - 1}}"></button>
     	<!-- <a th:href="@{'/myLog/myWrite?page='+${pageVo.startPage - 1}}" th:text="'이전'"></a> -->
     </span>
 
     <!-- 시퀀스 보여주는 값을 변경. -->
     <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
     <button class="seq" th:text="|&emsp;${pageNum}&emsp;|" th:value="|&emsp;${pageNum}&emsp;|"></button>
-         <a class="div2" th:href="@{'/myLog/myWrite?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a> 
+        <!--  <a class="div2" th:href="@{'/myLog/myWrite?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>  -->
     </span>
 	
     <!-- 다음 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isNext == true}">
-    <button id="next" th:text="'다음'"></button>
+    <button id="next" th:text="'다음'" th:value="|${pageVo.endPage + 1}|"></button>
 	<!-- <a th:href="@{'/myLog/myWrite?page='+|${pageVo.endPage + 1}|}" th:text="'다음'"></a> -->
     </span>
 	
     <!-- 맨 뒷 페이지로 이동하는 버튼 -->
     <span th:if="${pageVo.endPage < pageVo.totalPageCount}">
-    <button id="final" th:text="|&emsp;끝|"></button>
+    <button id="final" th:text="|&emsp;끝|" th:value="${pageVo.totalPageCount}"></button>
 	<!-- <a th:href="@{'/myLog/myWrite?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a> -->
     </span>
 </div>
@@ -63,11 +63,11 @@
 <script>
 
 
-        $(function(e) {
+        $(function() {
        
 			$("#fst").click(function() {
 				$.ajax({
-					url : '@{/myLog/myWrite?page=1}',
+					url : '/myLog/myWrite?page=1',
 					success : function(x) {
 						 $('#page').html(x); 
 					/* 	$('#showList').load("aa.html .aa") */
@@ -76,7 +76,7 @@
 			});
 			$("#pre").click(function() {
 				$.ajax({
-					url : "@{'/myLog/myWrite?page='${pageVo.startPage - 1}}",
+					url : $(this).val(),
 					success : function(x) {
 						$('#page').html(x);
 					}
@@ -95,7 +95,7 @@
 			
 			$("#next").click(function() {
 				$.ajax({
-					url : "@{'/myLog/myWrite?page='+|${pageVo.endPage + 1}|}",
+					url : '/myLog/myWrite?page='+$(this).val(),
 					success : function(x) {
 						$('#page').html(x);
 					}
@@ -103,7 +103,7 @@
 			});
 			$("#final").click(function() {
 				$.ajax({
-					url : "@{'/myLog/myWrite?page='+${pageVo.totalPageCount}}",
+					url : '/myLog/myWrite?page='+$(this).val(),
 					success : function(x) {
 						$('#page').html(x);
 					}
