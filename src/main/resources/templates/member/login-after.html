@@ -113,6 +113,55 @@
                                 <th>조회수</th>
                             </tr>
                         </thead>
+
+
+                        <tbody>
+                            <tr th:each="board : ${boardList}">
+                                <td>
+                                    <a
+                                            th:href="@{/board/detail(boardNum=${board.boardNum})}"
+                                            th:text="${board.boardNum}"
+                                    ></a>
+                                </td>
+                                <td th:text="${board.category}"></td>
+                                <td>
+                                    <ul th:each="aa : ${board.stack}" >
+                                        <li>[[${aa}]]</li>
+                                    </ul>
+                                </td>
+                                <td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a></td>
+                                <td th:text="${board.memberNum}"></td>
+                                <td th:text="${board.date}"></td>
+                                <td th:text="${board.startDate}"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="text-center">
+                        <ul class="pagination">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+                    <table class="table table-striped" border="1">
+                        <thead>
+                            <tr>
+                                <th>no</th>
+                                <th>카테고리</th>
+                                <th>스택</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>작성일</th>
+                                <th>조회수</th>
+                            </tr>
+                        </thead>
                         <div class="searchWrite">
                             <div class="search">
                                 <form action="/board/list" method="get" >
@@ -151,13 +200,8 @@
                         </tbody>
 
                     </table>
-                    <div class="board-button">
-                        <button type="button" onclick="location.href='/board/list?category=recruit'">recruit임시</button>
-                        <button type="button" onclick="location.href='/board/list?category=apply'">apply임시</button>
-                        <button type="button" onclick="location.href='/board/list'">전체임시</button>
-                        <button type="button" onclick="location.href='/board/page'">페이지임시</button>
 
-                    </div>
+
                     <div class="text-center">
                         <ul class="pagination">
                             <li><a href="#">1</a></li>
@@ -166,6 +210,13 @@
                             <li><a href="#">4</a></li>
                             <li><a href="#">5</a></li>
                         </ul>
+                    </div>
+                    <div class="board-button">
+                        <button type="button" onclick="location.href='/board/list?category=recruit'">recruit임시</button>
+                        <button type="button" onclick="location.href='/board/list?category=apply'">apply임시</button>
+                        <button type="button" onclick="location.href='/board/list'">전체임시</button>
+                        <button type="button" onclick="location.href='/board/page'">페이지임시</button>
+
                     </div>
                 </div>
             </section>
