@@ -60,12 +60,16 @@ public class MemberController {
 	
 		//정상 로그인 정보
 		if (i == 1) {
-			//세션에 저장할 memberNum
+			//세션에 저장할 memberNum & loginId
 			int memberNum = memberDao.memberNum(member);
 			session.setAttribute("memberNum", memberNum);
 			session.setAttribute("loginId", member.getLoginId());
-			System.out.println("qweqwe"+member.getNickname());
-			model.addAttribute("nickname",member.getNickname());
+			
+			String myNickname = (String)session.getAttribute("loginId");
+			String memberNickname = memberSer.memberNickname(myNickname);
+			
+			System.out.println("가져온 닉네임아이디 "+memberNickname);
+			model.addAttribute("nickname",memberNickname);
 			return "member/login-after";
 			
 		} else {

@@ -3,6 +3,9 @@ package com.study.springboot.service;
 
 import com.study.springboot.dao.MemberDao;
 import com.study.springboot.vo.Member;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +46,13 @@ public class MemberServiceImpl implements MemberService{
             return censorship;
         }
     }
+
+    //닉네임 찾기
+	@Override
+	public String memberNickname(String loginId) {
+		System.out.println("impl로 날라오 로그인된 아이디 "+loginId);
+		String myNickname = memberDao.memberNickname(loginId);
+		return myNickname;
+	}
 
 }

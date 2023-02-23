@@ -27,5 +27,10 @@
 	<select id="memberNum" resultType="Integer">
 		select memberNum from member where loginId = #{loginId}
 	</select>
+	
+	<!-- 마이페이지에서 사용될 nickname 찾기 -->
+	<select id ="memberNickname" resultType="String">
+		select nickname from member where loginId = #{loginId}
+	</select>
 		
 </mapper>
