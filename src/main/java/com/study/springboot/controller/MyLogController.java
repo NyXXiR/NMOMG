@@ -48,6 +48,8 @@ public class MyLogController {
 		    model.addAttribute("pageVo", paginationVo);
 		    
 		    model.addAttribute("myLog", "작성한 게시글");
+		    model.addAttribute("pageMapping", "/myLog/myWrite?page=");
+		   
 		    return "myLog/myLog";
 		}
 		
@@ -59,7 +61,7 @@ public class MyLogController {
 			int memberNum = (int)session.getAttribute("memberNum");
 			log.info("세션 memberNum"+memberNum);
 			log.info("세션 memberNum 적용 개수"+myLogDao.totalLike(memberNum));
-		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalWrite(memberNum), page); // 모든 게시글 개수 구하기.
+		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalLike(memberNum), page); // 모든 게시글 개수 구하기.
 
 		    List<Board> list = myLogDao.myLogLike(paginationVo,memberNum);
 
@@ -68,6 +70,7 @@ public class MyLogController {
 		    model.addAttribute("pageVo", paginationVo);
 		    
 		    model.addAttribute("myLog", "찜한 게시글");
+		    model.addAttribute("pageMapping", "/myLog/myLike?page=");
 		    return "myLog/myLog";
 		}
 		
@@ -88,6 +91,7 @@ public class MyLogController {
 		    model.addAttribute("pageVo", paginationVo);
 		    
 		    model.addAttribute("myLog", "댓글 단 게시글");
+		    model.addAttribute("pageMapping", "/myLog/myComment?page=");
 		    return "myLog/myLog";
 		}
 		

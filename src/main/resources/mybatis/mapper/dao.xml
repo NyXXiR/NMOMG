@@ -9,6 +9,7 @@
 	values (#{loginId}, #{password}, #{nickname})
 	</insert>
 	
+	<!--사용자의 모든 정보-->
 	<select id="memberInfo" resultType="com.study.springboot.vo.Member">
 		select * from member where memberNum = #{memberNum}
 	</select>
@@ -32,5 +33,7 @@
 	<select id ="memberNickname" resultType="String">
 		select nickname from member where loginId = #{loginId}
 	</select>
+	
+	<!--  -->
 		
 </mapper>

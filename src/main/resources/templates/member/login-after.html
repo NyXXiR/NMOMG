@@ -77,9 +77,14 @@
 <div class="mem-a">
 
 <div class="card-a">
+<!-- 
+<img class="profile__image"
+					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/alt.jpg'">
+
+ -->
 <h2>[[${nickname}]]님</h2>
 <button id="edit-a">정보 수정</button>
-<button><a href="logOut-a">로그아웃</a></button>
+<button><a href="/logout">로그아웃</a></button>
 </div>
 
 <div class="myLog-a">
