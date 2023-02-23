@@ -8,16 +8,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<!--new-->
+<!--font,icon,js-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
 	<script src="/https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--font,icon,js-->
 
-	<link th:href="@{/css/style.css}" rel="stylesheet">
-	<link href="/static/css/style.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}"/>
-<!--new-->
+<!--css-->
+	<link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet">
+	<link th:href="@{/css/Boardcss.css}" type="text/css" rel="stylesheet"/>
+<!--css-->
+
 
 </head>
 
@@ -128,8 +130,18 @@
 								</label>
 							</td>
 						</tr>
-
 						<tr>
+							<td>
+								<label for=name>
+									<input id="nick" name="name" type="text" placeholder="닉네임">
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button id="val" type="submit" value="join">중복체크</button>
+							</td>
+
 							<td>
 								<button id="join" type="submit" value="join">join</button>
 							</td>
