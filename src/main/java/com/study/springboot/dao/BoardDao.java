@@ -44,7 +44,7 @@ public interface BoardDao {
 
   public int commentDelete(int commentNum);
 
-  public int getCount();
+  public int getCount(String category);
 
   public List<Board> getListPage(PaginationVo paginationVo);
 
