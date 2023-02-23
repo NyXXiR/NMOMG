@@ -82,7 +82,7 @@ public class MyLogController {
 			int memberNum = (int)session.getAttribute("memberNum");
 			log.info("세션 memberNum"+memberNum);
 			log.info("세션 memberNum 적용 개수"+myLogDao.totalComment(memberNum));
-		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalWrite(memberNum), page); // 모든 게시글 개수 구하기.
+		    PaginationVo paginationVo = new PaginationVo(myLogDao.totalComment(memberNum), page); // 모든 게시글 개수 구하기.
 
 		    List<Board> list = myLogDao.myLogComment(paginationVo,memberNum);
 
