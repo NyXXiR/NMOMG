@@ -35,12 +35,15 @@ public class BoardController {
   // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
   @GetMapping("/page")
   public String selectListAndPage(final Model model,
-      @RequestParam(value = "page", defaultValue = "1") final int page) {
+      @RequestParam(value = "page", defaultValue = "1") final int page, String category) {
     List<BoardList> boardList = new ArrayList<>();
 
-    PaginationVo paginationVo = new PaginationVo(this.boardDao.getCount(), page); // 모든 게시글 개수
-    // 구하기.
+    PaginationVo paginationVo = new PaginationVo(this.boardDao.getCount(category), page, category); // 모든
+    // 게시글
 
+    if (category != null) {
+      paginationVo.setCategory(category);
+    }
     List<Board> list = this.boardDao.getListPage(paginationVo);
     Collections.reverse(list);
     for (int i = 0; i < list.size(); i++) {
@@ -66,6 +69,7 @@ public class BoardController {
     model.addAttribute("boardList", boardList);
     model.addAttribute("page", page);
     model.addAttribute("pageVo", paginationVo);
+    model.addAttribute("category", category);
 
     return "board/page";
   }
@@ -166,6 +170,9 @@ public class BoardController {
     } catch (Exception e) {
       log.error("파일 전송 에러: " + e.getMessage());
     }
+    // 파일업로드 끝
+
+    // insert 쿼리
     int res = boardDao.boardWrite(board);
 
     // boardNum을 max로, stack 배열을 하나씩 가져온다
