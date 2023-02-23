@@ -8,9 +8,9 @@
 	<!--Board -->
 	<!--글쓰기 -->
 	<insert id="boardWrite">
-		insert into board ( title, content, memberNum, date, category, startDate)
-		VALUES
-		(#{title},#{content},#{memberNum},now(),#{category},#{startDate})
+insert into board ( title, content, memberNum, date, category, startDate)
+VALUES
+(#{title},#{content},#{memberNum},now(),#{category},#{startDate})
 
 	</insert>
 
@@ -78,10 +78,10 @@
 	
 	<select id="boardSearch"
 		resultType="com.study.springboot.vo.Board">
-		SELECT b.boardNum, b.startDate,b.title,b.date, b.category, m.loginId,
-		m.memberNum ,s.stack
-		FROM board b, member m, stack s where b.memberNum=m.memberNum and b.boardNum = s.boardNum
-        
+SELECT b.boardNum, b.startDate,b.title,b.date, b.category, m.loginId,
+m.memberNum ,s.stack
+FROM board b, member m, stack s where b.memberNum=m.memberNum and b.boardNum = s.boardNum
+
 	<choose>
 		<when test="type == 'S'.toString()">
 			 and s.stack like CONCAT('%${search}%') order by boardNum desc limit 15 offset 0
@@ -176,9 +176,9 @@ update board set commentCount=commentCount-1 where boardNum=#{boardNum}
 			</when>
 			<when test="category=='apply'">
 				where category='apply' order by boardNum desc limit #{rowCount} offset #{offset}
-			</when>
-			<otherwise>
-				order by boardNum desc limit #{rowCount} offset #{offset}
+</when>
+<otherwise>
+order by boardNum desc limit #{rowCount} offset #{offset}
 			</otherwise>
 		</choose>
   

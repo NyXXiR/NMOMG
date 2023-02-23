@@ -25,7 +25,7 @@ class NmomgApplicationTests {
       String content = "테스트내용";
       int memberNum = 3;
       String category = "apply";
-      String startDate = "2023-02-24";
+      String startDate = "23.02.24";
       int commentCount = 0;
 
       Board board = new Board(0, title, content, memberNum, "now()", category, startDate, "test",

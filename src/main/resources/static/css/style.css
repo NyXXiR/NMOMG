@@ -181,13 +181,7 @@ section{
 }
 
 
-.c .sec2 {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    height: 60vh;
 
-}
 .a-top{position: absolute; margin:200px auto; width:100%; height: 50vh;  }
 
 .a-bottom{position: absolute; margin:600px auto; width:100%; height: 50vh;}
@@ -199,13 +193,6 @@ section{
 .b-r{ float:right;  width: 50%; height: 100vh; right:0; bottom:0;  }
 #join-form{ text-align: center;  width: 50%;  margin: 40% auto; transform:translate(-50%,0%);}
 .b-r table{ margin: auto;}
-
-.c-l{ width:50%; height:50%; }
-#m-form{display:inline-block;  margin-top:50%; margin-left: 600px; }
-
-
-.c-r{  width:50%; height: 50%;   }
-#u-form{float:right; display: inline-block;  margin-top:50%; margin-right: 600px;}
 
 .b table tr td {
     padding:10px;
@@ -283,37 +270,46 @@ section{
 
 
 
-
-
-
-
-.c section{
-    max-height: 80%;
-}
-
-.c .container{
+.c {
     position: relative;
-    width: 900px;
-    margin: 200px auto;
-    max-height: 800px;
-
-
-}
-
-.c table {
     width: 100%;
-
+    height: 100%;
 }
+.c section{
+   position: absolute;
+   width: 100%;
+    height: 100%;
+}
+.c table {
+     margin: 0;
+     padding: 0;
+     border-collapse: collapse;
+     border: solid 1px #4343f5;
+    width: 60%;
+
+ }
+
+.c img{
+    height: 10%;
+width: 10%;
+}
+.table-striped{
+    width: 99%;
+    background:red;
+    margin-top: 50px;
+}
+#list1{
+    border: 1px solid #fff;
+}
+
 
 
 .c .searchWrite{
-    margin-top:60%;
-    position:absolute;
+
     width: 100%;
 
 }
 .c .search {
-
     text-align: center;
     width: 50%;
 }
@@ -323,52 +319,50 @@ section{
     background: white;
     border-radius: 2px;
 }
-.text-center{
-    float:left;
-}
-
-.c table{
-    text-align: center;
-    border-collapse: collapse;
-    border:none;
-}
-.c table tr{
-    text-align: center;
-}
-
-.c table td:first-child{
-    border-left: 1px solid #fff;
-}
-.c table td:last-child{
-    border-right: 1px solid #fff;
-}
-.c table td{
-    text-align: center;
-    border-collapse: collapse;
-    border-left: 0;
-    border-right: 0;
-}
 
 
-.c table a {
-    color:#000000;
-    font-size:1px;
-}
-.c ul {
-    display: flex;
-    list-style: none;
-}
+/*}*/
+/*.c table tr{*/
+/*    text-align: center;*/
+/*}*/
 
-.c li{
-    padding-left: 5px;}
-.search{
-    margin:0 auto;
-}
+/*.c table td:first-child{*/
+/*    border-left: 1px solid #fff;*/
+/*}*/
+/*.c table td:last-child{*/
+/*    border-right: 1px solid #fff;*/
+/*}*/
+/*.c table td{*/
+/*    text-align: center;*/
+/*    border-collapse: collapse;*/
+/*    border-left: 0;*/
+/*    border-right: 0;*/
+/*}*/
+
+
+/*.c table a {*/
+/*    color:#000000;*/
+/*    font-size:1px;*/
+/*}*/
+/*.c ul {*/
+
+/*    list-style: none;*/
+/*    margin-top:500px;*/
+
+/*}*/
+
+/*.c li{*/
+/*    padding-left: 5px;*/
+/*    margin-top:500px;*/
+
+/*}*/
+
 .c input[type="text"]{
     height: 23px;
     border: 1px solid #fff;
 }
 .c input[type="submit"]{
+
     height: 22px;
     transform: translate(-20%,5%);
     border-left:1px solid #000000;
@@ -380,46 +374,26 @@ section{
 }
 .c select{
     height: 22px;
-
 }
-
+.board-button{
+    text-align: center;
+    margin-top: 30px;
+}
 .write-label a{
     border: none;
     color:#000000;
     font-weight:bold;
     font-size: 15px;
 }
-
 .write-label a:hover{
-
     background: #f1daa5;
     font-weight:bold;
     font-size: 15px;
 }
-.container .table-striped thead th:nth-child(1){
-    width: 40px;
-
+.container .table-striped thead td{
+    width: 10px;
+    height: 10px;
 }
-.container .table-striped thead th:nth-child(2){
-    width: 80px;
-}
-.container .table-striped thead th:nth-child(3){
-    width: 150px;
-}
-.container .table-striped thead th:nth-child(4){
-    width: 400px;
-}
-.container .table-striped thead th:nth-child(5){
-    width: 60px;
-}
-.container .table-striped thead th:nth-child(6){
-    width: 60px;
-}
-.container .table-striped thead th:nth-child(7){
-    width: 60px;
-}
-
-
 
 .modalWrap {
     margin: 500px auto;
@@ -429,7 +403,6 @@ section{
     background: rgba(0, 0, 0, 0.4);
     display: none;
     position: absolute;
-
 }
 
 .modalContent {
@@ -444,13 +417,7 @@ section{
 }
 
 .active {
-
     width: 30px;
     height: 140px;
     background: black;
-}
-.board-button{
-    text-align: center;
-   margin-top: 30px;
-
 }
