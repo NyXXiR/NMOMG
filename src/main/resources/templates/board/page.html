@@ -84,7 +84,7 @@
 
     <!-- 시퀀스 보여주는 값을 변경. -->
     <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-        <a class="div2" th:href="@{'/board/page?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
+        <a class="div2" th:href="@{'/board/page?page='+${pageNum}+'&&category='+${category}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
     </span>
    
     <!-- 다음 블록으로 이동하는 버튼 -->
