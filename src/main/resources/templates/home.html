@@ -76,9 +76,11 @@
 
 
 // <!-- SECTION 1 LOGIN,JOIN START --><div class="b">
+
+<!-----------로그인---------->
 		<section class="sec1">
 			<div class="b-l">
-				<form method="post" action="/members/new" id="login-form">
+				<form method="post" action = "/login" id="login-form">
 					<table>
 						<tr>
 							<td>
@@ -110,8 +112,9 @@
 					</table>
 				</form>
 			</div>
+			<!--------------------회원가입----------------->
 			<div class="b-r">
-				<form  method = "post" action="/members/new" id="join-form">
+				<form  method = "post" id="join-form">
 					<table>
 						<tr>
 							<td>
@@ -239,7 +242,7 @@
 
 <script th:inline="javascript" charset='UTF-8' defer>
 
-	/*------로그인인 밑 회원가입 부분*/
+	/*------로그인인 밑 회원가입 부분----------*/
 		let modal = document.querySelector("#modal");
 		function openModal(){
 		modal.style.display="flex";
@@ -255,7 +258,7 @@
 		let queryString = $('#idCheck').serialize();
 		$.ajax({
 			type: 'post',
-			url: '/member/main',
+			url: '/home',
 			data: queryString,
 			success: function (censorship) {
 				let availableId = censorship.loginIdCheck;
@@ -278,7 +281,7 @@
 		let queryString = $('#join-form').serialize();
 		$.ajax({
 			type: 'post',
-            url: '/member/main',
+            url: '/home',
             data: queryString,
             success: function (join) {
 				alert('회원가입 되셨습니다.')
