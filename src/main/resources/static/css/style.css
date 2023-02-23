@@ -259,14 +259,20 @@ section{
     margin:250px auto;
     border: 1px solid red;
  }
-.card-a{width:40%;margin:0 auto;}
+.card-a{width:40%; margin: auto;}
+.card-a button {margin-top:300px}
+
 .myLog-a{margin: auto;
     display: flex;}
-.myLog-a
+.myLog-a{}
 .level-a{}
 .edit-a{}
 .logOut-a{}
-
+.text-button-a { display: flex; padding-top: -400px; margin: auto; }
+.text-button-a button{
+    margin-top: 5px;
+    margin-left: 5px;
+}
 #myPageList-a{}
 #exePost-a{}
 #exeLike-a{}
