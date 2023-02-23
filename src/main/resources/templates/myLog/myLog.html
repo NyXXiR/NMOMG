@@ -11,32 +11,26 @@
     <div id="pagination">
 	<!-- 맨 처음 페이지로 이동하는 버튼 -->
     <span th:if="${pageVo.startPage > 1}">
-    <button class="seq" th:text="'처음&emsp;'" th:value="'${pageMapping}'+'1'"></button>
-      <!--   <a th:href="@{'/myLog/myWrite?page=1'}" th:text="'처음&emsp;'"></a> -->
+    <button class="seq" th:text="'처음&emsp;'" th:value="${pageMapping}+1"></button>
     </span>
 
 	<!-- 이전 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isPrev == true}">
-    <button class="seq" th:text="'이전'" th:value="'${pageMapping}'+'${pageVo.startPage - 1}'"></button>
-    	<!-- <a th:href="@{'/myLog/myWrite?page='+${pageVo.startPage - 1}}" th:text="'이전'"></a> -->
+    <button class="seq" th:text="'이전'" th:value="${pageMapping}+${pageVo.startPage - 1}"></button>
     </span>
 
     <!-- 시퀀스 보여주는 값을 변경. -->
     <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
     <button class="seq" th:text="|&emsp;${pageNum}&emsp;|" th:value="${pageMapping}+${pageNum}"></button>
-        <!--  <a class="div2" th:href="@{'/myLog/myWrite?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>  -->
     </span>
-	/myLog/myComment?page=
     <!-- 다음 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isNext == true}">
-    <button class="seq" th:text="'다음'" th:value="'${pageMapping}'+'${pageVo.endPage + 1}'"></button>
-	<!-- <a th:href="@{'/myLog/myWrite?page='+|${pageVo.endPage + 1}|}" th:text="'다음'"></a> -->
+    <button class="seq" th:text="'다음'" th:value="${pageMapping}+${pageVo.endPage + 1}"></button>
     </span>
 	
     <!-- 맨 뒷 페이지로 이동하는 버튼 -->
     <span th:if="${pageVo.endPage < pageVo.totalPageCount}">
-    <button class="seq" th:text="|&emsp;끝|" th:value="'${pageMapping}'+'${pageVo.totalPageCount}'"></button>
-	<!-- <a th:href="@{'/myLog/myWrite?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a> -->
+    <button class="seq" th:text="|&emsp;끝|" th:value="${pageMapping}+${pageVo.totalPageCount}"></button>
     </span>
 </div>
 <table border="1">
