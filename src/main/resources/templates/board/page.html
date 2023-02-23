@@ -22,12 +22,31 @@
       	list-style :none;
      	 padding-left :0px;
       }
+      
+      .board__image{
+      width:120px;
+      height:80px;
+      object-fit:scale-down;
+      }
+      
       </style>
   </head>
  <body>
  
    <a href="write">글쓰기</a>
   <table class="table table-striped" border="1">
+   <thead>
+      <tr>
+        <th>글번호</th>
+        <th>카테고리</th>
+        <th>스택</th>
+        <th>썸네일</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일자</th>
+        <th>시작일자</th>
+      </tr>
+      </thead>
     <tr th:each="board : ${boardList}">
         <td>
           <a
@@ -41,7 +60,9 @@
             <li>[[${stacks}]]</li>
           </ul>
         </td>
-        <td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a>
+        <td><img class="board__image"
+					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/alt.jpg'"></td>
+        <td><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a>
         <a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a></td>
         <td th:text="${board.memberNum}"></td>
         <td th:text="${board.date}"></td>

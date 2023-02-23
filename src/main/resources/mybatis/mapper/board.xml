@@ -46,16 +46,16 @@
 	<!-- 게시판 역순정렬 list -->
 	<select id="boardListReverse" 
 		resultType="com.study.springboot.vo.Board">
-		SELECT b.boardNum,b.startDate,b.title,b.date, b.category, m.loginId,
+		SELECT b.boardNum,b.startDate,b.title,b.date, b.category,b.commentCount, m.loginId,
 		m.memberNum
 		FROM board b, member m where b.memberNum=m.memberNum
 
 		<choose>
 			<when test="category=='recruit'">
-				and b.category ='recruit' order by boardNum asc limit 15 offset 0
+				and b.category ='recruit' order by boardNum desc limit 15 offset 0
 			</when>
 			<when test="category=='apply'">
-				and b.category='apply' order by boardNum asc limit 15 offset 0
+				and b.category='apply' order by boardNum desc limit 15 offset 0
 			</when>
 			<otherwise>
 				order by boardNum desc limit 15 offset 0
@@ -141,6 +141,10 @@ select commentCount from board where boardNum=#{boardNum}
 
 <update id="commentCountPlus">
 update board set commentCount=commentCount+1 where boardNum=#{boardNum} 
+</update>
+
+<update id="commentCountMinus">
+update board set commentCount=commentCount-1 where boardNum=#{boardNum} 
 </update>
 
 

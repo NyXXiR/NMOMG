@@ -1,0 +1,441 @@
+@charset "UTF-8";
+
+* {
+	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+}
+
+html {
+	background-color: #ffffffb7;
+	font-family: sans-serif;
+
+}
+
+body {
+	background:#ECF0F3;
+	margin: 0;
+	padding: 0;
+}
+.side-left{
+
+	position: absolute;
+	top: 0; left: 0;
+	height: 450%;
+	width: 13%;
+	background: rgb(130, 174, 247);
+	box-shadow: 1em 0 .1em  rgb(130, 174, 247);
+}
+.side-right{
+
+	position: absolute;
+	top: 0; right: 0;
+	height: 450%;
+	width: 13%;
+	background: rgb(130, 174, 247);
+	box-shadow: -1em 0 .1em
+	rgb(130, 174, 247);
+}
+
+a {
+	text-decoration: none;
+
+
+
+}
+
+header {
+	display: flex;
+	margin:0 auto;
+	transform: translate(-0%,0);
+	box-shadow: 2px 5px 2px 1px rgba(255, 255, 255, 0.47);
+	background: #fff;
+	font-weight: 400;
+
+	z-index: 32122130;
+	padding: 0;
+	top: 0;
+	position: sticky;
+	width: 71%;
+	height: 170px;
+	vertical-align: bottom;
+	opacity: 0.8;
+}
+
+header #logo {
+	cursor: pointer;
+	margin-top: 15px;
+	padding-bottom: 50px;
+	width: 250px;
+	height: 150px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0.8;
+
+
+
+}
+
+.menu {
+	display: inline-block;
+	padding-top: 5px;
+	bottom: 0;
+	position: absolute;
+	left: 50%;
+	transform:translate(-50%, -50%);
+	width: 800px;
+	text-align: center;
+}
+
+
+
+.menu .menu-home-icon {
+	color: rgba(79, 79, 79, 0.91);
+	transform: translate(50%,0%);
+	float: left;
+}
+.menu .menu-login-icon {
+	color: rgba(79, 79, 79, 0.91);
+
+	text-align: center;
+}
+
+.menu .menu-board-icon {
+	color: rgba(79, 79, 79, 0.91);
+	transform: translate(-50%,0%);
+	float: right;
+}
+
+
+.menu a {
+
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:focus {
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	text-decoration: none;
+}
+
+
+
+
+/* 여기까지 헤더 */
+
+
+
+
+
+
+
+
+.sec0 {
+	height: 100vh;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+/* 여기까지 섹션 프로덕츠 */
+
+
+
+
+/*로그인,조인페이지 */
+
+.sec1 {
+	width: 100%;
+	height: 100vh;
+	padding-top: 180px;
+
+}
+
+
+
+.mem{
+	margin-top:100px;
+	display: flex;
+}
+
+
+.mem .login {
+	align-items: center;
+	width: 50%;
+	margin-left:200px;
+	margin-top: 60px;
+	height: 100%;
+}
+
+.login-wrapper{
+	 margin: auto;
+	 width: 400px;
+	 height: 350px;
+	 padding: 40px;
+	 box-sizing: border-box;
+
+ }
+
+
+.login-wrapper ul{
+	margin-left:65px;
+	color: #5b5959;
+}
+
+.login-wrapper ul li{
+	float: left;
+}
+.login-wrapper span{
+	color: rgba(0, 0, 0, 0.55);
+	padding-left:5px;
+	padding-right:5px;
+}
+.login-wrapper > h2{
+	text-align:center;
+	font-size: 24px;
+	margin-bottom: 20px;
+
+}
+#login-form > input{
+	width: 100%;
+	height: 48px;
+	padding: 0 10px;
+	box-sizing: border-box;
+	border: 1px solid rgba(11, 11, 11, 0.3);
+	margin-bottom: 8px;
+	border-radius: 6px;
+	background-color: #F8F8F8;
+
+}
+
+
+#login-form > input::placeholder{
+	color: #8e8e8e;
+}
+
+#login-form > input[type="submit"]{
+	color: #fff;
+	font-size: 16px;
+	background-color: rgba(36, 123, 254, 0.76);
+	margin-top: 1px;
+	border: 1px solid rgba(11, 11, 11, 0.3);
+}
+
+
+#login-form > label{
+
+	color: #999999;
+}
+#login-form input[type="checkbox"] + label{
+	cursor: pointer;
+	padding-left: 26px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+#login-form input[type="checkbox"]:checked + label{
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.api{
+	width: 300px;
+	margin-top:40px;
+	height: 150px;
+}
+
+
+
+/*----------------------------Login end*/
+
+
+
+/*----------------------------join start*/
+.mem .join {
+	transform: translate(0,-4%);
+	text-align: center;
+	width: 50%;
+	margin-top: 60px;
+	height: 100%;
+	margin-right:200px;
+}
+
+#join-form > input[type="submit"]{
+
+	color: #fff;
+	font-size: 16px;
+	background-color: rgba(36, 123, 254, 0.76);
+	margin-top: 50px;
+	border: 1px solid rgba(11, 11, 11, 0.3);
+
+}
+#join-form > input::placeholder{
+	color: #8e8e8e;
+}
+#join-form button{
+
+	 color: #fff;
+	 font-size: 16px;
+	 background-color: rgba(36, 123, 254, 0.76);
+	 margin-top: 1px;
+	 border: 1px solid rgba(11, 11, 11, 0.3);
+
+ }
+#join-form > input{
+	display: inline-block;
+	transform: translate(30%,0px);
+	width: 100%;
+	height: 48px;
+	padding: 0 10px;
+	box-sizing: border-box;
+	border: 1px solid rgba(11, 11, 11, 0.3);
+	margin-bottom: 8px;
+	border-radius: 6px;
+	background-color: #F8F8F8;
+
+}
+.join .join-wrapper{
+
+	align-items: center;
+	width: 50%;
+	margin-top: 60px;
+	height: 100%;
+	margin-left:65px;
+	color: #5b5959;
+
+}
+
+.email{
+	transform: translate(25%,0px);
+	display: inline-block;
+	width: 80%;
+	color: #fff;
+
+}
+.email input{
+
+	display: inline-block;
+	width: 100%;
+	height: 48px;
+	padding: 0 10px;
+	border: 1px solid rgba(11, 11, 11, 0.3);
+
+	margin-bottom: 8px;
+	border-radius: 6px;
+	background-color: #F8F8F8;
+
+}
+.email  button{
+
+	border-radius: 6px;
+	width: 50px;
+
+}
+
+.email label{
+	margin-left: 5px;
+	margin-top: 13px;
+	position: absolute;
+	display: inline-block;
+
+
+
+}
+.email label button p{
+	font-size: 12px;
+
+}
+
+/*----------------------------join end*/
+/* 여기까지 섹션1 로그인,조인페이지 */
+.cards {
+	margin-top: 30px;
+}
+
+.sec2 {
+
+	padding-top: 180px;
+	height: 70vh;
+}
+
+.mem {
+
+	height: 60vh;
+}
+
+.me {
+
+	width: 50%;
+	height: 80%;
+	text-align: center;
+	float: left;
+
+}
+
+.u {
+	width: 50%;
+	height: 80%;
+	text-align: center;
+	float: left;
+
+
+}
+
+
+
+/* 여기까지 섹션 2 내 카드, 찾는 능력 카드 매칭 푸터*/
+
+.sec3 {
+	height: 100vh;
+}
+
+.matching {
+	text-align: center;
+	height: 7vh;
+
+}
+
+
+
+
+
+.footer-right {
+	margin-top: 100px;
+}
+
+/*글쓰기용 멀티 input*/
+.multi-input {
+	display: inline-block;
+	margin: 0 20px 20px 0;
+
+}
+
+
+label {
+	display: block;
+	margin: 0 20px 20px 0;
+}
+.board-button{
+	display:flex;
+	justify-content:center;
+	
+}
