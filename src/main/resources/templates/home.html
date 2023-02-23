@@ -66,8 +66,45 @@
 			<div class="a-top">
 				<h1>모집중인 프로젝트</h1>
 			</div>
-			<div class="a-bottom">
-				<h1>역대 프로젝트</h1>
+			<ul class="pages"></ul>
+		</div>
+
+		<script>
+			$("#rolling").rolling(1200, 600, {autoscroll: 1, delay: 1500});
+		</script>
+	</section>
+</div>
+
+<!-- SECTION 0 PRODUCTS SLIDE END-->
+
+
+<!-- SECTION 1 LOGIN,JOIN START -->
+<div class="b">
+	<section class="sec1">
+		<div class="mem">
+
+			<div class="login">
+				<div class="login-wrapper">
+
+					<form method="post" action="/member/login" id="login-form">
+						<input type="text" name="loginId" placeholder="Email" id="loginId">
+						<input type="password" name="password" placeholder="Password">
+						<label for="remember-check">
+							<input type="checkbox" id="remember-check">아이디 저장하기
+						</label>
+						<input id="submitId" type="submit" value="Login">
+					</form>
+					<ul>
+						<li> 이메일 찾기</li>
+						<li><span>|</span>비밀번호 찾기</li>
+
+					</ul>
+					<div class="api"><img src="/images/api.jpg" alt=""></div>
+				</div>
+
+				<div class="a-bottom">
+					<h1>역대 프로젝트</h1>
+
 			</div>
 		</section>
 	</div>
@@ -76,11 +113,12 @@
 
 
 
- <!-- SECTION 1 LOGIN,JOIN START -->
-	<div class="b">
+ <!-- SECTION 1 LOGIN,JOIN START --><div class="b">
+
+<!-----------로그인---------->
 		<section class="sec1">
 			<div class="b-l">
-				<form method="post" action="/members/new" id="login-form">
+				<form method="post" action = "/login" id="login-form">
 					<table>
 						<tr>
 							<td>
@@ -112,8 +150,9 @@
 					</table>
 				</form>
 			</div>
+			<!--------------------회원가입----------------->
 			<div class="b-r">
-				<form  method = "post" action="/members/new" id="join-form">
+				<form  method = "post" id="join-form">
 					<table>
 						<tr>
 							<td>
@@ -258,7 +297,7 @@
 
 <script th:inline="javascript" charset='UTF-8' defer>
 
-	/*------로그인인 밑 회원가입 부분*/
+	/*------로그인인 밑 회원가입 부분----------*/
 		let modal = document.querySelector("#modal");
 		function openModal(){
 		modal.style.display="flex";
@@ -274,7 +313,7 @@
 		let queryString = $('#idCheck').serialize();
 		$.ajax({
 			type: 'post',
-			url: '/member/main',
+			url: '/home',
 			data: queryString,
 			success: function (censorship) {
 				let availableId = censorship.loginIdCheck;
@@ -297,7 +336,7 @@
 		let queryString = $('#join-form').serialize();
 		$.ajax({
 			type: 'post',
-            url: '/member/main',
+            url: '/home',
             data: queryString,
             success: function (join) {
 				alert('회원가입 되셨습니다.')
@@ -310,6 +349,32 @@
 	})
 </script>
 
+<script type="text/javascript">
+
+	$('#login-form').submit(function(e){
+		if($('#remember-check').is(":checked")==true){
+			localStorage.setItem('loginId', $('#loginId').val());
+		}
+		
+	});
+	
+	var loginId= document.querySelector("#loginId");
+	var storageCheck= localStorage.getItem('loginId');
+	console.log(loginId);
+	
+		if(!storageCheck){
+		loginId.value="";
+		}else{
+		loginId.value=storageCheck;
+	}
+	
+	
+/* 	$(document).ready(function(){
+		$('#loginId').val()=localStorage.getItem('loginId');
+	}); */
+
+
+</script>
 <script th:inline="javascript" defer>
 
 
