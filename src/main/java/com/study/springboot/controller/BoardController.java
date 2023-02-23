@@ -30,60 +30,7 @@ import lombok.extern.log4j.Log4j2;
 public class BoardController {
   final BoardDao boardDao;
 
-  // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
-  @GetMapping("/list2")
-  public String list(Model model, String category, String search, String type,
-      @RequestParam(value = "page", defaultValue = "1") final int page) {
-    log.info("----->" + category + "=====search:" + search + ":::type::" + type);
 
-    log.info("total건수  ---------" + boardDao.getCount());
-
-    PaginationVo paginationVo = new PaginationVo(boardDao.getCount(), page);
-
-    List<BoardList> boardList = new ArrayList<>();
-    List<Board> listReverse = new ArrayList<>();
-
-    if (type == null) {
-      type = "";
-    }
-    if (category != null) {
-      listReverse = boardDao.boardListReverse(category);
-    } else if (type.equals("S")) {
-      listReverse = boardDao.boardSearch(search, type);
-    } else if (type.equals("N")) {
-      listReverse = boardDao.titleSearch(search, type);
-    } else {
-
-      listReverse = boardDao.boardListReverse();
-
-    }
-
-    for (int i = 0; i < listReverse.size(); i++) {
-      String[] stacks = boardDao.stackList(listReverse.get(i).getBoardNum());
-      int boardNum1 = listReverse.get(i).getBoardNum();
-      String title1 = listReverse.get(i).getTitle();
-      String content1 = listReverse.get(i).getContent();
-      int memberNum1 = listReverse.get(i).getMemberNum();
-      String date1 = listReverse.get(i).getDate();
-      String category1 = listReverse.get(i).getCategory();
-      String startDate1 = listReverse.get(i).getStartDate();
-      String loginId1 = listReverse.get(i).getLoginId();
-      int commentCount1= listReverse.get(i).getCommentCount();
-
-
-      BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
-          category1, startDate1, loginId1, commentCount1,stacks);
-      boardList.add(boardList1);
-    }
-
-
-    Collections.reverse(boardList);
-
-    model.addAttribute("boardList", boardList);
-    model.addAttribute("page", page);
-    model.addAttribute("pageVO", paginationVo);
-    return "board/list2";
-  }
 
   // 카테고리 입력시 해당 카테고리만 select, 입력 안할시 전체 select함
   @GetMapping("/page")
@@ -106,7 +53,7 @@ public class BoardController {
       String category1 = list.get(i).getCategory();
       String startDate1 = list.get(i).getStartDate();
       String loginId1 = list.get(i).getLoginId();
-      int commentCount1= list.get(i).getCommentCount();
+      int commentCount1 = list.get(i).getCommentCount();
 
       BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
           category1, startDate1, loginId1, commentCount1, stacks);
@@ -154,13 +101,12 @@ public class BoardController {
       String category1 = listReverse.get(i).getCategory();
       String startDate1 = listReverse.get(i).getStartDate();
       String loginId1 = listReverse.get(i).getLoginId();
-      int commentCount1= listReverse.get(i).getCommentCount();
+      int commentCount1 = listReverse.get(i).getCommentCount();
 
       BoardList boardList1 = new BoardList(boardNum1, title1, content1, memberNum1, date1,
           category1, startDate1, loginId1, commentCount1, stacks);
       boardList.add(boardList1);
     }
-    Collections.reverse(boardList);
     model.addAttribute("boardList", boardList);
 
     return "board/list";

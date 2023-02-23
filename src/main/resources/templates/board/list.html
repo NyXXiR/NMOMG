@@ -64,7 +64,8 @@
             <li>[[${aa}]]</li>
           </ul>
         </td>
-        <td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a></td>
+             <td><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a></td>
+
         <td th:text="${board.memberNum}"></td>
         <td th:text="${board.date}"></td>
         <td th:text="${board.startDate}"></td>
