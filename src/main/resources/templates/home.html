@@ -124,7 +124,7 @@ space_dashboard게시판
 						<label for="remember-check">
 							<input type="checkbox" id="remember-check">아이디 저장하기
 						</label>
-						<input type="submit" value="Login">
+						<input id="submitId" type="submit" value="Login">
 					</form>
 					<ul>
 						<li> 이메일 찾기</li>
@@ -339,6 +339,33 @@ space_dashboard게시판
 
 		})
 	})
+
+
+</script>
+
+<script type="text/javascript">
+
+	$('#login-form').submit(function(e){
+		if($('#remember-check').is(":checked")==true){
+			localStorage.setItem('loginId', $('#loginId').val());
+		}
+		
+	});
+	
+	var loginId= document.querySelector("#loginId");
+	var storageCheck= localStorage.getItem('loginId');
+	console.log(loginId);
+	
+		if(!storageCheck){
+		loginId.value="";
+		}else{
+		loginId.value=storageCheck;
+	}
+	
+	
+/* 	$(document).ready(function(){
+		$('#loginId').val()=localStorage.getItem('loginId');
+	}); */
 
 
 </script>

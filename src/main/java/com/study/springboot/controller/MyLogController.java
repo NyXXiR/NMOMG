@@ -100,10 +100,9 @@ public class MyLogController {
 			return "home";
 		}
 		
-		@GetMapping("/index")
-		public String index() {
-			return "index";
-		}
+		/*
+		 * @GetMapping("/index") public String index() { return "index"; }
+		 */
 		
 		
 		
