@@ -40,7 +40,10 @@ public class BoardController {
 
     PaginationVo paginationVo = new PaginationVo(this.boardDao.getCount(category), page, category); // 모든
     // 게시글
-    paginationVo.setCategory(category);
+
+    if (category != null) {
+      paginationVo.setCategory(category);
+    }
     List<Board> list = this.boardDao.getListPage(paginationVo);
     Collections.reverse(list);
     for (int i = 0; i < list.size(); i++) {
