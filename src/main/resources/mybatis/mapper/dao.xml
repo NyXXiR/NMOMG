@@ -30,7 +30,7 @@
 	</select>
 	
 	<!-- 마이페이지에서 사용될 nickname 찾기 -->
-	<select id ="memberNickname" resultType="String">
+	<select id ="findByNicknameByLoginId" resultType="String">
 		select nickname from member where loginId = #{loginId}
 	</select>
 	
@@ -40,8 +40,8 @@
 	</select>
 	
 	<!--개인정보 수정 update문-->
-	<select id="updateByMemberNum">
-		update member set password = '#{password}', nickname='#{nickname}' where memberNum = '#{memberNum}'
-	</select>
+	<update id="updateByMemberNum" >
+		update member set password = #{password}, nickname=#{nickname} where memberNum = #{memberNum}
+	</update>
 		
 </mapper>

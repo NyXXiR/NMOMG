@@ -55,12 +55,13 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String memberNickname(String loginId) {
 		System.out.println("impl로 날라오 로그인된 아이디 "+loginId);
-		String myNickname = memberDao.memberNickname(loginId);
+		String myNickname = memberDao.findByNicknameByLoginId(loginId);
 		return myNickname;
 	}
 
 	@Override
 	public Member updateMember(Member member, MultipartFile file, HttpSession session) {
+		 int updateByMemberNum = memberDao.updateByMemberNum(member);
 		//파일 저장 경로(서버에 저장) 
 		/*String uploadFolder = "/home/ubuntu/nmomg/assets/profile";*/
 		String uploadFolder = "C:\test";
@@ -82,8 +83,12 @@ public class MemberServiceImpl implements MemberService{
 	    }
 	    // 파일업로드 끝
 	    
-	    Member memberInfo = memberDao.selectAllByMemberNum(fileNum);
 	    
+	    Member memberInfo = memberDao.selectAllByMemberNum(fileNum);
+	    System.out.println("memberinfo : "+memberInfo);
+	    
+	    //memberNum으로 업데이트 하는 쿼리
+	   
 		return memberInfo;
 	}
 
