@@ -48,7 +48,7 @@ public class MemberController {
 		return join;
 	}
 	
-	@GetMapping("/logout")
+	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:home";
@@ -81,28 +81,25 @@ public class MemberController {
 		}
 	}
 	
-	@PostMapping("/updateInfo")
-	public String updateInfo(Member member, MultipartFile file) {
-		String uploadFolder = "/home/ubuntu/nmomg/assets/profile";
-
-	    log.info("upload file name: " + file.getOriginalFilename());
-	    log.info("upload file size: " + file.getSize());
-
-	    int max = boardDao.max() + 1;
-	    File saveFile = new File(uploadFolder, file.getOriginalFilename());
-
-	    try {
-	      uploadFile.transferTo(saveFile);
-	      // MultipartFile은 생성하자마자 파일을 바로 업로드하므로 업로드 후 파일명을 변경한다.
-	      File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
-	      saveFile.renameTo(renamedFile);
-	    } catch (Exception e) {
-	      log.error("파일 전송 에러: " + e.getMessage());
-	    }
-	    // 파일업로드 끝
-
-		return null;
+	//개인정보 수정화면에서 수정하기 버튼을 누르면 동작하는 포스트 방식
+	@PostMapping("/member/memberUpdate")
+	public String PostMemberUpdate(Member member, MultipartFile file, Model model, HttpSession session) {
+		
+		Member memberInfo =	memberSer.updateMember(member, file, session);
+		model.addAttribute("memberInfo",memberInfo);
+		return "redirect:member/login-after";
 	
+	}
+	
+	//개인정보 수정버튼 누르면 수정화면으로 갈 수 있게하는 겟 방식
+	@GetMapping("/member/memberUpdate")
+	public String getMemberUpdate(Model model, HttpSession session) {
+		int memberNum = (int)session.getAttribute("memberNum");
+		
+		Member member1= memberDao.memberInfo(memberNum);
+		model.addAttribute("member",member1 );
+		model.addAttribute("loginId", session.getAttribute("loginId"));
+		return "member/memberUpdate";
 	}
 
 

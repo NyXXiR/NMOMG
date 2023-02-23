@@ -19,6 +19,6 @@ public interface MemberService {
 	String memberNickname(String loginId);
 	
 	//update및 사용자 사진 변경
-	String updateMember(Member member, MultipartFile file);
+	Member updateMember(Member member, MultipartFile file, HttpSession session);
     
 }

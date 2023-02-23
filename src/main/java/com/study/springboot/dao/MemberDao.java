@@ -24,4 +24,7 @@ public interface MemberDao {
 	//닉네임찾기 => 마이페이지에서 사용
 	public String memberNickname(String loginId);
 	
+	//loginId로 사용자 모든 정보 찾기
+	public Member selectAllByMemberNum(int fileNum);
+	
 }

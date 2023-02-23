@@ -5,6 +5,7 @@ import com.study.springboot.dao.MemberDao;
 import com.study.springboot.vo.Member;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.log4j.Log4j2;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
+@Log4j2
 public class MemberServiceImpl implements MemberService{
 
     MemberDao memberDao;
@@ -58,27 +60,31 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String updateMember(Member member, MultipartFile file) {
+	public Member updateMember(Member member, MultipartFile file, HttpSession session) {
 		//파일 저장 경로(서버에 저장) 
-		String uploadFolder = "/home/ubuntu/nmomg/assets/profile";
+		/*String uploadFolder = "/home/ubuntu/nmomg/assets/profile";*/
+		String uploadFolder = "C:\test";
 
 	    log.info("upload file name: " + file.getOriginalFilename());
 	    log.info("upload file size: " + file.getSize());
-
-	    int fileNum = boardDao.max() + 1;
+	    
+	    //이용자의 memberNum을 이용하여 파일 이름 명명
+	    int fileNum = (int)session.getAttribute("memberNum");
 	    File saveFile = new File(uploadFolder, file.getOriginalFilename());
 
 	    try {
-	      uploadFile.transferTo(saveFile);
+	    file.transferTo(saveFile);
 	      // MultipartFile은 생성하자마자 파일을 바로 업로드하므로 업로드 후 파일명을 변경한다.
-	      File renamedFile = new File(uploadFolder, (Integer.toString(max) + ".png"));
+	      File renamedFile = new File(uploadFolder, (Integer.toString(fileNum) + ".png"));
 	      saveFile.renameTo(renamedFile);
 	    } catch (Exception e) {
 	      log.error("파일 전송 에러: " + e.getMessage());
 	    }
 	    // 파일업로드 끝
-
-		return null;
+	    
+	    Member memberInfo = memberDao.selectAllByMemberNum(fileNum);
+	    
+		return memberInfo;
 	}
 
 }
