@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 @Log4j2
-@RequestMapping("/member/*")
+/* @RequestMapping("/member/*") */
 public class MemberController {
 
 	MemberDao memberDao;
@@ -35,8 +35,8 @@ public class MemberController {
 	@Autowired
 	MemberService memberSer;
 
-
-	@PostMapping("/main")
+//
+	@PostMapping("/home")
 	@ResponseBody
 	public HashMap censoringId(Member member, String loginIdCheck) {
 		System.out.println("controller"+member);
@@ -46,10 +46,6 @@ public class MemberController {
 		return join;
 	}
 	
-	@GetMapping("/main")
-	public String getMain(){
-		return "member/main";
-	}
 
 
 	//로그인 포스트 맵핑
@@ -74,9 +70,10 @@ public class MemberController {
 			
 		} else {
 			model.addAttribute("loginFail", "잘못된 정보입니다.");
-			return "member/main";
+			return "member/login-after";
 		}
 	}
+	
 
 
 }
