@@ -1,223 +1,239 @@
 <!DOCTYPE>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NMOMG</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="slide.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
-<script language="javascript" src="jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script language="javascript" src="jquery/jquery-ui.min.js" type="text/javascript"></script>
-<script language="javascript" src="jquery/jq.rolling.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="jq.rolling.css"/>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="stylesheet" href="/style.css">
+	<link rel="stylesheet" href="/slide.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+	<script language="javascript" src="/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script language="javascript" src="/jquery/jquery-ui.min.js" type="text/javascript"></script>
+	<script language="javascript" src="/jquery/jq.rolling.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="/jquery/jq.rolling.css"/>
+	<link rel="stylesheet"
+		  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+
+	<style>
+		.modalWrap {
+			width: 100%;
+			height: 100vh;
+			background: rgba(0, 0, 0, 0.4);
+			display: none;
+			justify-content: center;
+			position: absolute;
+		}
+
+		.modalContent {
+			background: white;
+			width: 350px;
+			height: 200px;
+			text-align: center;
+			border-radius: 10px;
+			box-shadow: 0 0 15px black;
+
+
+		}
+
+		.active {
+			width: 500px;
+			height: 300px;
+			background: black;
+		}
+	</style>
 </head>
 
 <body>
-<div class="board-button">
-
-<button type="button" onclick="location.href='/board/list?category=recruit'">recruit임시</button>
-<button type="button" onclick="location.href='/board/list?category=apply'">apply임시</button>
-<button type="button" onclick="location.href='/board/list'">전체임시</button>
-<button type="button" onclick="location.href='/board/page'">페이지임시</button>
-
-
-</div>
 <header>
-<nav>
-<div class="logo">
-<img src="images/llogo.gif" alt="" id="logo" onclick="goToScroll('a')">
-</div>
-<div class="menu">
+	<nav>
+		<div class="logo">
+			<img src="/images/llogo.gif" alt="" id="logo" onclick="goToScroll('a')">
+		</div>
+		<div class="menu">
 
-<a href="#sec2" onclick="goToScroll('a')"
-class="menu-home-icon"><span class="material-symbols-outlined">
+			<a href="#sec2" onclick="goToScroll('a')"
+			   class="menu-home-icon"><span class="material-symbols-outlined">
 other_houses메인
 </span>
-</a>
+			</a>
 
-<a href="#sec3" onclick="goToScroll('b')" class="menu-login-icon"><span class="material-symbols-outlined">
+			<a href="#sec3" onclick="goToScroll('b')" class="menu-login-icon"><span class="material-symbols-outlined">
 manage_accounts로그인
 </span>
-</a>
+			</a>
 
-<a href="#profile" onclick="goToScroll('c')"
-class="menu-board-icon">
+			<a href="#profile" onclick="goToScroll('c')"
+			   class="menu-board-icon">
 <span class="material-symbols-outlined">
 space_dashboard게시판
 </span>
-</a>
+			</a>
 
-</div>
-</nav>
-
-
+		</div>
+	</nav>
 </header>
-
-
-	<div class="side-left"></div>
-	<div class="side-right"></div>
+바뀌었는지확인
+<div class="side-left"></div>
+<div class="side-right"></div>
 <!-- SECTION 0 PRODUCTS SLIDE START-->
-	<div class="a">
-<section class="sec0">
-<div class="slideShow">
-	<div id="rolling">
-		<ul>
-			<li class="sp01"><img src="images/pepe1.gif" alt=""></li>
-			<li class="sp02"><img src="images/pepe2.gif" alt=""></li>
-			<li class="sp03"><img src="images/pepe3.gif" alt=""></li>
-			
-		</ul>
-	</div>
-<ul class="pages"></ul>
-</div>
+<div class="a">
+	<section class="sec0">
+		<div class="slideShow">
+			<div id="rolling">
+				<ul>
+					<li class="sp01"><img src="/images/pepe1.gif" alt=""></li>
+					<li class="sp02"><img src="/images/pepe2.gif" alt=""></li>
+					<li class="sp03"><img src="/images/pepe3.gif" alt=""></li>
+				</ul>
+			</div>
+			<ul class="pages"></ul>
+		</div>
 
-<script>
-	$("#rolling").rolling(1200,600,{autoscroll:1, delay:1500});
-</script>
-</section>
+		<script>
+			$("#rolling").rolling(1200, 600, {autoscroll: 1, delay: 1500});
+		</script>
+	</section>
 </div>
 
 <!-- SECTION 0 PRODUCTS SLIDE END-->
 
 
-
-
-
 <!-- SECTION 1 LOGIN,JOIN START -->
-
 <div class="b">
-<section class="sec1">
-  <div class="mem">
+	<section class="sec1">
+		<div class="mem">
 
-<div class="login">
-	<div class="login-wrapper">
+			<div class="login">
+				<div class="login-wrapper">
 
-		<form method="post" action="/member/login" id="login-form">
-			<input type="text" name="loginId" placeholder="Email">
-			<input type="password" name="password" placeholder="Password">
-			<label for="remember-check">
-				<input type="checkbox" id="remember-check">아이디 저장하기
-			</label>
-			<input type="submit" value="Login">
-		</form>
-		<ul>
-			<li> 이메일 찾기 </li>
-			<li><span>|</span>비밀번호 찾기</li>
+					<form method="post" action="/member/login" id="login-form">
+						<input type="text" name="loginId" placeholder="Email" id="loginId">
+						<input type="password" name="password" placeholder="Password">
+						<label for="remember-check">
+							<input type="checkbox" id="remember-check">아이디 저장하기
+						</label>
+						<input type="submit" value="Login">
+					</form>
+					<ul>
+						<li> 이메일 찾기</li>
+						<li><span>|</span>비밀번호 찾기</li>
 
-		</ul>
-		<div class="api"> <img src="images/api.jpg" alt=""> </div>
-	</div>
+					</ul>
+					<div class="api"><img src="/images/api.jpg" alt=""></div>
+				</div>
 
-</div>
-
-
-<div class="join">
-	<div class="join-wrapper">
-		<form action="/member/join" method = "post" id="join-form">
-		<div class="email">
-			<input type="text" placeholder="Email" name="loginId"/>
-		<label><button><p>중복체크</p></button></label>
-		</div>
-		<input type="text" placeholder="아이디" name="loginIdCheck" th:value="${idCheck}" readonly/>
-		<input type="password" placeholder="비밀번호" name="password">
-		<input type="text" placeholder="별명" name="nickname">
-		<input type="submit" value="join">
-		</form>
-
-	</div>
-</div>
-	<script type="text/javascript">
+			</div>
 
 
-	</script>
+			<div class="join">
+				<div class="join-wrapper">
+					<form method="post" id="join-form">
+						<div class="email">
+							<input type="text" placeholder="Email" name="loginId" id="useId" readonly/>
+							<label>
+								<button type="button" onclick="openModal()"><p>중복체크</p></button>
+							</label>
+						</div>
+						<!--th:value="${loginIdCheck}"-->
+						<input type="password" id="pw" placeholder="비밀번호" name="password">
+						<input type="text" id="nickname" placeholder="별명" name="nickname">
+						<input type="submit" value="join">
+					</form>
 
-
-</section>
+				</div>
+			</div>
+			<!--   //중복체크를 진행할 모달창-->
+			<div id="modal" class="modalWrap">
+				<div class="modalContent">
+					<form id="idCheck" method="post" onsubmit="return false">
+						<input type="text" name="loginIdCheck"/>
+						<input type="submit"/>
+						<button type="button" onclick="closeModal()">X</button>
+					</form>
+				</div>
+			</div>
+	</section>
 </div>
 <!-- SECTION1 LOGIN,JOIN END -->
 
 
-
-
 <!-- SECTION 2 CARDS STARTS -->
 <div class="c">
-<section class="sec2">
-  
-<div class="cards">
-<div class="me">
+	<section class="sec2">
 
-<div>
-	<table>
-		<tr>
-			<div class="multiSelect" th:fragment="fragment-multiSelect">
-				<label> <h1>본인 스택:</h1></label>
-				<multi-input>
-					<input list="speakers">
-					<datalist id="speakers">
-						<option value="Java"></option>
-						<option value="Spring"></option>
-						<option value="Javascript"></option>
-						<option value="Typescript"></option>
-						<option value="React"></option>
-						<option value="Vue"></option>
-						<option value="Svelte"></option>
-						<option value="Nextjs"></option>
-						<option value="Nodejs"></option>
-						<option value="Go"></option>
-						<option value="Nestjs"></option>
-					</datalist>
-				</multi-input>
-				<button type="button" id="get">Get</button>
-			</div>
-	</table>
-</div>
-<input type="submit">
-</div>
+		<div class="cards">
+			<div class="me">
 
-<div class="u">
-
-	<div>
-		<table>
-			<tr>
-				<div class="multiSelect" th:fragment="fragment-multiSelect">
-					<label> <h1>필요한 기술:</h1></label>
-					<multi-input>
-						<input list="speakers">
-						<datalist id="speakers">
-							<option value="Java"></option>
-							<option value="Spring"></option>
-							<option value="Javascript"></option>
-							<option value="Typescript"></option>
-							<option value="React"></option>
-							<option value="Vue"></option>
-							<option value="Svelte"></option>
-							<option value="Nextjs"></option>
-							<option value="Nodejs"></option>
-							<option value="Go"></option>
-							<option value="Nestjs"></option>
-						</datalist>
-					</multi-input>
-					<button type="button" id="get">Get</button>
+				<div>
+					<table>
+						<tr>
+							<div class="multiSelect" th:fragment="fragment-multiSelect">
+								<label><h1>본인 스택:</h1></label>
+								<multi-input>
+									<input list="speakers">
+									<datalist id="speakers">
+										<option value="Java"></option>
+										<option value="Spring"></option>
+										<option value="Javascript"></option>
+										<option value="Typescript"></option>
+										<option value="React"></option>
+										<option value="Vue"></option>
+										<option value="Svelte"></option>
+										<option value="Nextjs"></option>
+										<option value="Nodejs"></option>
+										<option value="Go"></option>
+										<option value="Nestjs"></option>
+									</datalist>
+								</multi-input>
+								<button type="button" id="get">Get</button>
+							</div>
+					</table>
 				</div>
-		</table>
-	</div>
-	<input type="submit">
-</div>
-	<div class="matching">
+				<input type="submit">
+			</div>
+
+			<div class="u">
+
+				<div>
+					<table>
+						<tr>
+							<div class="multiSelect" th:fragment="fragment-multiSelect">
+								<label><h1>필요한 기술:</h1></label>
+								<multi-input>
+									<input list="speakers">
+									<datalist id="speakers">
+										<option value="Java"></option>
+										<option value="Spring"></option>
+										<option value="Javascript"></option>
+										<option value="Typescript"></option>
+										<option value="React"></option>
+										<option value="Vue"></option>
+										<option value="Svelte"></option>
+										<option value="Nextjs"></option>
+										<option value="Nodejs"></option>
+										<option value="Go"></option>
+										<option value="Nestjs"></option>
+									</datalist>
+								</multi-input>
+								<button type="button" id="get">Get</button>
+							</div>
+					</table>
+				</div>
+				<input type="submit">
+			</div>
+			<div class="matching">
 
 
-		<button type="button" class="matching" id="matching">매칭하기</button>
-	</div>
+				<button type="button" class="matching" id="matching">매칭하기</button>
+			</div>
 
-</section>
+	</section>
 </div>
 
 <!-- SECTION 2 CARDS END -->
@@ -232,50 +248,91 @@ space_dashboard게시판
 
 <!-- FOOTER START -->
 <div class="footer">
-<h1>경험을 통해 성장하는 IT사이드 프로젝트 플랫폼</h1>
-<div class="footer-left">
-<table>
-<tr>
-<td>About</td>
-<td>Service</td>
-<td>Blog</td>
-</tr>
-</table>
-</div>
+	<h1>경험을 통해 성장하는 IT사이드 프로젝트 플랫폼</h1>
+	<div class="footer-left">
+		<table>
+			<tr>
+				<td>About</td>
+				<td>Service</td>
+				<td>Blog</td>
+			</tr>
+		</table>
+	</div>
 
-<div class="footer-right">
-<table>
-<tr>
-<td>CONTACT</td>
-<td><p>Lorem ipsum dolor,  rem ipsum ratione? Iste, minima.</p></td>
-</tr>
-</table>
-</div>
+	<div class="footer-right">
+		<table>
+			<tr>
+				<td>CONTACT</td>
+				<td><p>Lorem ipsum dolor, rem ipsum ratione? Iste, minima.</p></td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 <!-- FOOTER END -->
 
-<script>
+<script th:inline="javascript" charset='UTF-8'>
+	function goToScroll(name) {
+		var location = document.querySelector("." + name).offsetTop;
+		window.scrollTo({top: location, behavior: 'smooth'});
+	}
 
-function goToScroll(name) {
-    var location = document.querySelector("." + name).offsetTop;
-    window.scrollTo({top: location, behavior: 'smooth'});
-}
-var mydiv = document.getElementById("mydiv");
-if (mydiv.addEventListener) {
-	// IE9, Chrome, Safari, Opera
-	mydiv.addEventListener("mousewheel", MouseWheelHandler, false);
-	// Firefox
-	mydiv.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-}
-// IE 6/7/8
-else
-	mydiv.attachEvent("onmousewheel", MouseWheelHandler);
-/* 
-if ([[${loginFail}]] != null){
-	alter([[${loginFail}]]);
-} */
 
+
+	/*------로그인인 밑 회원가입 부분*/
+		let modal = document.querySelector("#modal");
+		function openModal(){
+		modal.style.display="flex";
+	}
+		function closeModal(){
+		modal.style.display = "none";
+	}
+
+
+
+
+	<!--회원가입 아이디 중복체크 ajax-->
+
+	$('#idCheck').submit(function(event) {
+		event.preventDefault();
+		let queryString = $('#idCheck').serialize();
+		$.ajax({
+			type: 'post',
+			url: '/member/main',
+			data: queryString,
+			success: function (censorship) {
+				let availableId = censorship.loginIdCheck;
+				$('#useId').val(availableId);
+				alert(censorship.idCheck);
+
+				/* 사용가능한 아이디 일시 바로 적용*/
+				if(censorship.idCheck == '사용가능한 아이디 입니다.'){
+	                $('#modal').css('display', 'none');
+				}
+			},
+			error: function (error) {
+				alert("에러");
+			}
+
+		})
+	})
+
+	$('#join-form').submit(function(event) {
+		event.preventDefault();
+		let queryString = $('#join-form').serialize();
+		$.ajax({
+			type: 'post',
+            url: '/member/main',
+            data: queryString,
+            success: function (join) {
+				alert('회원가입 되셨습니다.')
+				$('#useId').val("");
+				$('#pw').val('');
+				$('#nickname').val('');
+			}
+
+		})
+	})
 
 
 </script>

@@ -90,7 +90,7 @@ space_dashboard게시판
                     <div class="card">
                         <span class="level">junior</span>
                         <img src="/images/PP.png" alt="my card" class='picture'>
-                        <h2>구ı얌둥ㅇı천Пг∩_∩♡〃</h2>
+                        <h2>[[${nickname}]]</h2>
                         <p>웹디자이너<br> Front End</p>
 
 
@@ -274,28 +274,13 @@ space_dashboard게시판
 
         <!-- FOOTER END -->
 
-        <script>
+ 		 <script th:inline="javascript" charset='UTF-8'>
 
             function goToScroll(name) {
                 var location = document.querySelector("." + name).offsetTop;
                 window.scrollTo({top: location, behavior: 'smooth'});
             }
-            var mydiv = document.getElementById("mydiv");
-            if (mydiv.addEventListener) {
-                // IE9, Chrome, Safari, Opera
-                mydiv.addEventListener("mousewheel", MouseWheelHandler, false);
-                // Firefox
-                mydiv.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-            }
-// IE 6/7/8
-            else
-                mydiv.attachEvent("onmousewheel", MouseWheelHandler);
 
-            
-
-
-        </script>
-        <script>
         $(function() {
 			$("#exePost").click(function() {
 				$.ajax({
