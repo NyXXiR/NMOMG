@@ -66,6 +66,7 @@ public class BoardController {
     model.addAttribute("boardList", boardList);
     model.addAttribute("page", page);
     model.addAttribute("pageVo", paginationVo);
+    model.addAttribute("category", category);
 
     return "board/page";
   }
