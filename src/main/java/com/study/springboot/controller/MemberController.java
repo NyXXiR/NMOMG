@@ -49,7 +49,7 @@ public class MemberController {
 
 
 	//로그인 포스트 맵핑
-	@PostMapping("/login")
+	@PostMapping("/member/login")
 	public String login(Member member, Model model, HttpSession session) {
 		//로그인시 검열기능 i=1이면 정상 로그인
 		int i = memberDao.memberLogin(member);
