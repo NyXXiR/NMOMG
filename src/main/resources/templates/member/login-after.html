@@ -212,7 +212,7 @@
                 let queryString = $('#join-form').serialize();
                 $.ajax({
                     type: 'post',
-                    url: '/member/main',
+                    url: '/member/home',
                     data: queryString,
                     success: function (join) {
                         alert('회원가입 되셨습니다.')
