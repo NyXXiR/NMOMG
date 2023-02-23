@@ -23,11 +23,9 @@ public interface BoardDao {
   public List<Board> boardListReverse(String Category);
 
   public List<Board> boardSearch(@Param("search") String search, @Param("type") String type);
-  
-  public List<Board>titleSearch
-  ( @Param("search") String search, 
-			@Param("type") String type);
-  
+
+  public List<Board> titleSearch(@Param("search") String search, @Param("type") String type);
+
   public int boardEdit(Board board);
 
   public int boardDel(int boardNum);
@@ -49,11 +47,13 @@ public interface BoardDao {
   public int getCount();
 
   public List<Board> getListPage(PaginationVo paginationVo);
-  
+
   public int commentCountUpdate(int boardNum);
-  
+
   public List<Board> commentCountSelectByNum(int boardNum);
-  
+
   public int commentCountPlus(int boardNum);
+
+  public int commentCountMinus(int boardNum);
 
 }

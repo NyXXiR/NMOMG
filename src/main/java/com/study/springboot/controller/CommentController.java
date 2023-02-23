@@ -46,6 +46,7 @@ public class CommentController {
     if (loginNum != null) {
       if (loginNum == memberNum) {
         int res = boardDao.commentDelete(commentNum);
+        boardDao.commentCountMinus(boardNum);
       } else {
         return "comment/notCertificated";
       }
