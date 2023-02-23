@@ -291,7 +291,7 @@
 
 
 			item.classList.add("active");
-			body.style.backgroundColor = bgColorsBody[index];
+			body.style.backgroundColor = bgColorsBody[home];
 			activeItem = item;
 			offsetMenuBorder(activeItem, menuBorder);
 
@@ -310,7 +310,7 @@
 
 		menuItems.forEach((item, index) => {
 
-			item.addEventListener("click", () => clickItem(item, index));
+			item.addEventListener("click", () => clickItem(item, home));
 
 		})
 
