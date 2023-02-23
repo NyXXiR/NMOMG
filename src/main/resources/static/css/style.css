@@ -79,13 +79,11 @@ body{
     padding: 0;
     margin: 0;
     height: 600vh;
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-color: #ffb457;
     transition: background-color var(--duration);
-
 }
 section{
-
     height: 100vh;
 }
 
@@ -424,12 +422,14 @@ section{
 
 
 .modalWrap {
-    width: 100%;
-    height: 100vh;
+    margin: 500px auto;
+    left: 450px;
+    width: 350px;
+    height: 200px;
     background: rgba(0, 0, 0, 0.4);
     display: none;
-    justify-content: center;
     position: absolute;
+
 }
 
 .modalContent {
@@ -448,4 +448,9 @@ section{
     width: 30px;
     height: 140px;
     background: black;
+}
+.board-button{
+    text-align: center;
+   margin-top: 30px;
+
 }

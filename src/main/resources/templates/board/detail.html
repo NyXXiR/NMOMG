@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
+<head >
 <meta charset="UTF-8">
-
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
 <title>상세보기 페이지</title>
 
 <style>
 * {
+	font-family: 'Poppins', sans-serif;
 	padding: 0;
 	margin: 0;
-	border: 1px solid black;
 }
-
+body{
+	background-color: #9898f9;
+}
+.detail{
+	border-radius: 6px;
+	margin: 100px auto;
+	background-color: red;
+	border: 1px solid #ffffff;
+	position: relative;
+	height:600px;
+	width:600px ;
+}
 .detail__largeFont {
+
 	font-size: 30px;
 }
-
-.detail__mediumFont {
-	font-size: 20px;
-}
-
-.detail__smallFont {
-	font-size: 10px;
-}
-
 .detail__info--item {
+
 	display: flex;
 }
 .detail__image{
-width:600x;
+width:600px;
 height:300px;
 object-fit:scale-down;
 }
-
+.detail-2{
+	border: 1px solid purple;
+	position: absolute;
+}
 </style>
 </head>
 
@@ -74,6 +83,7 @@ object-fit:scale-down;
 컨트롤러에서 session.getAttribute("memberNum") 받아서 비교
 -->
 
+		<div class="detail-2">
 		<button type="button"
 			th:onclick="detailUpdateAction(${detail.memberNum})">수정(구현예정)</button>
 		<button type="button"
@@ -130,6 +140,7 @@ object-fit:scale-down;
 
 	<div>
 		포함가능성있음: <span>모집인원</span> <span>예정일수</span>
+	</div>
 	</div>
 </body>
 
