@@ -48,7 +48,7 @@ public class MemberController {
 	
 	@GetMapping("/main")
 	public String getMain(){
-		return "/member/main";
+		return "member/main";
 	}
 
 
@@ -66,11 +66,11 @@ public class MemberController {
 			session.setAttribute("loginId", member.getLoginId());
 			System.out.println("qweqwe"+member.getNickname());
 			model.addAttribute("nickname",member.getNickname());
-			return "/member/login-after";
+			return "member/login-after";
 			
 		} else {
 			model.addAttribute("loginFail", "잘못된 정보입니다.");
-			return "/member/main";
+			return "member/main";
 		}
 	}
 
