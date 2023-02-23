@@ -6,19 +6,20 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-<!--new-->
+<!--font,icon,js-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
 	<script src="/https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--font,icon,js-->
 
-	<link th:href="@{/css/style.css}" rel="stylesheet">
-	<link href="/static/css/style.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}"/>
-<!--new-->
+<!--css-->
+	<link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet">
+	<link th:href="@{/css/Boardcss.css}" type="text/css" rel="stylesheet"/>
+<!--css-->
+
 
 </head>
 
@@ -59,7 +60,7 @@
 		</svg>
 	</div>
 </header>
-// <!-- SECTION 0 PRODUCTS SLIDE START-->
+ <!-- SECTION 0 PRODUCTS SLIDE START-->
 	<div class="a">
 		<section class="sec0">
 			<div class="a-top">
@@ -71,11 +72,11 @@
 		</section>
 	</div>
 
-// <!-- SECTION 0 PRODUCTS SLIDE END-->
+ <!-- SECTION 0 PRODUCTS SLIDE END-->
 
 
 
-// <!-- SECTION 1 LOGIN,JOIN START --><div class="b">
+ <!-- SECTION 1 LOGIN,JOIN START --><div class="b">
 
 <!-----------로그인---------->
 		<section class="sec1">
@@ -131,8 +132,18 @@
 								</label>
 							</td>
 						</tr>
-
 						<tr>
+							<td>
+								<label for=name>
+									<input id="nick" name="name" type="text" placeholder="닉네임">
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button id="val" type="submit" value="join">중복체크</button>
+							</td>
+
 							<td>
 								<button id="join" type="submit" value="join">join</button>
 							</td>
@@ -145,16 +156,17 @@
 			</div>
 		</section>
 	</div>
-			<!--   //중복체크를 진행할 모달창-->
+
 			<div id="modal" class="modalWrap">
 				<div class="modalContent">
 					<form id="idCheck" method="post" onsubmit="return false">
-						<input type="text" name="loginIdCheck"/>
-						<input type="submit"/>
+						<input type="text" name="loginIdCheck">
+						<input type="submit">
 						<button type="button" onclick="closeModal()">X</button>
 					</form>
 				</div>
 			</div>
+
 		</div>
 	</section>
 </div>
@@ -222,7 +234,13 @@
 					</tbody>
 
 				</table>
+				<div class="board-button">
+					<button type="button" onclick="location.href='/board/list?category=recruit'">recruit임시</button>
+					<button type="button" onclick="location.href='/board/list?category=apply'">apply임시</button>
+					<button type="button" onclick="location.href='/board/list'">전체임시</button>
+					<button type="button" onclick="location.href='/board/page'">페이지임시</button>
 
+				</div>
 				<div class="text-center">
 					<ul class="pagination">
 						<li><a href="#">1</a></li>
@@ -306,7 +324,7 @@
 		const menuBorder = menu.querySelector(".menu__border");
 		let activeItem = menu.querySelector(".active");
 
-		function clickItem(item, index) {
+		function clickItem(item, home) {
 
 			menu.style.removeProperty("--timeOut");
 
@@ -335,7 +353,7 @@
 
 		offsetMenuBorder(activeItem, menuBorder);
 
-		menuItems.forEach((item, index) => {
+		menuItems.forEach((item, home) => {
 
 			item.addEventListener("click", () => clickItem(item, home));
 
