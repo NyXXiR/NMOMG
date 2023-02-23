@@ -74,27 +74,26 @@
 <div id="pagination">
 	<!-- 맨 처음 페이지로 이동하는 버튼 -->
     <span th:if="${pageVo.startPage > 1}">
-        <a th:href="@{'/board/page?page=1'}" th:text="'처음&emsp;'"></a>
+        <a th:href="@{'/board/page?page=1'}+'&&category='+${category}"" th:text="'처음&emsp;'"></a>
     </span>
 
 	<!-- 이전 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isPrev == true}">
-    	<a th:href="@{'/board/page?page='+${pageVo.startPage - 1}}" th:text="'이전'"></a>
+    	<a th:href="@{'/board/page?page='+${pageVo.startPage - 1}}+'&&category='+${category}"" th:text="'이전'"></a>
     </span>
-
     <!-- 시퀀스 보여주는 값을 변경. -->
     <span th:each="pageNum : ${#numbers.sequence(pageVo.startPage, pageVo.endPage)}">
-        <a class="div2" th:href="@{'/board/page?page='+${pageNum}}" th:text="|&emsp;${pageNum}&emsp;|"></a>
+        <a class="div2" th:href="@{'/board/page?page='+${pageNum}+'&&category='+${category}" th:text="|&emsp;${pageNum}&emsp;|"></a>
     </span>
    
     <!-- 다음 블록으로 이동하는 버튼 -->
     <span th:if="${pageVo.isNext == true}">
-	<a th:href="@{'/board/page?page='+|${pageVo.endPage + 1}|}" th:text="'다음'"></a>
+	<a th:href="@{'/board/page?page='+|${pageVo.endPage + 1}|}+'&&category='+${category}"" th:text="'다음'"></a>
     </span>
 	
     <!-- 맨 뒷 페이지로 이동하는 버튼 -->
     <span th:if="${pageVo.endPage < pageVo.totalPageCount}">
-	<a th:href="@{'/board/page?page='+${pageVo.totalPageCount}}" th:text="|&emsp;끝|"></a>
+	<a th:href="@{'/board/page?page='+${pageVo.totalPageCount}}+'&&category='+${category}"" th:text="|&emsp;끝|"></a>
     </span>
 </div>
 </body>
