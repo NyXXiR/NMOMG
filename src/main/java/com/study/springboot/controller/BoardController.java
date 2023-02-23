@@ -160,7 +160,6 @@ public class BoardController {
           category1, startDate1, loginId1, commentCount1, stacks);
       boardList.add(boardList1);
     }
-    Collections.reverse(boardList);
     model.addAttribute("boardList", boardList);
 
     return "board/list";
