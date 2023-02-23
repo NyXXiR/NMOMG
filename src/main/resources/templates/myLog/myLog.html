@@ -1,5 +1,8 @@
-<html>
+<html lang="utf-8">
 
+<head>
+    <meta charset="utf-8" http-equiv="Content-Type" content="text/html" >
+</head>
 <div>
 <h4 th:text="${myLog}"></h4>
 
@@ -15,7 +18,6 @@
       
       <tr th:each="list : ${boardList}">
         <td th:text="${list.category}"></td>
-
         <td th:text="${list.title}"></td>
         <td th:text="${list.loginId}"></td>
         <td th:text="${list.date}"></td>
