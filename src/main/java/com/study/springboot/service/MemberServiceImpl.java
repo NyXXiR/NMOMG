@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService{
         }
 
         //조건문으로 아이디 중복 검열기능
-        if (checkId == 0 && loginIdCheck != null) {
+        if (checkId == 0 && loginIdCheck != null && loginIdCheck !="") {
             censorship.put("idCheck", "사용가능한 아이디 입니다.");
             censorship.put("loginIdCheck", loginIdCheck);
             return censorship;

@@ -177,13 +177,12 @@ section{
     height: 100vh;
     text-align: center;
 }
-.a .sec0{
-
-}
 .b {
     height: 100vh;
     text-align: center;
 }
+
+
 .c .sec2 {
     position: relative;
     display: flex;
@@ -253,6 +252,37 @@ section{
 .b input[type="checkbox"]:focus{
     border: 1px solid red;
 }
+.b-a{position: relative; height: 100vh; text-align: center;}
+.mem-a{
+    position:absolute;
+    width:101%;
+    margin:250px auto;
+    border: 1px solid red;
+ }
+.card-a{width:40%;margin:0 auto;}
+.myLog-a{margin: auto;
+    display: flex;}
+.myLog-a
+.level-a{}
+.edit-a{}
+.logOut-a{}
+
+#myPageList-a{}
+#exePost-a{}
+#exeLike-a{}
+#exeComment-a{}
+#showList-a{}
+.b-a h2{}
+
+
+
+
+
+
+
+
+
+
 .c section{
     max-height: 80%;
 }

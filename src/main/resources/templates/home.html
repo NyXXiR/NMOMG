@@ -6,19 +6,20 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-<!--new-->
+<!--font,icon,js-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
 	<script src="/https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--font,icon,js-->
 
-	<link th:href="@{/css/style.css}" rel="stylesheet">
-	<link href="/static/css/style.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}"/>
-<!--new-->
+<!--css-->
+	<link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet">
+	<link th:href="@{/css/Boardcss.css}" type="text/css" rel="stylesheet"/>
+<!--css-->
+
 
 </head>
 
@@ -59,26 +60,66 @@
 		</svg>
 	</div>
 </header>
-// <!-- SECTION 0 PRODUCTS SLIDE START-->
+ <!-- SECTION 0 PRODUCTS SLIDE START-->
 	<div class="a">
 		<section class="sec0">
 			<div class="a-top">
 				<h1>모집중인 프로젝트</h1>
 			</div>
-			<div class="a-bottom">
-				<h1>역대 프로젝트</h1>
+			<ul class="pages"></ul>
+		</div>
+
+		<script>
+			$("#rolling").rolling(1200, 600, {autoscroll: 1, delay: 1500});
+		</script>
+	</section>
+</div>
+
+<!-- SECTION 0 PRODUCTS SLIDE END-->
+
+
+<!-- SECTION 1 LOGIN,JOIN START -->
+<div class="b">
+	<section class="sec1">
+		<div class="mem">
+
+			<div class="login">
+				<div class="login-wrapper">
+
+					<form method="post" action="/member/login" id="login-form">
+						<input type="text" name="loginId" placeholder="Email" id="loginId">
+						<input type="password" name="password" placeholder="Password">
+						<label for="remember-check">
+							<input type="checkbox" id="remember-check">아이디 저장하기
+						</label>
+						<input id="submitId" type="submit" value="Login">
+					</form>
+					<ul>
+						<li> 이메일 찾기</li>
+						<li><span>|</span>비밀번호 찾기</li>
+
+					</ul>
+					<div class="api"><img src="/images/api.jpg" alt=""></div>
+				</div>
+
+				<div class="a-bottom">
+					<h1>역대 프로젝트</h1>
+
 			</div>
 		</section>
 	</div>
 
-// <!-- SECTION 0 PRODUCTS SLIDE END-->
+ <!-- SECTION 0 PRODUCTS SLIDE END-->
 
 
 
-// <!-- SECTION 1 LOGIN,JOIN START --><div class="b">
+ <!-- SECTION 1 LOGIN,JOIN START -->
+
+ <div class="b">
+<!-----------로그인---------->
 		<section class="sec1">
 			<div class="b-l">
-				<form method="post" action="/members/new" id="login-form">
+				<form method="post" action = "/login" id="login-form">
 					<table>
 						<tr>
 							<td>
@@ -110,13 +151,14 @@
 					</table>
 				</form>
 			</div>
+			<!--------------------회원가입----------------->
 			<div class="b-r">
-				<form  method = "post" action="/members/new" id="join-form">
+				<form  method = "post" id="join-form">
 					<table>
 						<tr>
 							<td>
-								<label for=name>
-									<input id="name" name="name" type="text" placeholder="회원가입 아이디">
+								<label for=useId>
+									<input id="useId" name="loginId" type="text" placeholder="회원가입 아이디">
 								</label>
 							</td>
 						</tr>
@@ -124,37 +166,42 @@
 						<tr>
 							<td>
 								<label for=pw>
-									<input id="pw" name="pw" type="password" placeholder="비밀번호">
+									<input id="pw" name="password" type="password" placeholder="비밀번호">
 								</label>
 							</td>
 						</tr>
-
 						<tr>
+							<td>
+								<label for=name>
+									<input id="nick" name="nickname" type="text" placeholder="닉네임">
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button type="button" onclick="openModal()">중복체크</button>
+							</td>
+
 							<td>
 								<button id="join" type="submit" value="join">join</button>
 							</td>
 						</tr>
-
-
-
 					</table>
 				</form>
 			</div>
-		</section>
-	</div>
-			<!--   //중복체크를 진행할 모달창-->
 			<div id="modal" class="modalWrap">
 				<div class="modalContent">
 					<form id="idCheck" method="post" onsubmit="return false">
-						<input type="text" name="loginIdCheck"/>
-						<input type="submit"/>
+						<input type="text" name="loginIdCheck" placeholder="사용하실 아이디를 입력해주세요.">
+						<input type="submit">
 						<button type="button" onclick="closeModal()">X</button>
 					</form>
 				</div>
 			</div>
-		</div>
-	</section>
-</div>
+		</section>
+	</div>
+
+
 <!-- SECTION1 LOGIN,JOIN END -->
 
 
@@ -219,7 +266,13 @@
 					</tbody>
 
 				</table>
+				<div class="board-button">
+					<button type="button" onclick="location.href='/board/list?category=recruit'">recruit임시</button>
+					<button type="button" onclick="location.href='/board/list?category=apply'">apply임시</button>
+					<button type="button" onclick="location.href='/board/list'">전체임시</button>
+					<button type="button" onclick="location.href='/board/page'">페이지임시</button>
 
+				</div>
 				<div class="text-center">
 					<ul class="pagination">
 						<li><a href="#">1</a></li>
@@ -239,7 +292,7 @@
 
 <script th:inline="javascript" charset='UTF-8' defer>
 
-	/*------로그인인 밑 회원가입 부분*/
+	/*------로그인인 밑 회원가입 부분----------*/
 		let modal = document.querySelector("#modal");
 		function openModal(){
 		modal.style.display="flex";
@@ -255,7 +308,7 @@
 		let queryString = $('#idCheck').serialize();
 		$.ajax({
 			type: 'post',
-			url: '/member/main',
+			url: '/home',
 			data: queryString,
 			success: function (censorship) {
 				let availableId = censorship.loginIdCheck;
@@ -278,7 +331,7 @@
 		let queryString = $('#join-form').serialize();
 		$.ajax({
 			type: 'post',
-            url: '/member/main',
+            url: '/home',
             data: queryString,
             success: function (join) {
 				alert('회원가입 되셨습니다.')
@@ -291,11 +344,36 @@
 	})
 </script>
 
+<script type="text/javascript">
+
+	$('#login-form').submit(function(e){
+		if($('#remember-check').is(":checked")==true){
+			localStorage.setItem('loginId', $('#loginId').val());
+		}
+		
+	});
+	
+	var loginId= document.querySelector("#loginId");
+	var storageCheck= localStorage.getItem('loginId');
+	console.log(loginId);
+	
+		if(!storageCheck){
+		loginId.value="";
+		}else{
+		loginId.value=storageCheck;
+	}
+	
+	
+/* 	$(document).ready(function(){
+		$('#loginId').val()=localStorage.getItem('loginId');
+	}); */
+
+
+</script>
 <script th:inline="javascript" defer>
 
 
 		"use strict";
-
 		const body = document.body;
 		const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
 		const menu = body.querySelector(".menu");
@@ -303,7 +381,7 @@
 		const menuBorder = menu.querySelector(".menu__border");
 		let activeItem = menu.querySelector(".active");
 
-		function clickItem(item, index) {
+		function clickItem(item, home) {
 
 			menu.style.removeProperty("--timeOut");
 
@@ -332,7 +410,7 @@
 
 		offsetMenuBorder(activeItem, menuBorder);
 
-		menuItems.forEach((item, index) => {
+		menuItems.forEach((item, home) => {
 
 			item.addEventListener("click", () => clickItem(item, home));
 
@@ -351,17 +429,6 @@
 			var location = document.querySelector("." + name).offsetTop;
 			window.scrollTo({top: location, behavior: 'smooth'});
 		}
-		var mydiv = document.getElementById("mydiv");
-		if (mydiv.addEventListener) {
-			// IE9, Chrome, Safari, Opera
-			mydiv.addEventListener("mousewheel", MouseWheelHandler, false);
-			// Firefox
-			mydiv.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-		}
-// IE 6/7/8
-		else
-			mydiv.attachEvent("onmousewheel", MouseWheelHandler);
-
 	</script>
 </body>
 </html>
