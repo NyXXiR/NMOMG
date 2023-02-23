@@ -46,6 +46,11 @@ public class MemberController {
 		return join;
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "home";
+	}
 
 
 	//로그인 포스트 맵핑
