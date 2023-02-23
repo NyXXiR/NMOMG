@@ -285,5 +285,37 @@
                 window.scrollTo({top: location, behavior: 'smooth'});
             }
         </script>
+        
+        <script th:inline="javascript" charset='UTF-8'>
+
+        $(function() {
+         $("#exePost-a").click(function() {
+            $.ajax({
+               url : '/myLog/myWrite',
+               success : function(x) {
+                   $('#showList-a').html(x); 
+               /*    $('#showList').load("aa.html .aa") */
+               }
+            })
+         });
+         $("#exeLike-a").click(function() {
+            $.ajax({
+               url : '/myLog/myLike',
+               success : function(x) {
+                  $('#showList-a').html(x);
+               }
+            })
+         });
+         $("#exeComment-a").click(function() {
+            $.ajax({
+               url : '/myLog/myComment',
+               success : function(x) {
+                  $('#showList-a').html(x);
+               }
+            })
+         });
+      });
+
+        </script>
     </body>
 </html>
