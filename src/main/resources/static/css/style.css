@@ -255,7 +255,7 @@ section{
 .b-a{position: relative; height: 100vh; text-align: center;}
 .mem-a{
     position:absolute;
-    width:100%;
+    width:101%;
     margin:250px auto;
     border: 1px solid red;
  }
