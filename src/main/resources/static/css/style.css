@@ -451,27 +451,30 @@ section{
 
 
 
+
 .modalWrap {
-    margin: 500px auto;
-    left: 450px;
+    left: 47%;
+ 	top: 60%;
     width: 350px;
-    height: 200px;
+    height: 100px;
     background: rgba(0, 0, 0, 0.4);
     display: none;
-    position: absolute;
+    position: fixed;
+ 
 
 }
 
 .modalContent {
-    background: white;
+   
     width: 350px;
-    height: 200px;
+    height: 100px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 0 15px black;
 
 
 }
+
 
 .active {
 
