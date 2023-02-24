@@ -612,3 +612,10 @@ section{
         margin: 0 auto;
     }
 }
+#list-container{
+
+}
+#list-container img{
+    width: 30px;
+    height: 40px;
+}

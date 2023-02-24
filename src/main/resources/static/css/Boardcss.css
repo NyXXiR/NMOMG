@@ -22,3 +22,9 @@
 .container{
     width: 100%;
 }
+table{
+    height: 600px;
+margin:0 auto;}
+table, tr, td{
+    border:none;
+}
