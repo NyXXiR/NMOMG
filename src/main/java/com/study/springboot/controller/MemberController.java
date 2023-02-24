@@ -61,6 +61,8 @@ public class MemberController {
 	public String login(Member member, Model model, HttpSession session) {
 		//로그인시 검열기능 i=1이면 정상 로그인
 		int i = memberDao.memberLogin(member);
+		
+		System.out.println("로그인 포스트"+member);
 	
 		//정상 로그인 정보
 		if (i == 1) {
@@ -105,6 +107,27 @@ public class MemberController {
 		return null;
 	
 	}
+	
+	   //개인정보 수정화면에서 수정하기 버튼을 누르면 동작하는 포스트 방식
+	   @PostMapping("/member/memberUpdate")
+	   public String PostMemberUpdate(Member member, MultipartFile file, Model model, HttpSession session) {
+	      
+	      Member memberInfo =   memberSer.updateMember(member, file, session);
+	      model.addAttribute("memberInfo",memberInfo);
+	      return "redirect:login-after";
+	   
+	   }
+	   
+	   //개인정보 수정버튼 누르면 수정화면으로 갈 수 있게하는 겟 방식
+	   @GetMapping("/member/memberUpdate")
+	   public String getMemberUpdate(Model model, HttpSession session) {
+	      int memberNum = (int)session.getAttribute("memberNum");
+	      
+	      Member member1= memberDao.memberInfo(memberNum);
+	      model.addAttribute("member",member1 );
+	      model.addAttribute("loginId", session.getAttribute("loginId"));
+	      return "member/memberUpdate";
+	   }
 
 
 }
