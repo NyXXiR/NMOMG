@@ -323,7 +323,7 @@ section{
 
 .c .board-button{
     text-align: center;
-    padding-top: 25%;
+    margin-top: 25%;
     transform: translate(20px, 0);
 
 }
