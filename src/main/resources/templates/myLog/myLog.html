@@ -4,15 +4,21 @@
 		body table{
 			margin: 0 auto;
 		}
+		.kop {
+		height:200px;
+	
+		}
+		#pagination{
+		z-index:999999;
+		display:inline-block;
+		}
+		
 	</style>
 </head>
 <div>
-
 	<div id="page">
-
 		<h4 th:text="${myLog}"></h4>
-
-		<table border="1">
+		<table class="kop " border="1">
 			<tr>
 				<th>보드넘</th>
 				<th>카테고리</th>
@@ -21,11 +27,10 @@
 				<th>작성일자</th>
 				<th>시작일자</th>
 			</tr>
-
 			<tr th:each="list : ${boardList}">
-				<td th:text="${list.boardNum}"></td>
+				<td ><a th:href="@{/board/detail(boardNum=${list.boardNum})}" th:text="${list.boardNum}"></a></td>
 				<td th:text="${list.category}"></td>
-				<td th:text="${list.title}"></td>
+				<td ><a th:href="@{/board/detail(boardNum=${list.boardNum})}" th:text="${list.title}"></a></td>
 				<td th:text="${list.loginId}"></td>
 				<td th:text="${list.date}"></td>
 				<td th:text="${list.startDate}"></td>
