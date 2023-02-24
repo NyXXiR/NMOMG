@@ -36,7 +36,7 @@
           </ul>
         </td>
         <td><img class="board__image"
-					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/alt.jpg'"></td>
+					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/altLogo.jpg'"></td>
              <td><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a></td>
 
         <td th:text="${board.memberNum}"></td>

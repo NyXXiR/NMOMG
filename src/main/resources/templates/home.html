@@ -68,6 +68,50 @@
 			</div>
 			<div class="a-bottom">
 				<h1>역대 프로젝트</h1>
+				<div id="slider">
+					<input type="radio" name="slider" id="slide1" checked>
+					<input type="radio" name="slider" id="slide2">
+					<input type="radio" name="slider" id="slide3">
+					<input type="radio" name="slider" id="slide4">
+					<div id="slides">
+						<div id="overflow">
+							<div class="inner">
+								<div class="slide slide_1">
+									<div class="slide-content">
+										<h2>Slide 1</h2>
+									</div>
+								</div>
+								<div class="slide slide_2">
+									<div class="slide-content">
+										<h2>Slide 2</h2>
+									</div>
+								</div>
+								<div class="slide slide_3">
+									<div class="slide-content">
+										<h2>Slide 3</h2>
+									</div>
+								</div>
+								<div class="slide slide_4">
+									<div class="slide-content">
+										<h2>Slide 4</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="controls">
+						<label for="slide1"></label>
+						<label for="slide2"></label>
+						<label for="slide3"></label>
+						<label for="slide4"></label>
+					</div>
+					<div id="bullets">
+						<label for="slide1"></label>
+						<label for="slide2"></label>
+						<label for="slide3"></label>
+						<label for="slide4"></label>
+					</div>
+				</div>
 			</div>
 		</section>
 	</div>
@@ -175,131 +219,16 @@
 
 <!-- SECTION 2 CARDS END -->
 
-
 <!-- SECTION3 MATCHING START -->
 	<div class="c">
-		<section class="sec2">
-
-			<div class="container">
-				<table class="table table-striped" border="1">
-					<thead>
-						<tr>
-							<th>no</th>
-							<th>카테고리</th>
-							<th>스택</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>조회수</th>
-						</tr>
-					</thead>
-
-
-					<tbody>
-						<tr th:each="board : ${boardList}">
-							<td>
-								<a
-										th:href="@{/board/detail(boardNum=${board.boardNum})}"
-										th:text="${board.boardNum}"
-								></a>
-							</td>
-							<td th:text="${board.category}"></td>
-							<td>
-								<ul th:each="aa : ${board.stack}" >
-									<li>[[${aa}]]</li>
-								</ul>
-							</td>
-							<td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a></td>
-							<td th:text="${board.memberNum}"></td>
-							<td th:text="${board.date}"></td>
-							<td th:text="${board.startDate}"></td>
-						</tr>
-					</tbody>
-
-				</table>
-				<div class="text-center">
-					<ul class="pagination">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-					</ul>
-				</div>
-
-
-
-
-				<table class="table table-striped" border="1">
-				<thead>
-					<tr>
-						<th>no</th>
-						<th>카테고리</th>
-						<th>스택</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-				<div class="searchWrite">
-					<div class="search">
-						<form action="/board/list" method="get" >
-							<select name="type" >
-								<option value="S">stack</option>
-								<option value="N">title</option>
-							</select>
-							<input type="text" name="search" />
-							<input type="submit" value="검색" />
-						</form>
-					</div>
-					<label class="write-label"><a href="write">글쓰기</a>
-					</label>
-
-				</div>
-
-				<tbody>
-					<tr th:each="board : ${boardList}">
-						<td>
-							<a
-									th:href="@{/board/detail(boardNum=${board.boardNum})}"
-									th:text="${board.boardNum}"
-							></a>
-						</td>
-						<td th:text="${board.category}"></td>
-						<td>
-							<ul th:each="aa : ${board.stack}" >
-								<li>[[${aa}]]</li>
-							</ul>
-						</td>
-						<td ><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a></td>
-						<td th:text="${board.memberNum}"></td>
-						<td th:text="${board.date}"></td>
-						<td th:text="${board.startDate}"></td>
-					</tr>
-				</tbody>
-
-			</table>
-
-
-				<div class="text-center">
-					<ul class="pagination">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-					</ul>
-				</div>
-				<div class="board-button">
-					<button type="button" onclick="location.href='/board/list?category=recruit'">recruit임시</button>
-					<button type="button" onclick="location.href='/board/list?category=apply'">apply임시</button>
-					<button type="button" onclick="location.href='/board/list'">전체임시</button>
+		
+		<div class="board-button">
+					<button type="button" onclick="location.href='/board/list?category=recruit'">구인 가기</button>
+					<button type="button" onclick="location.href='/board/list?category=apply'">구직 가기</button>
+					<button type="button" onclick="location.href='/board/list'">전체</button>
 					<button type="button" onclick="location.href='/board/page'">페이지임시</button>
 
 				</div>
-			</div>
-		</section>
 	</div>
 <!-- SECTION3 MATCHING END -->
 
@@ -424,26 +353,28 @@
 
 	</script>
 
-<script type="text/javascript">
-
-$('#login-form').submit(function(e){
-    if($('#remember-check').is(":checked")==true){
-       localStorage.setItem('loginId', $('#loginId').val());
-    }
-    
- });
- 
- var loginId= document.querySelector("#loginId");
- var storageCheck= localStorage.getItem('loginId');
- 
- console.log(loginId);
- 
-    if(!storageCheck){
-    loginId.value="";
-    }else{
-    loginId.value=storageCheck;
- }
-</script>
+	<script type="text/javascript">
+	
+	$('#login-form').submit(function(e){
+	    if($('#remember-check').is(":checked")==true){
+	       localStorage.setItem('loginId', $('#loginId').val());
+	    }else {
+	    	localStorage.setItem('loginId', "");
+	    }
+	    
+	 });
+	 
+	 var loginId= document.querySelector("#loginId");
+	 var storageCheck= localStorage.getItem('loginId');
+	 
+	 console.log(loginId);
+	 
+	    if(!storageCheck){
+	    loginId.value="";
+	    }else{
+	    loginId.value=storageCheck;
+	 }
+	</script>
 
 
 
