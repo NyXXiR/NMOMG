@@ -67,11 +67,11 @@ public class MemberController {
 			
 			System.out.println("가져온 닉네임아이디 "+memberNickname);
 			model.addAttribute("nickname",memberNickname);
-			return "member/login-after";
+			return "redirect:login-after";
 			
 		} else {
 			model.addAttribute("loginFail", "잘못된 정보입니다.");
-			return "member/login-after";
+			return "redirect:login-after";
 		}
 	}
 	
@@ -81,7 +81,7 @@ public class MemberController {
 		
 		Member memberInfo =	memberSer.updateMember(member, file, session);
 		model.addAttribute("memberInfo",memberInfo);
-		return "redirect:member/login-after";
+		return "redirect:login-after";
 	
 	}
 	

@@ -10,6 +10,8 @@
       <form action="/member/memberUpdate" method="post" enctype="multipart/form-data">
       	<input type="file" name ="file"/>
         <input type="text" th:value="${loginId}" readonly/>
+        
+        <input type="hidden" name="memberNum" th:value="${member.memberNum}">
         <label for="nickname" >변경하실 별명</label><input name="nickname" id ="nickname" type="text" th:value="${member.nickname}"/>
         <label for="pw">변경하실 비밀번호</label> <input name ="password" id="pw" type="password"/>
         <input type="submit" value="수정하기"/>

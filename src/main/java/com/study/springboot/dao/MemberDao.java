@@ -22,9 +22,13 @@ public interface MemberDao {
 	public int memberNum(Member member);
 	
 	//닉네임찾기 => 마이페이지에서 사용
-	public String memberNickname(String loginId);
+	public String findByNicknameByLoginId(String loginId);
 	
 	//loginId로 사용자 모든 정보 찾기
 	public Member selectAllByMemberNum(int fileNum);
+	
+	//memberNum으로 개인정보 수정
+	public Integer updateByMemberNum(Member member);
+	
 	
 }

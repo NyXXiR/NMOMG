@@ -23,12 +23,14 @@ public class MyLogController {
 	
 	
 	@GetMapping("/member/login-after")
-	public String list(Model model,int memberNum) {
+	public String list(Model model, HttpSession session) {
 		//List<Board> list = myLogDao.myLogList(memberNum);
 		//model.addAttribute("list",list);
 
 		//log.info("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"+list.get(0).getTitle());
 		
+		Integer memberNum = (Integer)session.getAttribute("memberNum");
+		model.addAttribute("memberNum",memberNum);
 		return "member/login-after";
 	}
 		
