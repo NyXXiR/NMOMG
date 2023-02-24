@@ -24,6 +24,7 @@
 </head>
 
 <body>
+
 	<header>
 	<menu class="menu">
 		<button onclick="goToScroll('a')" class="menu__item active" style="--bgColorItem: #ff8c00;" >
@@ -230,9 +231,8 @@
 
 				</div>
 	</div>
+	
 <!-- SECTION3 MATCHING END -->
-
-
 
 
 <script th:inline="javascript" charset='UTF-8' defer>
@@ -247,8 +247,7 @@
 		modal.style.display = "none";
 	}
 
-	<!--회원가입 아이디 중복체크 ajax-->
-
+	//회원가입 아이디 중복체크 ajax
 	$('#idCheck').submit(function(event) {
 		event.preventDefault();
 		let queryString = $('#idCheck').serialize();

@@ -10,12 +10,10 @@ import jakarta.servlet.http.HttpSession;
 public class HomeController{
     @GetMapping("/")
     public String index(HttpSession session) {
-    	if(session.getAttribute("memberNum") != null) {
-    		return "member/login-after";
-    	} else {
-        return "home";
+    
+        return "page/home";
     	}
-    }
+    
     
     @GetMapping("/home")
     public String home(HttpSession session) {
