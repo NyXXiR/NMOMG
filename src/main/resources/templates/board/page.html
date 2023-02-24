@@ -5,39 +5,28 @@
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}" />
 	<title>Insert title here</title>
-	<style>
-		table,
-		th,
-		td {
-			border: 1px solid black;
-			border-collapse: collapse;
-			text-align: center;
-		}
-
-		table {
-			width: 100%;
-		}
-
-		table a {
-			color: blue;
-		}
-
-		ul {
-			list-style: none;
-			padding-left: 0px;
-		}
-
-		.board__image {
-			width: 120px;
-			height: 80px;
-			object-fit: scale-down;
-		}
-	</style>
+	<link rel = "stylesheet" href = "/css/style.css" th:href="@{/css/style.css}">
 </head>
 
+
+<style>
+	 td{
+		height: 2px;
+		border: 1px solid red;
+	}
+#pagination{
+	width: 50%;
+
+	margin:0 auto;
+}
+.write{
+	float: right;
+
+}
+</style>
 <body>
 
-	<a href="write">글쓰기</a>
+
 	<table class="table table-striped" border="1">
 		<thead>
 			<tr>
@@ -98,8 +87,9 @@
 		<!-- 맨 뒷 페이지로 이동하는 버튼 -->
 		<span th:if="${pageVo.endPage < pageVo.totalPageCount}">
 			<a th:href="@{'/board/page?page='+${pageVo.totalPageCount}+|&&category=${category}|}"
-				th:text="|&emsp;끝|"></a>
+				th:text="|&emsp;마지막페이지|"></a>
 		</span>
+		<a href="write" class="write">글쓰기</a>
 	</div>
 </body>
 
