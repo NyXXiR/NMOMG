@@ -309,26 +309,28 @@
 
 	</script>
 
-<script type="text/javascript">
-
-$('#login-form').submit(function(e){
-    if($('#remember-check').is(":checked")==true){
-       localStorage.setItem('loginId', $('#loginId').val());
-    }
-    
- });
- 
- var loginId= document.querySelector("#loginId");
- var storageCheck= localStorage.getItem('loginId');
- 
- console.log(loginId);
- 
-    if(!storageCheck){
-    loginId.value="";
-    }else{
-    loginId.value=storageCheck;
- }
-</script>
+	<script type="text/javascript">
+	
+	$('#login-form').submit(function(e){
+	    if($('#remember-check').is(":checked")==true){
+	       localStorage.setItem('loginId', $('#loginId').val());
+	    }else {
+	    	localStorage.setItem('loginId', "");
+	    }
+	    
+	 });
+	 
+	 var loginId= document.querySelector("#loginId");
+	 var storageCheck= localStorage.getItem('loginId');
+	 
+	 console.log(loginId);
+	 
+	    if(!storageCheck){
+	    loginId.value="";
+	    }else{
+	    loginId.value=storageCheck;
+	 }
+	</script>
 
 
 
