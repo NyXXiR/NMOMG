@@ -13,13 +13,13 @@
 
 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-8">
         <!--content-->
         <div layout:fragment="content">공통 레이아웃</div>
 
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-4">
         <!-- right sidebar-->
         <th:block th:replace="~{fragments/sidebar :: sidebarFragment}"></th:block>
       </div>
@@ -34,4 +34,6 @@
 
 </body>
 <th:block layout:fragment="script">
+
+</th:block>
 </html>

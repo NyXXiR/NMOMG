@@ -52,13 +52,13 @@ VALUES
 
 		<choose>
 			<when test="category=='recruit'">
-				and b.category ='recruit' order by boardNum desc limit 15 offset 0
+				and b.category ='recruit' order by boardNum desc limit 10 offset 0
 			</when>
 			<when test="category=='apply'">
-				and b.category='apply' order by boardNum desc limit 15 offset 0
+				and b.category='apply' order by boardNum desc limit 10 offset 0
 			</when>
 			<otherwise>
-				order by boardNum desc limit 15 offset 0
+				order by boardNum desc limit 10 offset 0
 			</otherwise>
 		</choose>
 	</select>
@@ -84,7 +84,7 @@ FROM board b, member m, stack s where b.memberNum=m.memberNum and b.boardNum = s
 
 	<choose>
 		<when test="type == 'S'.toString()">
-			 and s.stack like CONCAT('%${search}%') order by boardNum desc limit 15 offset 0
+			 and s.stack like CONCAT('%${search}%') order by boardNum desc limit 10 offset 0
 		</when>
 		
 		</choose>
@@ -97,7 +97,7 @@ FROM board b, member m, stack s where b.memberNum=m.memberNum and b.boardNum = s
 		FROM board b, member m where b.memberNum=m.memberNum 
 		<choose>
 		<when test="type == 'N'.toString()">
-			and	b.title like CONCAT('%${search}%') order by boardNum desc limit 15 offset 0
+			and	b.title like CONCAT('%${search}%') order by boardNum desc limit 10 offset 0
 		</when>
 		</choose>
 	</select>

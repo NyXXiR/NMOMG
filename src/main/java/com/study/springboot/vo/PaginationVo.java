@@ -17,8 +17,8 @@ public class PaginationVo {
   // 카테고리로 나누기 위한 criteria 추가
   private String category;
 
-  private int rowCount = 5; // 한 페이지 당 보여줄 게시물 개수
-  private int pageCount = 5; // 한 블럭에 몇 개의 페이지 개수
+  private int rowCount = 20; // 한 페이지 당 보여줄 게시물 개수
+  private int pageCount = 9; // 한 블럭에 몇 개의 페이지 개수
   private int totalCount; // 총 게시물 개수
   private int page; // 현재 페이지
 
