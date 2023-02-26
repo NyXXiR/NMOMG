@@ -1,92 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}" />
-    <title>Insert title here</title>
+<html>
 
-  </head>
-  <style>
-		table,
-		th,
-		td {
-			border: 1px solid black;
-			border-collapse: collapse;
-			text-align: center;
-		}
+<th:block layout:fragment="css">
+	<style>
+.stackList {
+	list-style: none;
+	display: inline-block;
+}
 
-		table {
-			width: 100%;
-		}
+.container-stack {
+	display: inline;
+}
 
-		table a {
-			color: blue;
-		}
+.boardList-eachOne {
+	display: flex;
+	align-items: center;
+}
+</style>
+</th:block>
+<h2>게시판제목</h2>
 
-		ul {
-			list-style: none;
-			padding-left: 0px;
-		}
+<div class="container-boardList">
+	<span class="boardList-eachOne" th:each="board: ${boardList}"> <span class="container-stack">
+			<div th:each="stacks : ${board.stack}">
+				<div class="stackList">[[${stacks}]]</div>
+			</div>
+	</span> <a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a> <span th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></span>
+	</span>
 
-		.board__image {
-			width: 120px;
-			height: 80px;
-			object-fit: scale-down;
-		}
-	</style>
-  <body>
-  <div class="container">
-    <table class="table table-striped" border="1">
-    <thead>
-      <tr>
-        <th>글번호</th>
-        <th>카테고리</th>
-        <th>스택</th>
-        <th>썸네일</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-        <th>시작일자</th>
-      </tr>
-      </thead>
-	<tbody>
-      <tr th:each="board : ${boardList}">
-        <td>
-          <a
-            th:href="@{/board/detail(boardNum=${board.boardNum})}"
-            th:text="${board.boardNum}"
-          ></a>
-        </td>
-        <td th:text="${board.category}"></td>
-        <td>
-          <ul th:each="stacks : ${board.stack}" >
-            <li>[[${stacks}]]</li>
-          </ul>
-        </td>
-        <td><img class="board__image"
-					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/altLogo.jpg'"></td>
-             <td><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a></td>
-
-        <td th:text="${board.memberNum}"></td>
-        <td th:text="${board.date}"></td>
-        <td th:text="${board.startDate}"></td>
-      </tr>
-      </tbody>
-     
-    </table>
-
-    <form action="/board/list"  method="get">
-      <select name="type">
-
-        <option value="S">stack</option>
-        <option value="N">title</option>
-      </select>
-      <input type="text" name="search" />
-      <input type="submit" value="검색" />
-    </form>
-
-    <a href="write">글쓰기</a>
-    
-   </div>
-  </body>
+</div>
 </html>
