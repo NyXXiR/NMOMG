@@ -1,5 +1,13 @@
 
+var loginCheck= document.querySelector(".login-sessionCheck").value;
+var loginCheckSuccess= document.querySelector(".login-sessionCheck-exist");
+var loginCheckFail=document.querySelector(".login-sessionCheck-notExist");
 
+if(loginCheck!=null){
+	loginCheckFail.style.display="none"
+}else{
+	loginCheckSuccess.style.display="none"
+}
 
 
 //시작: 사이드바에 들어갈 게시판 리스트
