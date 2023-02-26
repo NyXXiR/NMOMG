@@ -3,10 +3,12 @@ var loginCheck= document.querySelector(".login-sessionCheck").value;
 var loginCheckSuccess= document.querySelector(".login-sessionCheck-exist");
 var loginCheckFail=document.querySelector(".login-sessionCheck-notExist");
 
-if(loginCheck!=null){
-	loginCheckFail.style.display="none"
+if(loginCheck===("")){
+		loginCheckSuccess.style.display="none"
+
 }else{
-	loginCheckSuccess.style.display="none"
+		loginCheckFail.style.display="none"
+
 }
 
 

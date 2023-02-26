@@ -19,7 +19,6 @@ public class HomeController {
 
   @GetMapping("/")
   public String index(HttpSession session) {
-    log.info("_____" + session.getAttribute("memberNum"));
 
 
     return "redirect:board/page";
