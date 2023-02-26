@@ -5,15 +5,37 @@
 
   <!--headerFragment 선언-->
   <div th:fragment="headerFragment">
-    <h1>Header Section</h1>
     
     <div class="fragment-header">
-    <div class="fragment-header-logo">
+
+    <div class="fragment-header-logo" onclick="location.href='/';">
+
     </div>
+    <div style="position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%)">너만오면고 - 토이 프로젝트 구인/구직 커뮤니티</div>
     
+    <div class="fragment-header-login">
+   <a href=#>로그인</a>
+   <a href=#>회원가입</a>
+   <a href=#>+@</a>
+    </div>
     </div>
    
     <h2> navbar section</h2>
+    
+    <div class="navbar">
+    <a href="/board/list">리스트</a>
+    <a href="/board/page">페이지</a>
+    <a href="/home">구버전으로</a>
+    </div>
+    
+    <div class="image-main" style="display:flex; justify-content:center">
+<img src="/images/logo.jpg" style="width:500px">
+
+</div>
+    
   </div>
   
 

@@ -7,12 +7,15 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 
+//일단 page를 홈으로 삼고 리다이렉트한다(게시판이 많이 없으므로)
 public class HomeController{
     @GetMapping("/")
     public String index(HttpSession session) {
     
-        return "page/home";
+        return "redirect:board/page";
     	}
+    
+  
     
     
     @GetMapping("/home")
@@ -20,7 +23,7 @@ public class HomeController{
     	if(session.getAttribute("memberNum") != null) {
     		return "member/login-after";
     	} else {
-        return "home";
+        return "home_backup2";
     	}
     }
 }

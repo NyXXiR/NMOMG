@@ -1,7 +1,21 @@
+
 * {
 	border: 1px solid black;
-  
 }
+
+
+ /*header part */
+ .navbar{
+ display:block;
+
+ }
+
+.fragment-header{
+	display:flex;
+	align-items: center;
+    justify-content: space-between;
+}
+
 .fragment-header-logo{
 background-image:url('/images/altLogo.jpg');
 background-size:cover;
@@ -9,6 +23,9 @@ width:300px;
 height:100px;
 }
 
+
+
+/* header end */
 
 .container-sidebar{
 	object-fit:contain;
@@ -22,3 +39,6 @@ height:300px;
 box-sizing:border-box;
 object-fit:contain;
 }
+
+
+
