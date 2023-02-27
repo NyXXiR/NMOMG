@@ -1,22 +1,13 @@
 package com.study.springboot.controller;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.study.springboot.dao.BoardDao;
-import com.study.springboot.vo.Board;
-import com.study.springboot.vo.BoardList;
-import com.study.springboot.vo.Comment;
-import com.study.springboot.vo.PaginationVo;
+import com.study.springboot.vo.*;
 import com.study.springboot.vo.Stack;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

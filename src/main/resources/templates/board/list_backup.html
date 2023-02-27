@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Boardcss.css}" />
+    <title>Insert title here</title>
 
   </head>
   <style>
@@ -62,32 +66,27 @@
         <td><img class="board__image"
 					th:src="@{/img/}+${board.boardNum}+.png" onerror="this.src='/images/altLogo.jpg'"></td>
              <td><a  th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a><a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></a></td>
-<th:block layout:fragment="css">
-	<style>
-.stackList {
-	list-style: none;
-	display: inline-block;
-}
 
-.container-stack {
-	display: inline;
-}
+        <td th:text="${board.memberNum}"></td>
+        <td th:text="${board.date}"></td>
+        <td th:text="${board.startDate}"></td>
+      </tr>
+      </tbody>
+     
+    </table>
 
-.boardList-eachOne {
-	display: flex;
-	align-items: center;
-}
-</style>
-</th:block>
-<h2>게시판제목</h2>
+    <form action="/board/list"  method="get">
+      <select name="type">
 
-<div class="container-boardList">
-	<span class="boardList-eachOne" th:each="board: ${boardList}"> <span class="container-stack">
-			<div th:each="stacks : ${board.stack}">
-				<div class="stackList">[[${stacks}]]</div>
-			</div>
-	</span> <a th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="${board.title}"></a> <span th:href="@{/board/detail(boardNum=${board.boardNum})}" th:text="|[${board.commentCount}]|"></span>
-	</span>
+        <option value="S">stack</option>
+        <option value="N">title</option>
+      </select>
+      <input type="text" name="search" />
+      <input type="submit" value="검색" />
+    </form>
 
-</div>
+    <a href="write">글쓰기</a>
+    
+   </div>
+  </body>
 </html>

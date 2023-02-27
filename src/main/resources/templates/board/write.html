@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default_layout}">
 
-<head xmlns:th="http://www.thymeleaf.org">
-<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
+<th:block layout:fragment="css">
 
-<title>게시글 작성</title>
-</head>
 <style>
 * {
 	margin: 0;
@@ -50,7 +46,7 @@ select {
 	float: right;
 }
 </style>
-<body>
+</th:block>
 
 	<!--  목표?
 
@@ -59,6 +55,8 @@ value="recruit"일 경우 > 시작일자, 요구스택
 value="apply"일 경우 > 가능스택
 
 -->
+	<div layout:fragment="content">
+
 	<section>
 
 		<form action="/board/write" method="post" enctype="multipart/form-data">
@@ -107,9 +105,38 @@ value="apply"일 경우 > 가능스택
 			</div>
 		</form>
 	</section>
+	
+	<script th:src=@{/js/multi-input.js}></script>
+<script>
+const getButton = document.getElementById('get');
+const multiInput = document.querySelector('multi-input'); 
+const values = document.querySelector('#values'); 
+
+getButton.onclick = () => {
+  if (multiInput.getValues().length > 0) {
+  
+  //  values.textContent = `Got ${multiInput.getValues().join(' and ')}!`;
+  
+  var stack= document.getElementById('stack');
+  stack.value= multiInput.getValues();
+
+  alert("사용 스택이 등록되었습니다.");
+  //셀렉트 해주는 친구
+  
+  
+ //  multiInput.getValues();
+  } else {
+   // values.textContent = '아무것도 선택하지 않음'; 
+   alert("아무것도 선택하지 않음");
+  }
+}
+
+//document.querySelector('input').focus();
+
+</script>
+	</div>
 
 
-</body>
-<script th:src=@{/multi-input.js}></script>
-<script th:src=@{/script.js}></script>
+
+
 </html>

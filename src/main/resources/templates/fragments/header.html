@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org">
+
+
+
+<!--headerFragment 선언-->
+<div th:fragment="headerFragment">
+
+  <div class="fragment-header">
+
+    <div class="fragment-header-logo" onclick="location.href='/';"></div>
+    <div style="position: absolute; top: 6%; left: 50%; transform: translate(-50%, -50%)">너만오면고 - 토이 프로젝트 구인/구직
+      커뮤니티</div>
+
+    <div class="fragment-header-login">
+      <input type="hidden" class="login-sessionCheck" th:value="${session.memberNum}">
+      <div class="login-sessionCheck-exist">
+        <span th:value="|${loginId}+님|"></span> <a href="">내 정보</a> <a href="#">내 팀</a> <a href="#">내 게시글</a> <a
+          href="#">내 댓글</a> <a href="#">쪽지함</a> <a href="#">로그아웃</a>
+
+      </div>
+
+      <div class="login-sessionCheck-notExist">
+        <form action="/member/login" method="post">
+          <input type="text" name="loginId"> <input type="text" name="password"> <input type="submit"
+            value="로그인" />
+        </form>
+        <a href=#>회원가입</a>
+      </div>
+
+    </div>
+  </div>
+
+  <h2>navbar section</h2>
+
+  <div class="navbar">
+    <a href="/board/list">리스트</a> <a href="/board/page">페이지</a> <a href="/home">구버전으로</a>
+  </div>
+
+  <div class="image-main" style="display: flex; justify-content: center">
+    <img src="/images/logo.jpg" style="width: 300px">
+
+  </div>
+
+</div>
+
+
+</html>
+
+
+
+
+

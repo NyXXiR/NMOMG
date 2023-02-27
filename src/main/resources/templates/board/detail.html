@@ -1,52 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
-<head >
-<meta charset="UTF-8">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
-<title>상세보기 페이지</title>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default_layout}">
 
+<th:block layout:fragment="css">
+
+<!-- 더 필요하면 여기 입력 -->
 <style>
-* {
-	font-family: 'Poppins', sans-serif;
-	padding: 0;
-	margin: 0;
-}
-body{
-	background-color: #9898f9;
-}
-.detail{
-	border-radius: 6px;
-	margin: 100px auto;
-	background-color: red;
-	border: 1px solid #ffffff;
-	position: relative;
-	height:600px;
-	width:600px ;
-}
-.detail__largeFont {
-
-	font-size: 30px;
-}
-.detail__info--item {
-
-	display: flex;
-}
-.detail__image{
-width:600px;
-height:300px;
-object-fit:scale-down;
-}
-.detail-2{
-	border: 1px solid purple;
-	position: absolute;
-}
 </style>
-</head>
+</th:block>
 
-<body>
-
+<div layout:fragment="content">
 
 	<div class="detail">
 		<div th:text="${detail.title}" class="detail__title detail__largeFont">
@@ -141,10 +103,11 @@ object-fit:scale-down;
 	<div>
 		포함가능성있음: <span>모집인원</span> <span>예정일수</span>
 	</div>
+	
+	
 	</div>
-</body>
 
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script>
 	/*
 	 $('#commentDelete').click(function(){
@@ -215,6 +178,8 @@ alert("아이디가 다릅니다.");
 	*/
 	//location.href='/comment/delete';
 </script>
+
+</div>
 </html>
 
 
