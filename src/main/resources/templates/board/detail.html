@@ -84,16 +84,24 @@
 
 		<!--  댓글 -->
 		<!-- 멤버넘 부분 수정(구현예정)해야 함 -->
+    <div class="login-sessionCheck-exist">
 		<form action="/comment/insert" method="post">
 			<textarea name="commentContent" id="commentContent" rows="3"></textarea>
 			<input type="hidden" name="boardNum" th:value="${detail.boardNum}" />
 			<input type="hidden" name="memberNum" th:value="${detail.memberNum}" />
 
 			<input type="submit" value="답변등록">
-
 		</form>
+</div>
 
-
+   <div class="login-sessionCheck-notExist">
+   <div>댓글을 다시려면 로그인해주세요.</div>
+        <form action="/member/login" method="post">
+          <input type="text" name="loginId"> <input type="text" name="password"> <input type="submit"
+            value="로그인" />
+        </form>
+        <a href=#>회원가입</a>
+      </div>
 
 		<button type="button" onclick="location.href='/board/page'">목록</button>
 

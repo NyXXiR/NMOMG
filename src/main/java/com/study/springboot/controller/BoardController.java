@@ -140,7 +140,15 @@ public class BoardController {
 
   // 게시글쓰기 write 페이지
   @GetMapping("/write")
-  public void writeform() {}
+  public String write(HttpSession session) {
+
+    if (session.getAttribute("memberNum") != null) {
+      return "board/write";
+    } else {
+      return "redirect:/member/login";
+    }
+
+  }
 
   @PostMapping("/write") // 데이터를 서버로 제출해서 insert, update
   public String insert(Board board, MultipartFile uploadFile, String[] stack) {

@@ -42,14 +42,19 @@ public class MemberController {
     return join;
   }
 
-  @GetMapping("/logout")
+  @GetMapping("/member/logout")
   public String logout(HttpSession session) {
-    session.invalidate();
-    return "redirect:home";
+    session.removeAttribute("memberNum");
+    return "redirect:/";
   }
 
 
-  // 로그인 포스트 맵핑. 로그인 관련된 매핑은 모두 post로 할 것임.
+  @GetMapping("/member/login")
+  public String login() {
+    return "member/loginForm";
+  }
+
+  // 로그인 포스트 맵핑. 로그인 관련된 매핑은 모두 post로 할 것임. 위는 단순하게 로그인 페이지로만 이동시켜주는 기
   @PostMapping("/member/login")
   public String login(Member member, Model model, HttpSession session) {
     // 로그인시 검열기능 i=1이면 정상 로그인

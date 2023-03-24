@@ -1,13 +1,15 @@
 
 var loginCheck= document.querySelector(".login-sessionCheck").value;
-var loginCheckSuccess= document.querySelector(".login-sessionCheck-exist");
-var loginCheckFail=document.querySelector(".login-sessionCheck-notExist");
+var loginCheckSuccess= document.querySelectorAll(".login-sessionCheck-exist");
+var loginCheckFail=document.querySelectorAll(".login-sessionCheck-notExist");
+
 
 if(loginCheck===("")){
-		loginCheckSuccess.style.display="none"
-
+	
+	loginCheckSuccess.forEach(item => item.style.display="none")
+		
 }else{
-		loginCheckFail.style.display="none"
+	loginCheckFail.forEach(item => item.style.display="none")
 
 }
 
